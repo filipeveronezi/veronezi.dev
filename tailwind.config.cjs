@@ -1,7 +1,4 @@
 /** @type {import('tailwindcss').Config} */
-
-const defaultTheme = require('tailwindcss/defaultTheme')
-
 module.exports = {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
@@ -11,7 +8,31 @@ module.exports = {
         'gradient-pattern': "url('/gradient.jpg')"
       },
       fontFamily: {
-        sans: ['Unbounded', ...defaultTheme.fontFamily.sans]
+        sans: ['Space Grotesk', 'sans-serif']
+      },
+      keyframes: {
+        'fade-up': {
+          '0%': { transform: 'translateY(4px)', opacity: 0 },
+          '100%': { transform: 'translateY(0)', opacity: 1 }
+        },
+        'fade-down': {
+          '0%': { transform: 'translateY(-4px)', opacity: 0 },
+          '100%': { transform: 'translateY(0)', opacity: 1 }
+        },
+        'fade-right': {
+          '0%': { transform: 'translateX(-4px)', opacity: 0 },
+          '100%': { transform: 'translateY(0)', opacity: 1 }
+        },
+        'fade-left': {
+          '0%': { transform: 'translateX(4px)', opacity: 0 },
+          '100%': { transform: 'translateY(0)', opacity: 1 }
+        }
+      },
+      animation: {
+        'fade-up': 'fade-up 300ms backwards',
+        'fade-down': 'fade-down 300ms backwards',
+        'fade-right': 'fade-right 300ms backwards',
+        'fade-left': 'fade-left 300ms backwards'
       }
     }
   },
