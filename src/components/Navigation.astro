@@ -1,0 +1,13 @@
+---
+import Logo from './Logo.astro'
+import NavigationItem from './NavigationItem.astro'
+---
+
+<div
+  class="mx-auto mb-5 flex h-full max-w-screen-sm flex-col gap-4 px-6 lg:sticky lg:top-56 lg:w-full lg:items-end lg:justify-self-end lg:px-0">
+  <a href="/"><Logo /></a>
+  <nav class="flex gap-2 text-lg lg:flex-col">
+    <NavigationItem to="/">Home</NavigationItem>
+    <NavigationItem to="/blog">Blog</NavigationItem>
+  </nav>
+</div>

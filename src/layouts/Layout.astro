@@ -1,5 +1,7 @@
 ---
 import '@fontsource/space-grotesk'
+import GradientPattern from '../components/GradientPattern.astro'
+import Navigation from '../components/Navigation.astro'
 import NoiseTexture from '../components/NoiseTexture.astro'
 
 export interface Props {
@@ -18,8 +20,13 @@ const { title } = Astro.props
     <meta name="generator" content={Astro.generator} />
     <title>{`F. Veronezi — ${title}`}</title>
   </head>
-  <body class="text-violet-100/90">
+  <body class="h-auto text-violet-100/90">
     <NoiseTexture />
-    <slot />
+    <GradientPattern />
+    <div
+      class="min-h-screen bg-gradient-to-br from-zinc-900 to-neutral-900 pt-28 lg:grid lg:grid-cols-[1fr,640px,1fr] lg:gap-6 lg:pt-56">
+      <Navigation />
+      <slot />
+    </div>
   </body>
 </html>

@@ -5,7 +5,7 @@ module.exports = {
     extend: {
       backgroundImage: {
         'grainy-pattern': "url('/noise.svg')",
-        'gradient-pattern': "url('/gradient.jpg')"
+        'gradient-pattern': "url('/gradient-pattern.jpg')"
       },
       fontFamily: {
         sans: ['Space Grotesk', 'sans-serif']
