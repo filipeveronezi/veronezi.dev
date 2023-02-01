@@ -29,10 +29,10 @@ module.exports = {
         }
       },
       animation: {
-        'fade-up': 'fade-up 300ms backwards',
-        'fade-down': 'fade-down 300ms backwards',
-        'fade-right': 'fade-right 300ms backwards',
-        'fade-left': 'fade-left 300ms backwards'
+        'fade-up': 'fade-up 400ms backwards',
+        'fade-down': 'fade-down 400ms backwards',
+        'fade-right': 'fade-right 400ms backwards',
+        'fade-left': 'fade-left 400ms backwards'
       }
     }
   },
