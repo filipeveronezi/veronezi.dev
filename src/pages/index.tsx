@@ -1,3 +1,5 @@
+import { Cards } from '@/components/Cards'
+import { ExternalLinks } from '@/components/ExternalLinks'
 import { Heading } from '@/components/Heading'
 import { Introduction } from '@/components/Introduction'
 import Head from 'next/head'
@@ -11,9 +13,11 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="mx-auto flex h-full max-w-screen-sm flex-col gap-5 px-6 lg:px-0">
+      <main className="mx-auto flex h-full w-full max-w-screen-sm flex-col gap-5 px-6 lg:px-0">
         <Heading />
         <Introduction />
+        <ExternalLinks />
+        <Cards />
       </main>
     </>
   )
