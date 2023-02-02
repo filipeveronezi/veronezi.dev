@@ -1,8 +1,10 @@
-/// <reference types="vitest" />
-import { getViteConfig } from 'astro/config'
+import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vitest/config'
 
-export default getViteConfig({
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react()],
   test: {
-    // ...
+    environment: 'jsdom'
   }
 })

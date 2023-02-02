@@ -1,6 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+  content: [
+    './src/pages/**/*.{js,ts,jsx,tsx}',
+    './src/components/**/*.{js,ts,jsx,tsx}',
+    './src/layout/**/*.{js,ts,jsx,tsx}'
+  ],
   theme: {
     extend: {
       backgroundImage: {
@@ -8,7 +12,7 @@ module.exports = {
         'gradient-pattern': "url('/gradient-pattern.jpg')"
       },
       fontFamily: {
-        sans: ['Space Grotesk', 'sans-serif']
+        sans: ['var(--space-grotesk-font)', 'sans-serif']
       },
       keyframes: {
         'fade-up': {
