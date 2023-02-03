@@ -4,9 +4,10 @@
 
 <br />
 
+
 <a href="https://www.veronezi.dev">
   <div align="center">
-    <img src="https://user-images.githubusercontent.com/48724782/216690437-e563e601-b210-435b-8d38-57e944f76721.png" />
+    <img src="https://user-images.githubusercontent.com/48724782/216693674-0404ad2c-1727-4115-aed0-6241c34e2186.png" />
   </div>
 </a>
 
