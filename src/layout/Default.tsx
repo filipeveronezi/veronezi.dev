@@ -15,6 +15,23 @@ export function DefaultLayout({ children }: Props) {
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width" />
         <link rel="icon" href="/favicon.ico" />
+        <meta name="title" content="Filipe Veronezi — Front-end Developer" />
+        <meta name="description" content="I'm a web developer from Brazil and this is my place on the web." />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.veronezi.dev/" />
+        <meta property="og:title" content="Filipe Veronezi — Front-end Developer" />
+        <meta property="og:description" content="I'm a web developer from Brazil and this is my place on the web." />
+        <meta property="og:image" content="/thumbnail.png" />
+
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://www.veronezi.dev/" />
+        <meta property="twitter:title" content="Filipe Veronezi — Front-end Developer" />
+        <meta
+          property="twitter:description"
+          content="I'm a web developer from Brazil and this is my place on the web."
+        />
+        <meta property="twitter:image" content="/thumbnail.png"></meta>
       </Head>
       <>
         <NoiseTexture />
