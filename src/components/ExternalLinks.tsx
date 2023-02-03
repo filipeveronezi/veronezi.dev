@@ -3,7 +3,7 @@ import { LinkedInLink } from './LinkedInLink'
 
 export function ExternalLinks() {
   return (
-    <div className="flex gap-3">
+    <div className="flex items-center justify-center gap-3">
       <GithubLink />
       <LinkedInLink />
     </div>
