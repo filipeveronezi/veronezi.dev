@@ -12,13 +12,13 @@ export default function Blog() {
         <meta property="og:url" content="https://www.veronezi.dev/blog" />
         <meta property="og:title" content="Filipe Veronezi — Blog" />
         <meta property="og:description" content="Sharing a bit of my journey as a web developer." />
-        <meta property="og:image" content="/thumbnail.png" />
+        <meta property="og:image" itemProp="image" content="https://www.veronezi.dev/thumbnail.png" />
 
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://www.veronezi.dev/blog" />
         <meta property="twitter:title" content="Filipe Veronezi — Blog" />
         <meta property="twitter:description" content="Sharing a bit of my journey as a web developer." />
-        <meta property="twitter:image" content="/thumbnail.png" />
+        <meta property="twitter:image" content="https://www.veronezi.dev/thumbnail.png" />
       </Head>
       <main className="mx-auto flex w-full max-w-screen-sm flex-col gap-5 px-6 lg:px-0">
         <h1 className="text-4xl font-bold">Blog</h1>

@@ -15,7 +15,7 @@ export default function Home() {
         <meta property="og:url" content="https://www.veronezi.dev/" />
         <meta property="og:title" content="Filipe Veronezi — Front-end Developer" />
         <meta property="og:description" content="I'm a web developer from Brazil and this is my place on the web." />
-        <meta property="og:image" content="/thumbnail.png" />
+        <meta property="og:image" itemProp="image" content="https://www.veronezi.dev/thumbnail.png" />
 
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://www.veronezi.dev/" />
@@ -24,7 +24,7 @@ export default function Home() {
           property="twitter:description"
           content="I'm a web developer from Brazil and this is my place on the web."
         />
-        <meta property="twitter:image" content="/thumbnail.png" />
+        <meta property="twitter:image" content="https://www.veronezi.dev/thumbnail.png" />
       </Head>
       <main className="mx-auto flex h-full w-full max-w-screen-sm flex-col gap-5 px-6 lg:px-0">
         <Heading />
