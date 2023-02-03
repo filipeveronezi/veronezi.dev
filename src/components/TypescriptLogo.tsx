@@ -1,7 +1,7 @@
 export function TypescriptLogo() {
   return (
     <svg
-      className="h-20 w-20"
+      className="h-16 w-16"
       fill="none"
       height="512"
       viewBox="0 0 512 512"

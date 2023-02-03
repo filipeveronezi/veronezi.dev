@@ -1,7 +1,7 @@
 export function UnicampLogo() {
   return (
     <svg
-      className="h-16 w-16"
+      className="w-2h-20 h-20"
       width="403"
       height="452"
       viewBox="0 0 403 452"
