@@ -18,8 +18,10 @@ export function Cards() {
           <PilgrimLogo />
           <p className="z-10 text-center font-medium text-white">
             I work for{' '}
-            <strong className="font-bold underline underline-offset-2 lg:group-hover:underline">Pilgrim</strong>, where
-            we&apos;re building a content based platform to serve the church through technology.
+            <strong className="font-bold underline underline-offset-2 lg:no-underline lg:group-hover:underline">
+              Pilgrim
+            </strong>
+            , where we&apos;re building a content based platform to serve the church through technology.
           </p>
         </div>
       </Link>
@@ -28,18 +30,23 @@ export function Cards() {
         <div className="flex cursor-default flex-col gap-2">
           <p>
             A programmer&apos;s greatest tool is their{' '}
-            <strong className="font-bold underline underline-offset-2 lg:group-hover:underline">versatility</strong>.
+            <strong className="font-bold underline underline-offset-2 lg:no-underline lg:group-hover:underline">
+              versatility
+            </strong>
+            .
           </p>
           <p>
             I love the fact that every day I get the chance to{' '}
-            <strong className="font-bold underline underline-offset-2 lg:group-hover:underline">
+            <strong className="font-bold underline underline-offset-2 lg:no-underline lg:group-hover:underline">
               learn something new
             </strong>
             .<span className="opacity-0 transition-opacity lg:group-hover:opacity-100"> 💡</span>
           </p>
           <p>
-            <strong className="font-bold underline underline-offset-2 lg:group-hover:underline">Typescript</strong> is
-            my current choice to solve real life problems efficiently.
+            <strong className="font-bold underline underline-offset-2 lg:no-underline lg:group-hover:underline">
+              Typescript
+            </strong>{' '}
+            is my current choice to solve real life problems efficiently.
           </p>
         </div>
       </div>
@@ -51,8 +58,10 @@ export function Cards() {
           <Image src="/pencil.png" width={75} height={75} alt="Pencil 3D icon" />
           <p className="text-center font-medium text-white">
             I started to share a bit of my journey on my{' '}
-            <strong className="font-bold underline underline-offset-2 lg:group-hover:underline">Blog</strong>.
-            <span className="opacity-0 transition-opacity lg:group-hover:opacity-100"> 🎉</span>
+            <strong className="font-bold underline underline-offset-2 lg:no-underline lg:group-hover:underline">
+              Blog
+            </strong>
+            .<span className="opacity-0 transition-opacity lg:group-hover:opacity-100"> 🎉</span>
           </p>
         </div>
       </Link>
@@ -65,7 +74,9 @@ export function Cards() {
         <Image src="/rocket.png" width={100} height={100} alt="Rocket 3D icon" />
         <p className="text-right text-2xl font-bold text-white">
           Check out some{' '}
-          <strong className="font-bold underline underline-offset-2 lg:group-hover:underline">projects</strong>{' '}
+          <strong className="font-bold underline underline-offset-2 lg:no-underline lg:group-hover:underline">
+            projects
+          </strong>{' '}
           I&apos;ve been working on
         </p>
       </Link>
@@ -85,7 +96,7 @@ export function Cards() {
           <div className="flex flex-col gap-2">
             <p className="cursor-default text-center font-medium text-white">
               In 2021 I graduated as a{' '}
-              <strong className="font-bold underline underline-offset-2 lg:group-hover:underline">
+              <strong className="font-bold underline underline-offset-2 lg:no-underline lg:group-hover:underline">
                 software engineer
               </strong>{' '}
               for UNICAMP.
