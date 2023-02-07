@@ -42,10 +42,16 @@ interface Props {
 }
 
 const BlogPost: NextPageWithLayout<Props> = ({ post }: Props) => {
+  const publishedAt = new Date(post.publishedAt).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: '2-digit'
+  })
+
   return (
     <>
       <Head>
-        <title>F. Veronezi — {post.title}</title>
+        <title>{`F. Veronezi — ${post.title}`}</title>
         <meta name="title" content="Filipe Veronezi — Blog" />
         <meta name="description" content="Sharing a bit of my journey as a web developer." />
 
@@ -61,9 +67,18 @@ const BlogPost: NextPageWithLayout<Props> = ({ post }: Props) => {
         <meta property="twitter:description" content="Sharing a bit of my journey as a web developer." />
         <meta property="twitter:image" content="https://www.veronezi.dev/thumbnail.png" />
       </Head>
-      <main className="mx-auto flex w-full max-w-screen-sm flex-col gap-5 px-6 lg:px-0">
+      <main className="mx-auto flex w-full max-w-screen-sm flex-col gap-2 px-6 lg:px-0">
         <h1 className="text-4xl font-bold">{post.title}</h1>
-        <section className="flex flex-col gap-5 text-xl">
+        {post.author.name && post.author.picture ? (
+          <div className="mb-8 flex flex-col gap-1">
+            <span>{publishedAt}</span>
+            <div className="">
+              <span>Written by</span>
+              <span className="font-bold">{` ${post.author.name}`}</span>
+            </div>
+          </div>
+        ) : null}
+        <section className="prose text-violet-100 prose-em:transition-colors hover:prose-em:bg-violet-700 hover:prose-em:text-white lg:prose-lg">
           <ReactMarkdown>{post.content}</ReactMarkdown>
         </section>
       </main>

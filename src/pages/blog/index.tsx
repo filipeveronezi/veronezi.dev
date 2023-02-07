@@ -41,7 +41,7 @@ const Blog: NextPageWithLayout<Props> = ({ allPosts }: Props) => {
       <main className="mx-auto flex w-full max-w-screen-sm flex-col gap-5 px-6 lg:px-0">
         <div className="flex flex-col gap-2">
           <h1 className="text-4xl font-bold">Blog</h1>
-          <p className="text-lg">
+          <p className="lg:text-lg">
             ✨ This blog exists to share my journey as a web developer. Sometimes{' '}
             <strong className="font-bold">technically</strong>, sometimes{' '}
             <strong className="font-bold">thoughtfully</strong>. Most of the times,{' '}
@@ -53,12 +53,12 @@ const Blog: NextPageWithLayout<Props> = ({ allPosts }: Props) => {
           {allPosts.map((post) => {
             return (
               <Link
-                className="text-lg text-violet-100 decoration-violet-300 underline-offset-2 hover:text-white hover:underline"
+                className="text-violet-100 decoration-violet-300 underline-offset-2 hover:text-white hover:underline lg:text-lg"
                 href={`/blog/${post.slug}`}
                 key={post.slug}>
                 <span className="flex items-center gap-1">
-                  <ArrowTopRightOnSquareIcon className="h-4 w-4" />
-                  <span>{post.title}</span>
+                  <ArrowTopRightOnSquareIcon className="hidden h-4 w-4 lg:block" />
+                  <span className="underline lg:no-underline">{post.title}</span>
                 </span>
               </Link>
             )
