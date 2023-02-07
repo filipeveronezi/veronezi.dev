@@ -1,10 +1,10 @@
 ---
-title: 'Learning to Code: My Journey as a Web Developer'
+title: 'Building Things that Matter: My Journey as a Web Developer'
 status: 'draft'
 author:
   name: 'Filipe Veronezi'
   picture: 'https://avatars.githubusercontent.com/u/48724782?v=4'
-slug: 'learning-to-code-my-journey-as-a-web-developer'
+slug: 'building-things-that-matter'
 description: ''
 coverImage: ''
 publishedAt: '2023-02-06T20:06:00.000Z'
