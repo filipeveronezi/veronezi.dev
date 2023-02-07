@@ -10,15 +10,25 @@ coverImage: ''
 publishedAt: '2023-02-03T20:06:00.623Z'
 ---
 
-I decided to build this blog in order to share my own journey as a web developer and reflect on the importance of developing the **skill of learning**, which I believe is the cornerstone of success in this field. Hopefully in this way I get to rescue somebody that's feeling like giving up - just like I've felt sometimes.
+✨ This blog exists to share my journey as a web developer. Sometimes *technically*, sometimes *thoughtfully*. Most of the times, *both*.
 
-Starting out on the journey of web development can be an **exciting**, but also, **overwhelming** experience. I have learned along the way that the most challenging part of the process is not necessarily understanding the code complexity or some deep abstractions you end up crossing in the way, but the ability to continuously **learn** and **adapt** to new technologies and concepts.
+In the *best case scenario*, I can help somebody who's feeling like giving up - just like I've felt sometimes.
 
-My first try on learning technology was back in 2015. But only 5 years later I fully committed to the path of web development. Looking back, I realized that the years in between were a time of exploration and personal growth, but maybe I could've taken this path much earlier if I had what I consider the right "learning to code" mentality: a programmer is not a robot, a programmer is an inventor.
+As this is my very first post, I'll introduce myself in a (non-)typical way.
 
+🤓 I'm a *self-taught builder*.
 
+😴 But I once was an *average programmer*.
 
-Being autonomous, never giving up and being open to new ideas and approaches are key aspects that will make you stand out in this ever-evolving field. Technology changes rapidly, so it's important to keep a flexible mindset and not limit yourself to a specific set of tools, languages, or frameworks.
+What does this mean? For me, this was the 🤯 *flip switch* of my carreer. I'll explain.
 
-If you forget something. You search for it. The important of the journey for me has been to become a builder, a creator. If you try to memorize stuff just like in high-school, you'll become a robot.
+I studied programming for many years (started when I was 15) and I was a *great student* that apparently would become a *great programmer*. But even though my grades were good, I always felt *something was off*. I was trying hard to be a programmer by making (nonsense) software with deep abstractions, complex architechtures and logic. What I didn't realize at this time is I just wasn't *building something*. Something that was *truly useful*.
+
+💡 A programmer doesn't exist to be a logic nerd that creates beautiful code only. A programmer should actually be a *builder*. A builder of software that solves *real life problems* and helps people in the most diversified ways.
+
+Your *framework* of choice doesn't matter that much. Your *language* of choice matters a little more. Your code quality has to be good, though. But it will never be perfect. So what matters the most is...
+
+🔧 *What problems are you solving by building software?*
+
+😁 Let's be driven by that challenge and build *useful* and *enjoyable* software.
 
