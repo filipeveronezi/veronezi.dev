@@ -6,7 +6,7 @@ export function Footer() {
     <footer className="col-start-2 row-start-2 mx-auto flex w-full max-w-screen-sm flex-col items-start justify-end gap-12 py-16 px-6 lg:px-0">
       <ExternalLinks />
 
-      <p className="font-bold saturate-50 transition-all hover:saturate-150">
+      <p className="font-bold lg:text-zinc-400 lg:saturate-50 lg:transition-all lg:hover:text-violet-100 lg:hover:saturate-150">
         ⚡ Built with{' '}
         <Link
           className="underline-offset-2 hover:underline"
