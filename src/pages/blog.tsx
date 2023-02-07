@@ -1,6 +1,8 @@
+import { DefaultLayout } from '@/layout/Default'
 import Head from 'next/head'
+import { NextPageWithLayout } from './_app'
 
-export default function Blog() {
+const Blog: NextPageWithLayout = () => {
   return (
     <>
       <Head>
@@ -86,3 +88,9 @@ export default function Blog() {
     </>
   )
 }
+
+Blog.getLayout = function getLayout(page: React.ReactElement) {
+  return <DefaultLayout>{page}</DefaultLayout>
+}
+
+export default Blog

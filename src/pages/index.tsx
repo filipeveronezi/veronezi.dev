@@ -1,9 +1,11 @@
 import { Cards } from '@/components/Cards'
 import { Heading } from '@/components/Heading'
 import { Introduction } from '@/components/Introduction'
+import { DefaultLayout } from '@/layout/Default'
 import Head from 'next/head'
+import { NextPageWithLayout } from './_app'
 
-export default function Home() {
+const Home: NextPageWithLayout = () => {
   return (
     <>
       <Head>
@@ -34,3 +36,9 @@ export default function Home() {
     </>
   )
 }
+
+Home.getLayout = function getLayout(page: React.ReactElement) {
+  return <DefaultLayout>{page}</DefaultLayout>
+}
+
+export default Home
