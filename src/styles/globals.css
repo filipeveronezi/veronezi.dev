@@ -32,3 +32,14 @@ body::-webkit-scrollbar-thumb {
 body::-webkit-scrollbar-button {
   display: none;
 }
+
+::-moz-selection {
+  /* Code for Firefox */
+  color: white;
+  background: #7e22ce;
+}
+
+::selection {
+  color: white;
+  background: #7e22ce;
+}
