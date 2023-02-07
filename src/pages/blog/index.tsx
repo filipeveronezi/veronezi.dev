@@ -10,7 +10,8 @@ export const getStaticProps = async () => {
   const allPosts = getDocuments('blog-posts', ['title', 'publishedAt', 'slug', 'coverImage', 'description', 'author'])
 
   return {
-    props: { allPosts }
+    props: { allPosts },
+    revalidate: 60 * 5 // 5 minutes
   }
 }
 
