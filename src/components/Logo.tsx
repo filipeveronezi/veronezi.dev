@@ -16,9 +16,9 @@ export function Logo() {
       <ellipse cx="331.5" cy="333.194" rx="31.5" ry="32" fill="#EDE9FE" />
       <defs>
         <linearGradient id="paint0_linear_510_2" x1="-52.5" y1="-130" x2="346" y2="450" gradientUnits="userSpaceOnUse">
-          <stop stop-color="#A78BFA" stop-opacity="0.9" />
-          <stop offset="0.317708" stop-color="#4C1D95" stop-opacity="0.9" />
-          <stop offset="0.911458" stop-color="#151515" stop-opacity="0.9" />
+          <stop stopColor="#A78BFA" stopOpacity="0.9" />
+          <stop offset="0.317708" stopColor="#4C1D95" stopOpacity="0.9" />
+          <stop offset="0.911458" stopColor="#151515" stopOpacity="0.9" />
         </linearGradient>
       </defs>
     </svg>

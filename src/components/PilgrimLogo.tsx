@@ -31,8 +31,8 @@ export function PilgrimLogo() {
           x2="47.7019"
           y2="165.372"
           gradientUnits="userSpaceOnUse">
-          <stop stop-color="#FF7F57" />
-          <stop offset="1" stop-color="#EF5525" />
+          <stop stopColor="#FF7F57" />
+          <stop offset="1" stopColor="#EF5525" />
         </linearGradient>
         <linearGradient
           id="paint1_linear_1716_6503"
@@ -41,8 +41,8 @@ export function PilgrimLogo() {
           x2="104.493"
           y2="115.377"
           gradientUnits="userSpaceOnUse">
-          <stop stop-color="#FF7F57" />
-          <stop offset="1" stop-color="#EF5525" />
+          <stop stopColor="#FF7F57" />
+          <stop offset="1" stopColor="#EF5525" />
         </linearGradient>
         <linearGradient
           id="paint2_linear_1716_6503"
@@ -51,8 +51,8 @@ export function PilgrimLogo() {
           x2="24.9078"
           y2="45.805"
           gradientUnits="userSpaceOnUse">
-          <stop stop-color="#FFC46B" />
-          <stop offset="0.583333" stop-color="#FF973D" />
+          <stop stopColor="#FFC46B" />
+          <stop offset="0.583333" stopColor="#FF973D" />
         </linearGradient>
         <linearGradient
           id="paint3_linear_1716_6503"
@@ -61,8 +61,8 @@ export function PilgrimLogo() {
           x2="72.5852"
           y2="166"
           gradientUnits="userSpaceOnUse">
-          <stop stop-color="#FFC46B" />
-          <stop offset="0.583333" stop-color="#FF973D" />
+          <stop stopColor="#FFC46B" />
+          <stop offset="0.583333" stopColor="#FF973D" />
         </linearGradient>
       </defs>
     </svg>
