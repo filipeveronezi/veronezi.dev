@@ -1,8 +1,26 @@
 import { DefaultLayout } from '@/layout/Default'
+import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/solid'
 import Head from 'next/head'
+import Link from 'next/link'
+import { Document } from 'outstatic'
+import { getDocuments } from 'outstatic/server'
 import { NextPageWithLayout } from './_app'
 
-const Blog: NextPageWithLayout = () => {
+export const getStaticProps = async () => {
+  const allPosts = getDocuments('blog-posts', ['title', 'publishedAt', 'slug', 'coverImage', 'description', 'author'])
+
+  console.log(allPosts)
+
+  return {
+    props: { allPosts }
+  }
+}
+
+interface Props {
+  allPosts: Document[]
+}
+
+const Blog: NextPageWithLayout<Props> = ({ allPosts }: Props) => {
   return (
     <>
       <Head>
@@ -23,67 +41,31 @@ const Blog: NextPageWithLayout = () => {
         <meta property="twitter:image" content="https://www.veronezi.dev/thumbnail.png" />
       </Head>
       <main className="mx-auto flex w-full max-w-screen-sm flex-col gap-5 px-6 lg:px-0">
-        <h1 className="text-4xl font-bold">Blog</h1>
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima, at? Enim minus, aliquam autem nostrum in
-          minima doloremque ad nobis nesciunt aut assumenda quibusdam! Hic incidunt alias asperiores aperiam cupiditate.
-        </p>
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima, at? Enim minus, aliquam autem nostrum in
-          minima doloremque ad nobis nesciunt aut assumenda quibusdam! Hic incidunt alias asperiores aperiam cupiditate.
-        </p>
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima, at? Enim minus, aliquam autem nostrum in
-          minima doloremque ad nobis nesciunt aut assumenda quibusdam! Hic incidunt alias asperiores aperiam cupiditate.
-        </p>
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima, at? Enim minus, aliquam autem nostrum in
-          minima doloremque ad nobis nesciunt aut assumenda quibusdam! Hic incidunt alias asperiores aperiam cupiditate.
-        </p>
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima, at? Enim minus, aliquam autem nostrum in
-          minima doloremque ad nobis nesciunt aut assumenda quibusdam! Hic incidunt alias asperiores aperiam cupiditate.
-        </p>
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima, at? Enim minus, aliquam autem nostrum in
-          minima doloremque ad nobis nesciunt aut assumenda quibusdam! Hic incidunt alias asperiores aperiam cupiditate.
-        </p>
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima, at? Enim minus, aliquam autem nostrum in
-          minima doloremque ad nobis nesciunt aut assumenda quibusdam! Hic incidunt alias asperiores aperiam cupiditate.
-        </p>
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima, at? Enim minus, aliquam autem nostrum in
-          minima doloremque ad nobis nesciunt aut assumenda quibusdam! Hic incidunt alias asperiores aperiam cupiditate.
-        </p>
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima, at? Enim minus, aliquam autem nostrum in
-          minima doloremque ad nobis nesciunt aut assumenda quibusdam! Hic incidunt alias asperiores aperiam cupiditate.
-        </p>
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima, at? Enim minus, aliquam autem nostrum in
-          minima doloremque ad nobis nesciunt aut assumenda quibusdam! Hic incidunt alias asperiores aperiam cupiditate.
-        </p>
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima, at? Enim minus, aliquam autem nostrum in
-          minima doloremque ad nobis nesciunt aut assumenda quibusdam! Hic incidunt alias asperiores aperiam cupiditate.
-        </p>
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima, at? Enim minus, aliquam autem nostrum in
-          minima doloremque ad nobis nesciunt aut assumenda quibusdam! Hic incidunt alias asperiores aperiam cupiditate.
-        </p>
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima, at? Enim minus, aliquam autem nostrum in
-          minima doloremque ad nobis nesciunt aut assumenda quibusdam! Hic incidunt alias asperiores aperiam cupiditate.
-        </p>
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima, at? Enim minus, aliquam autem nostrum in
-          minima doloremque ad nobis nesciunt aut assumenda quibusdam! Hic incidunt alias asperiores aperiam cupiditate.
-        </p>
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima, at? Enim minus, aliquam autem nostrum in
-          minima doloremque ad nobis nesciunt aut assumenda quibusdam! Hic incidunt alias asperiores aperiam cupiditate.
-        </p>
+        <div className="flex flex-col gap-2">
+          <h1 className="text-4xl font-bold">Blog</h1>
+          <p>
+            ✨ This blog exists to share my journey as a web developer. Sometimes{' '}
+            <strong className="font-bold">technically</strong>, sometimes{' '}
+            <strong className="font-bold">thoughtfully</strong>. Most of the times,{' '}
+            <strong className="font-bold">both</strong>.
+          </p>
+        </div>
+        <div className="flex flex-col gap-1">
+          <h2 className="text-xl font-bold">Posts</h2>
+          {allPosts.map((post, index) => {
+            return (
+              <Link
+                className="text-violet-100 decoration-violet-300 underline-offset-2 hover:text-white hover:underline"
+                href={`/blog/${post.slug}`}
+                key={post.slug}>
+                <span className="flex items-center gap-1">
+                  <ArrowTopRightOnSquareIcon className="h-4 w-4" />
+                  <span>{post.title}</span>
+                </span>
+              </Link>
+            )
+          })}
+        </div>
       </main>
     </>
   )
