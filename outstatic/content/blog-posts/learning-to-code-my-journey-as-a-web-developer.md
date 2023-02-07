@@ -7,7 +7,7 @@ author:
 slug: 'learning-to-code-my-journey-as-a-web-developer'
 description: ''
 coverImage: ''
-publishedAt: '2023-02-03T20:06:00.623Z'
+publishedAt: '2023-02-06T20:06:00.000Z'
 ---
 
 ✨ This blog exists to share my journey as a web developer. Sometimes *technically*, sometimes *thoughtfully*. Most of the times, *both*.
