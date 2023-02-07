@@ -1,6 +1,6 @@
 ---
 title: 'Building Things that Matter: My Journey as a Web Developer'
-status: 'draft'
+status: 'published'
 author:
   name: 'Filipe Veronezi'
   picture: 'https://avatars.githubusercontent.com/u/48724782?v=4'
@@ -26,7 +26,7 @@ I studied programming for many years (started when I was 15) and I was a *great 
 
 💡 A programmer doesn't exist to be a logic nerd that creates beautiful code only. A programmer should actually be a *builder*. A builder of software that solves *real life problems* and helps people in the most diversified ways.
 
-Your *framework* of choice doesn't matter that much. Your *language* of choice matters a little more. Your code quality has to be good, though. But it will never be perfect. So what matters the most is...
+Your *framework* of choice doesn't matter that much. Your *language* of choice matters a little more. Your code quality has to be good, though. But it will never be perfect. So what matters the most is…
 
 🔧 *What problems are you solving by building software?*
 
