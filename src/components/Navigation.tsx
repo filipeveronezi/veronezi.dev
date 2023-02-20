@@ -10,10 +10,10 @@ export function Navigation() {
           <Logo />
         </Link>
         <nav className="flex gap-2 text-lg lg:flex-col">
-          <NavigationItem to="/">
+          <NavigationItem to="home">
             <span>Home</span>
           </NavigationItem>
-          <NavigationItem to="/blog">
+          <NavigationItem to="blog">
             <span>Blog</span>
           </NavigationItem>
         </nav>
