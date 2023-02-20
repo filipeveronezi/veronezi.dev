@@ -40,15 +40,15 @@ const Blog: NextPageWithLayout<Props> = ({ allPosts }: Props) => {
       </Head>
       <main className="mx-auto flex w-full max-w-screen-sm flex-col gap-5 px-6 lg:px-0">
         <div className="flex flex-col gap-2">
-          <h1 className="text-4xl font-bold">Blog</h1>
-          <p className="lg:text-lg">
+          <h1 className="animate-fade-up text-4xl font-bold">Blog</h1>
+          <p className="animate-fade-up animation-delay-100 lg:text-lg">
             ✨ This blog exists to share my journey as a web developer. Sometimes{' '}
             <strong className="font-bold">technically</strong>, sometimes{' '}
             <strong className="font-bold">thoughtfully</strong>. Most of the times,{' '}
             <strong className="font-bold">both</strong>.
           </p>
         </div>
-        <div className="flex flex-col gap-1">
+        <div className="flex animate-fade-up flex-col gap-1 animation-delay-200">
           <h2 className="text-2xl font-bold">Posts</h2>
           {allPosts.map((post) => {
             return (
