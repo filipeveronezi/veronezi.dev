@@ -7,7 +7,7 @@
 
 <a href="https://www.veronezi.dev">
   <div align="center">
-    <img src="https://user-images.githubusercontent.com/48724782/216693674-0404ad2c-1727-4115-aed0-6241c34e2186.png" />
+    <img src="https://user-images.githubusercontent.com/48724782/233758463-4cc7353c-0741-4f64-8e13-5c1f11ac1d57.png" />
   </div>
 </a>
 
