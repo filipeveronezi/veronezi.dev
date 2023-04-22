@@ -9,7 +9,11 @@ import { UnicampLogo } from './UnicampLogo'
 export function Cards() {
   return (
     <div className="flex flex-col gap-5 sm:grid sm:grid-cols-2">
-      <div className="group relative col-span-2 flex animate-fade-up cursor-pointer flex-col items-center gap-5 rounded-lg bg-blue-100 bg-gradient-pattern-8 px-10 py-6 saturate-50 transition-all animation-delay-100 lg:flex-row lg:items-start lg:saturate-0 lg:hover:scale-[.97] lg:hover:saturate-50">
+      <Link
+        href="https://www.intranetmall.com.br/br/"
+        target="_blank"
+        rel="noreferrer noopener"
+        className="group relative col-span-2 flex animate-fade-up cursor-pointer flex-col items-center gap-5 rounded-lg bg-blue-100 bg-gradient-pattern-8 px-10 py-6 saturate-50 transition-all animation-delay-100 lg:flex-row lg:items-start lg:saturate-0 lg:hover:scale-[.97] lg:hover:saturate-50">
         <ArrowUpRightIcon className="absolute top-5 right-5 h-5 w-5 text-white lg:-translate-x-3 lg:translate-y-3 lg:opacity-0 lg:transition-all lg:group-hover:translate-x-0 lg:group-hover:translate-y-0 lg:group-hover:opacity-100" />
         <IntranetMallLogo />
         <p className="z-10 text-center font-medium text-white lg:text-left">
@@ -19,7 +23,7 @@ export function Cards() {
           </strong>{' '}
           to revolutionize and modernize shopping malls.
         </p>
-      </div>
+      </Link>
       <Link
         href="https://thepilgrim.com.br"
         target="_blank"
