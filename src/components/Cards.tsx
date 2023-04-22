@@ -1,6 +1,7 @@
 import { ArrowLongRightIcon, ArrowUpRightIcon } from '@heroicons/react/24/solid'
 import Image from 'next/image'
 import Link from 'next/link'
+import { IntranetMallLogo } from './IntranetMallLogo'
 import { PilgrimLogo } from './PilgrimLogo'
 import { TypescriptLogo } from './TypescriptLogo'
 import { UnicampLogo } from './UnicampLogo'
@@ -8,6 +9,17 @@ import { UnicampLogo } from './UnicampLogo'
 export function Cards() {
   return (
     <div className="flex flex-col gap-5 sm:grid sm:grid-cols-2">
+      <div className="group relative col-span-2 flex animate-fade-up cursor-pointer flex-col items-center gap-5 rounded-lg bg-blue-100 bg-gradient-pattern-8 px-10 py-6 saturate-50 transition-all animation-delay-100 lg:flex-row lg:items-start lg:saturate-0 lg:hover:scale-[.97] lg:hover:saturate-50">
+        <ArrowUpRightIcon className="absolute top-5 right-5 h-5 w-5 text-white lg:-translate-x-3 lg:translate-y-3 lg:opacity-0 lg:transition-all lg:group-hover:translate-x-0 lg:group-hover:translate-y-0 lg:group-hover:opacity-100" />
+        <IntranetMallLogo />
+        <p className="z-10 text-center font-medium text-white lg:text-left">
+          I&apos;m building web apps at{' '}
+          <strong className="font-bold underline underline-offset-2 lg:no-underline lg:group-hover:underline">
+            Intranet Mall
+          </strong>{' '}
+          to revolutionize and modernize shopping malls.
+        </p>
+      </div>
       <Link
         href="https://thepilgrim.com.br"
         target="_blank"
@@ -17,11 +29,11 @@ export function Cards() {
           <ArrowUpRightIcon className="absolute top-5 right-5 h-5 w-5 text-white lg:-translate-x-3 lg:translate-y-3 lg:opacity-0 lg:transition-all lg:group-hover:translate-x-0 lg:group-hover:translate-y-0 lg:group-hover:opacity-100" />
           <PilgrimLogo />
           <p className="z-10 text-center font-medium text-white">
-            I work for{' '}
+            I&apos;m building a christian content based platform at{' '}
             <strong className="font-bold underline underline-offset-2 lg:no-underline lg:group-hover:underline">
               Pilgrim
-            </strong>
-            , where we&apos;re building a content based platform to serve the church through technology.
+            </strong>{' '}
+            to serve the church through technology.
           </p>
         </div>
       </Link>

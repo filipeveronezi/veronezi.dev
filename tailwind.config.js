@@ -15,7 +15,8 @@ module.exports = {
         'gradient-pattern-4': "url('/gradient-pattern-4.jpg')",
         'gradient-pattern-5': "url('/gradient-pattern-5.jpg')",
         'gradient-pattern-6': "url('/gradient-pattern-6.jpg')",
-        'gradient-pattern-7': "url('/gradient-pattern-7.jpg')"
+        'gradient-pattern-7': "url('/gradient-pattern-7.jpg')",
+        'gradient-pattern-8': "url('/gradient-pattern-8.jpg')"
       },
       fontFamily: {
         sans: ['var(--space-grotesk-font)', 'sans-serif']
