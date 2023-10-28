@@ -1,51 +1,57 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: ['class'],
   content: [
-    './src/pages/**/*.{js,ts,jsx,tsx}',
-    './src/components/**/*.{js,ts,jsx,tsx}',
-    './src/layout/**/*.{js,ts,jsx,tsx}'
+    './pages/**/*.{ts,tsx}',
+    './components/**/*.{ts,tsx}',
+    './app/**/*.{ts,tsx}',
+    './src/**/*.{ts,tsx}'
   ],
   theme: {
+    container: {
+      center: true,
+      padding: '2rem',
+      screens: {
+        '2xl': '1400px'
+      }
+    },
     extend: {
-      backgroundImage: {
-        'grainy-pattern': "url('/noise.svg')",
-        'gradient-pattern': "url('/gradient-pattern.jpg')",
-        'gradient-pattern-2': "url('/gradient-pattern-2.jpg')",
-        'gradient-pattern-3': "url('/gradient-pattern-3.jpg')",
-        'gradient-pattern-4': "url('/gradient-pattern-4.jpg')",
-        'gradient-pattern-5': "url('/gradient-pattern-5.jpg')",
-        'gradient-pattern-6': "url('/gradient-pattern-6.jpg')",
-        'gradient-pattern-7': "url('/gradient-pattern-7.jpg')",
-        'gradient-pattern-8': "url('/gradient-pattern-8.jpg')"
-      },
       fontFamily: {
-        sans: ['var(--space-grotesk-font)', 'sans-serif']
+        sans: ['var(--font-geist-sans)'],
+        serif: ['var(--font-libre-caslon-condensed)']
       },
       keyframes: {
+        'accordion-down': {
+          from: { height: 0 },
+          to: { height: 'var(--radix-accordion-content-height)' }
+        },
+        'accordion-up': {
+          from: { height: 'var(--radix-accordion-content-height)' },
+          to: { height: 0 }
+        },
         'fade-up': {
-          '0%': { transform: 'translateY(8px)', opacity: 0 },
-          '100%': { transform: 'translateY(0)', opacity: 1 }
+          from: { opacity: 0, transform: 'translateY(8px)' },
+          to: { opacity: 1, transform: 'translateY(0)' }
         },
-        'fade-down': {
-          '0%': { transform: 'translateY(-4px)', opacity: 0 },
-          '100%': { transform: 'translateY(0)', opacity: 1 }
-        },
-        'fade-right': {
-          '0%': { transform: 'translateX(-4px)', opacity: 0 },
-          '100%': { transform: 'translateY(0)', opacity: 1 }
-        },
-        'fade-left': {
-          '0%': { transform: 'translateX(4px)', opacity: 0 },
-          '100%': { transform: 'translateY(0)', opacity: 1 }
+        float: {
+          '0%': {
+            transform: 'translateY(0px)'
+          },
+          '50%': {
+            transform: 'translateY(-8px)'
+          },
+          '100%': {
+            transform: 'translateY(0px)'
+          }
         }
       },
       animation: {
-        'fade-up': 'fade-up 300ms backwards',
-        'fade-down': 'fade-down 400ms backwards',
-        'fade-right': 'fade-right 400ms backwards',
-        'fade-left': 'fade-left 400ms backwards'
+        'accordion-down': 'accordion-down 0.2s ease-out',
+        'accordion-up': 'accordion-up 0.2s ease-out',
+        'fade-up': 'fade-up .3s ease-out',
+        float: 'float 6s ease-in-out infinite'
       }
     }
   },
-  plugins: [require('tailwindcss-animation-delay'), require('@tailwindcss/typography')]
+  plugins: [require('tailwindcss-animate')]
 }
