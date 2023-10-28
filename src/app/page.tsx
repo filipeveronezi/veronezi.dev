@@ -21,7 +21,7 @@ export default function Home() {
         </div>
         <div className="absolute inset-x-0 top-0 mx-auto w-max translate-y-16 transition-transform duration-300 group-hover:translate-y-0">
           <p className="flex cursor-default bg-gradient-to-tl from-black to-purple-300 bg-clip-text text-xl font-light lowercase tracking-tight text-transparent delay-75 lg:text-3xl">
-            Building on the web.
+            Building for the web.
           </p>
         </div>
       </div>
