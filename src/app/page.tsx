@@ -8,7 +8,7 @@ export default function Home() {
           </h1>
         </div>
         <div className="absolute left-0 top-0 translate-y-32 transition-transform duration-300 group-hover:translate-y-0">
-          <span className="pointer-events-none bg-gradient-to-br from-zinc-600 to-zinc-950 bg-clip-text text-center font-serif text-6xl uppercase tracking-wider text-transparent lg:text-[7.99rem] lg:leading-[7.99rem]">
+          <span className="pointer-events-none bg-gradient-to-br from-zinc-600 to-zinc-950 bg-clip-text text-center font-serif text-[3.74rem] uppercase leading-[3.74rem] tracking-wider text-transparent lg:text-[7.99rem] lg:leading-[7.99rem]">
             F. VerØnezi
           </span>
         </div>
