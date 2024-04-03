@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export default function Home() {
   return (
-    <main className="flex h-screen flex-col items-center justify-center gap-6 bg-zinc-100 bg-cover bg-no-repeat lg:gap-12">
+    <main className="flex h-full min-h-screen flex-col items-center justify-center gap-6 bg-zinc-100 py-10 lg:gap-12">
       <div className="grid w-full max-w-max grid-cols-2 gap-4 md:max-w-screen-sm md:grid-cols-4">
         <div className="group flex h-40 w-36 rotate-2 cursor-default flex-col gap-6 rounded-3xl border-4 border-white bg-zinc-50 p-4 transition-all hover:-rotate-2 hover:bg-cyan-50">
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -81,12 +81,12 @@ export default function Home() {
       <div className="flex flex-col items-center justify-center gap-4">
         <div className="group relative overflow-hidden">
           <div className="transition-transform duration-300 group-hover:-translate-y-32">
-            <h1 className="pointer-events-none bg-gradient-to-br from-zinc-300 to-zinc-700 bg-clip-text text-center font-serif text-6xl uppercase tracking-wider text-transparent lg:text-[7rem] lg:leading-[8rem]">
+            <h1 className="pointer-events-none bg-gradient-to-br from-zinc-300 to-zinc-700 bg-clip-text text-center font-serif text-5xl uppercase tracking-wider text-transparent lg:text-[7rem] lg:leading-[8rem]">
               F. Veronezi
             </h1>
           </div>
           <div className="absolute left-0 top-0 translate-y-32 transition-transform duration-300 group-hover:translate-y-0">
-            <span className="pointer-events-none bg-gradient-to-br from-zinc-600 to-zinc-950 bg-clip-text text-center font-serif text-[3.74rem] uppercase leading-[3.74rem] tracking-wider text-transparent lg:text-[6.99rem] lg:leading-[7.99rem]">
+            <span className="pointer-events-none bg-gradient-to-br from-zinc-600 to-zinc-950 bg-clip-text text-center font-serif text-[2.99rem] uppercase leading-[3.74rem] tracking-wider text-transparent lg:text-[6.99rem] lg:leading-[7.99rem]">
               F. Veronezi
             </span>
           </div>
