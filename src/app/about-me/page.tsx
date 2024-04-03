@@ -9,8 +9,8 @@ export const metadata: Metadata = {
 
 export default function AboutMe() {
   return (
-    <main className="h-screen w-full bg-zinc-50 px-4">
-      <div className="mx-auto flex h-full max-w-[375px] flex-col gap-4 border-x px-4 py-10">
+    <main className="size-full min-h-screen bg-zinc-100 px-4">
+      <div className="mx-auto flex h-full max-w-[375px] flex-col gap-4 border-x bg-zinc-100 px-4 pb-20 pt-10">
         <Link className="w-max" href="/">
           <Image
             className="size-10"
