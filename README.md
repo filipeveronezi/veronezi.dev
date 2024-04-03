@@ -1,1 +1,1 @@
-![image](https://github.com/filipeveronezi/veronezi.dev/assets/48724782/151d6184-bf7b-44d9-abd1-f4b6cdbdcd86)
+![veronezi-dev](https://github.com/filipeveronezi/veronezi.dev/assets/48724782/62ed607f-d862-4945-8b64-9f71504856a1)
