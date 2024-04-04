@@ -16,6 +16,9 @@ module.exports = {
       }
     },
     extend: {
+      colors: {
+        tailwind: '#0CA5E9'
+      },
       fontFamily: {
         sans: ['var(--font-geist-sans)'],
         serif: ['var(--font-libre-caslon-condensed)']
