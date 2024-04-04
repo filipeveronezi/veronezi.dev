@@ -1,3 +1,4 @@
+import { Analytics } from '@vercel/analytics/react'
 import clsx from 'clsx'
 import type { Metadata } from 'next'
 import { geist, libreCaslonCondensed } from './fonts'
@@ -23,6 +24,7 @@ export default function RootLayout({
         )}
       >
         {children}
+        <Analytics />
       </body>
     </html>
   )
