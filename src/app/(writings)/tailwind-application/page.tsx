@@ -177,9 +177,11 @@ export default function TailwindApplication() {
                 alt="Profile picture of João Pedro"
                 className="aspect-square size-10 rounded-full brightness-200 grayscale transition-all group-hover:grayscale-0"
               />
-              <p className="font-medium text-zinc-900">João Pedro</p>
+              <p className="font-semibold text-zinc-900 transition-colors group-hover:text-cyan-600">
+                João Pedro
+              </p>
             </div>
-            <p className="italic transition-colors group-hover:text-zinc-900">
+            <p className="italic transition-colors group-hover:text-cyan-600">
               &quot;Filipe was my teacher at the beggining. Not just he taught
               me about code and design, but he was an essential part of my
               decision to become a developer. I&apos;m very grateful for his
