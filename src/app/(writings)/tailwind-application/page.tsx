@@ -42,9 +42,25 @@ export default function TailwindApplication() {
         <h2 className="pt-4 font-serif text-lg text-zinc-900">Introduction</h2>
         <p>Hello, Tailwind Team.</p>
         <p>
-          I&apos;m Filipe, a 23 years old Design Engineer based in Sao Paulo,
-          Brazil.
+          I&apos;m Filipe, a 23-year-old, happily married, Design Engineer based
+          in Sao Paulo, Brazil.
         </p>
+        <div className="group grid w-full grid-cols-3 place-items-center">
+          <Image
+            className="col-span-2 rotate-2 justify-self-start rounded-xl border-4 border-white grayscale transition-all group-hover:-rotate-1 group-hover:grayscale-0"
+            src="/filipe-valentina-1.jpg"
+            alt="Filipe and his wife close look"
+            width={200}
+            height={200}
+          />
+          <Image
+            className="-rotate-1 rounded-xl border-4 border-white grayscale transition-all group-hover:rotate-1 group-hover:grayscale-0"
+            src="/filipe-valentina-2.jpg"
+            alt="Filipe and his wife wider look"
+            width={200}
+            height={200}
+          />
+        </div>
         <p>
           I&apos;m reaching out to you for the Design Engineer position, which I
           couldn&apos;t be more thrilled about.
@@ -54,10 +70,19 @@ export default function TailwindApplication() {
           1. Successful <span className="line-through">Projects</span> Products
         </h2>
         <p>
-          a. I created an open-source Bible Reader in one weekend, it&apos;s
-          called Holy Bible. Initially it served a simple purpose of personally
-          exploring NextJS version 13, but it became a useful product which I
-          use frequently.
+          a. I created an open-source Bible Reader in one weekend. It&apos;s
+          called{' '}
+          <Link
+            className="underline decoration-1 underline-offset-4 transition-colors hover:text-zinc-900"
+            href="https://www.holybible.dev"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Holy Bible
+          </Link>
+          . Initially, it served a simple purpose of personally exploring
+          Next.js version 13, but it became a useful product that I use
+          frequently.
         </p>
         <Link
           href="https://www.holybible.dev"
@@ -75,7 +100,16 @@ export default function TailwindApplication() {
         </Link>
         <p>
           b. I&apos;ve built the website of the local church I serve as a
-          christian: Igreja Batista da Trindade
+          christian:{' '}
+          <Link
+            className="underline decoration-1 underline-offset-4 transition-colors hover:text-zinc-900"
+            href="https://www.batistatrindade.org.br"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Igreja Batista da Trindade
+          </Link>
+          .
         </p>
         <Link
           href="https://www.batistatrindade.org.br"
@@ -102,27 +136,35 @@ export default function TailwindApplication() {
           rel="noopener noreferrer"
         >
           <Image
-            className="my-4 aspect-[16_/_5] w-full rotate-1 rounded-xl border-4 border-white object-cover object-top  grayscale transition-all hover:-rotate-1 hover:grayscale-0"
+            className="mb-2 mt-4 aspect-[16_/_5] w-full rotate-1 rounded-xl border-4 border-white object-cover object-top  grayscale transition-all hover:-rotate-1 hover:grayscale-0"
             src="/ai-translation.png"
             alt="AI Translation tool"
             width={200}
             height={200}
           />
         </Link>
+        <span className="block w-full text-center text-xs">
+          (Click on the image to view a quick demo of the UI.)
+        </span>
         <h2 className="pt-4 font-serif text-lg text-zinc-900">
           2. Code is my favorite design tool
         </h2>
         <p>
           I see code as my favorite design tool and believe the Design Engineer
-          role embodies the future of product development.
+          role embodies the future of product development. As Steve Jobs once
+          said,
         </p>
+        <blockquote className="-rotate-1 rounded-xl border-4 border-white bg-zinc-50 p-4 italic transition-all hover:rotate-1 hover:bg-violet-50 hover:text-violet-600">
+          &quot;Design is not just what it looks like and feels like. Design is
+          how it works.&quot;
+        </blockquote>
         <p>
-          My current personal choice to build great web products are NextJS,
-          React, TailwindCSS and Typescript.
+          My current personal choice to build great web products is Next.js,
+          React, Tailwind CSS, and TypeScript.
         </p>
         <p>
           I want to make it clear that these are just tools. What really matters
-          to me is to build great, relevant and enjoyable products.
+          to me is to build great, relevant, and enjoyable products.
         </p>
         <h2 className="pt-4 font-serif text-lg text-zinc-900">
           3. Open source contributions
@@ -131,12 +173,12 @@ export default function TailwindApplication() {
           While I&apos;m not a frequent contributor to numerous open-source
           projects, my philosophy is to contribute where it matters the most -
           to the tools and projects that I use daily. This approach ensures that
-          my contributions have real, meaningful impact.
+          my contributions have a real, meaningful impact.
         </p>
         <p>
           An example of this approach can be found in my{' '}
           <Link
-            className="text-zinc-900 underline underline-offset-2"
+            className="underline decoration-1 underline-offset-4 transition-colors hover:text-zinc-900"
             href="https://github.com/tremorlabs/tremor/issues/916"
             target="_blank"
             rel="noopener noreferrer"
