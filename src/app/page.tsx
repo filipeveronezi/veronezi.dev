@@ -43,69 +43,6 @@ export default function Home() {
           </div>
         </div>
         <Link
-          href="/about-me"
-          className="group relative col-span-2 flex h-40 w-full -rotate-2 flex-col justify-between overflow-hidden rounded-3xl border-4 border-white bg-zinc-50 p-4 transition-all hover:rotate-2 hover:bg-purple-50"
-        >
-          <span className="font-medium text-zinc-800 transition-colors group-hover:text-purple-800">
-            Who am I?
-          </span>
-          <div className="flex flex-col">
-            <span className="text-xs text-zinc-600 transition-colors group-hover:text-purple-600">
-              as a developer,
-            </span>
-            <span className="text-xs text-zinc-600 transition-colors group-hover:text-purple-600">
-              as a designer,
-            </span>
-            <span className="text-xs text-zinc-600 transition-colors group-hover:text-purple-600">
-              as a builder
-            </span>
-          </div>
-          <div className="flex w-full items-center justify-end">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="size-5 text-zinc-400 transition-colors group-hover:text-purple-400"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
-              />
-            </svg>
-          </div>
-        </Link>
-      </div>
-      <div className="flex flex-col items-center justify-center gap-4">
-        <div className="group relative overflow-hidden">
-          <div className="transition-transform duration-300 group-hover:-translate-y-32">
-            <h1 className="pointer-events-none bg-gradient-to-br from-zinc-300 to-zinc-700 bg-clip-text text-center font-serif text-5xl uppercase tracking-wider text-transparent lg:text-[7rem] lg:leading-[8rem]">
-              F. Veronezi
-            </h1>
-          </div>
-          <div className="absolute left-0 top-0 translate-y-32 transition-transform duration-300 group-hover:translate-y-0">
-            <span className="pointer-events-none bg-gradient-to-br from-zinc-600 to-zinc-950 bg-clip-text text-center font-serif text-[2.99rem] uppercase leading-[3.74rem] tracking-wider text-transparent lg:text-[6.99rem] lg:leading-[7.99rem]">
-              F. Veronezi
-            </span>
-          </div>
-        </div>
-        <div className="group relative flex w-full items-center justify-center overflow-hidden">
-          <div className="transition-transform duration-300 group-hover:-translate-y-16">
-            <p className="flex cursor-default bg-gradient-to-tl from-black to-zinc-300 bg-clip-text text-xl font-light lowercase tracking-tight text-transparent delay-75 lg:text-3xl">
-              Design Engineer.
-            </p>
-          </div>
-          <div className="absolute inset-x-0 top-0 mx-auto w-max translate-y-16 transition-transform duration-300 group-hover:translate-y-0">
-            <p className="flex cursor-default bg-gradient-to-tl from-black to-zinc-300 bg-clip-text text-xl font-light lowercase tracking-tight text-transparent delay-75 lg:text-3xl">
-              Building for the web.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div className="grid w-full max-w-max grid-cols-2 gap-4 md:max-w-screen-sm md:grid-cols-4">
-        <Link
           href="https://pilgrim.com.br"
           target="_blank"
           rel="noopener noreferrer"
@@ -143,6 +80,43 @@ export default function Home() {
               for Pilgrim
             </span>
           </div>
+        </Link>
+      </div>
+      <div className="flex flex-col items-center justify-center gap-4">
+        <div className="group relative overflow-hidden">
+          <div className="transition-transform duration-300 group-hover:-translate-y-32">
+            <h1 className="pointer-events-none bg-gradient-to-br from-zinc-300 to-zinc-700 bg-clip-text text-center font-serif text-5xl uppercase tracking-wider text-transparent lg:text-[7rem] lg:leading-[8rem]">
+              F. Veronezi
+            </h1>
+          </div>
+          <div className="absolute left-0 top-0 translate-y-32 transition-transform duration-300 group-hover:translate-y-0">
+            <span className="pointer-events-none bg-gradient-to-br from-zinc-600 to-zinc-950 bg-clip-text text-center font-serif text-[2.99rem] uppercase leading-[3.74rem] tracking-wider text-transparent lg:text-[6.99rem] lg:leading-[7.99rem]">
+              F. Veronezi
+            </span>
+          </div>
+        </div>
+        <div className="group relative flex w-full items-center justify-center overflow-hidden">
+          <div className="transition-transform duration-300 group-hover:-translate-y-16">
+            <p className="flex cursor-default bg-gradient-to-tl from-black to-zinc-300 bg-clip-text text-xl font-light lowercase tracking-tight text-transparent delay-75 lg:text-3xl">
+              Design Engineer.
+            </p>
+          </div>
+          <div className="absolute inset-x-0 top-0 mx-auto w-max translate-y-16 transition-transform duration-300 group-hover:translate-y-0">
+            <p className="flex cursor-default bg-gradient-to-tl from-black to-zinc-300 bg-clip-text text-xl font-light lowercase tracking-tight text-transparent delay-75 lg:text-3xl">
+              Building for the web.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div className="grid w-full max-w-max grid-cols-2 gap-4 md:max-w-screen-sm md:grid-cols-4">
+        <Link
+          href="/craft"
+          className="group relative flex h-40 w-full -rotate-2 flex-col justify-between overflow-hidden rounded-3xl border-4 border-white bg-zinc-50 p-4 transition-all hover:rotate-2 hover:bg-purple-50"
+        >
+          <span className="text-sm font-medium">My work</span>
+          <span className="absolute bottom-0 left-0 font-serif text-7xl font-bold text-zinc-300/10 transition-colors group-hover:text-pink-500/10">
+            Craft
+          </span>
         </Link>
         <Link
           href="https://github.com/filipeveronezi"
@@ -202,6 +176,42 @@ export default function Home() {
             <span className="text-sm font-medium text-zinc-800 transition-colors group-hover:text-cyan-800">
               Find me on LinkedIn
             </span>
+          </div>
+        </Link>
+
+        <Link
+          href="/about-me"
+          className="group relative flex h-40 w-full -rotate-2 flex-col justify-between overflow-hidden rounded-3xl border-4 border-white bg-zinc-50 p-4 transition-all hover:rotate-2 hover:bg-purple-50"
+        >
+          <span className="text-sm font-medium text-zinc-800 transition-colors group-hover:text-purple-800">
+            Who am I?
+          </span>
+          <div className="flex flex-col">
+            <span className="text-xs text-zinc-600 transition-colors group-hover:text-purple-600">
+              as a developer,
+            </span>
+            <span className="text-xs text-zinc-600 transition-colors group-hover:text-purple-600">
+              as a designer,
+            </span>
+            <span className="text-xs text-zinc-600 transition-colors group-hover:text-purple-600">
+              as a builder
+            </span>
+          </div>
+          <div className="flex w-full items-center justify-end">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="size-5 text-zinc-400 transition-colors group-hover:text-purple-400"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+              />
+            </svg>
           </div>
         </Link>
       </div>
