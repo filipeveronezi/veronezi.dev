@@ -1,3 +1,4 @@
+import { Squircle } from '@squircle-js/react'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -45,9 +46,13 @@ export default function AboutMe() {
           to be good. But it will never be perfect. So what matters the most is…
         </p>
         <br />
-        <p className="-rotate-1 rounded-2xl border-4 border-white bg-zinc-50 p-4 text-base transition-all hover:rotate-1 hover:bg-cyan-50 hover:text-cyan-500">
+        <Squircle
+          cornerRadius={20}
+          cornerSmoothing={1}
+          className="-rotate-1 border-4 border-white bg-zinc-50 p-4 text-base transition-all hover:rotate-1 hover:bg-cyan-50 hover:text-cyan-500"
+        >
           &quot;What problems am I solving by building software?&quot;
-        </p>
+        </Squircle>
         <br />
         <p>
           I&apos;m driven by the <em>challenge</em> of creating <em>useful</em>{' '}
