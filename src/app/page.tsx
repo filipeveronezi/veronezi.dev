@@ -54,13 +54,13 @@ export default function Home() {
         <Squircle
           cornerRadius={32}
           cornerSmoothing={1}
-          className="group col-span-2 h-40 w-full -rotate-2 border-4 border-white bg-zinc-50 p-4 transition-all hover:rotate-2 hover:bg-orange-50"
+          className="group col-span-2 h-40 w-full -rotate-2 border-4 border-white bg-zinc-50 transition-all hover:rotate-2 hover:bg-orange-50"
         >
           <Link
             href="https://pilgrim.com.br"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex h-full flex-col gap-6"
+            className="flex size-full flex-col gap-6 p-4"
           >
             <svg
               className="size-8 grayscale transition-all group-hover:scale-125 group-hover:grayscale-0"
@@ -127,9 +127,9 @@ export default function Home() {
         <Squircle
           cornerRadius={32}
           cornerSmoothing={1}
-          className="group relative flex h-40 w-full -rotate-2 flex-col justify-between overflow-hidden border-4 border-white bg-zinc-50 p-4 transition-all hover:rotate-2 hover:bg-purple-50"
+          className="group relative flex h-40 w-full -rotate-2 flex-col justify-between overflow-hidden border-4 border-white bg-zinc-50 transition-all hover:rotate-2 hover:bg-purple-50"
         >
-          <Link href="/craft" className="flex h-full flex-col justify-between">
+          <Link href="/craft" className="flex size-full flex-col justify-between p-4">
             <span className="text-sm font-medium">My work</span>
             <span className="absolute bottom-0 left-0 font-serif text-7xl font-bold text-zinc-300/10 transition-colors group-hover:text-pink-500/10">
               Craft
@@ -139,13 +139,13 @@ export default function Home() {
         <Squircle
           cornerRadius={32}
           cornerSmoothing={1}
-          className="group flex h-40 w-36 rotate-2 flex-col gap-6 border-4 border-white bg-zinc-50 p-4 transition-all hover:-rotate-2 hover:bg-green-50"
+          className="group flex h-40 w-36 rotate-2 flex-col gap-6 border-4 border-white bg-zinc-50 transition-all hover:-rotate-2 hover:bg-green-50"
         >
           <Link
             href="https://github.com/filipeveronezi"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex flex-col gap-6"
+            className="flex size-full flex-col gap-6 p-4"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -166,13 +166,13 @@ export default function Home() {
         <Squircle
           cornerRadius={32}
           cornerSmoothing={1}
-          className="group flex h-40 w-36 -rotate-2 flex-col gap-6 border-4 border-white bg-zinc-50 p-4 transition-all hover:rotate-2 hover:bg-cyan-50"
+          className="group flex h-40 w-36 -rotate-2 flex-col gap-6 border-4 border-white bg-zinc-50 transition-all hover:rotate-2 hover:bg-cyan-50"
         >
           <Link
             href="https://linkedin.com/in/filipeveronezi"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex flex-col gap-6"
+            className="flex size-full flex-col gap-6 p-4"
           >
             <svg
               version="1.1"
@@ -212,9 +212,9 @@ export default function Home() {
         <Squircle
           cornerRadius={32}
           cornerSmoothing={1}
-          className="group relative flex h-40 w-full -rotate-2 flex-col justify-between overflow-hidden border-4 border-white bg-zinc-50 p-4 transition-all hover:rotate-2 hover:bg-purple-50"
+          className="group relative flex h-40 w-full -rotate-2 flex-col justify-between overflow-hidden border-4 border-white bg-zinc-50 transition-all hover:rotate-2 hover:bg-purple-50"
         >
-          <Link href="/about-me" className="flex h-full flex-col justify-between">
+          <Link href="/about-me" className="flex size-full flex-col justify-between p-4">
             <span className="text-sm font-medium text-zinc-800 transition-colors group-hover:text-purple-800">
               Who am I?
             </span>
