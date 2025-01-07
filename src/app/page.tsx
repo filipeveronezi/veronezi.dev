@@ -3,8 +3,10 @@ import Link from 'next/link'
 
 export default function Home() {
   return (
-    <main className="flex h-full min-h-screen flex-col items-center justify-center gap-6 bg-zinc-100 py-10 lg:gap-12">
-      <div className="grid w-full max-w-max grid-cols-2 gap-4 md:max-w-screen-sm md:grid-cols-4">
+    <main className="flex h-full min-h-screen flex-col items-center justify-center gap-4 bg-zinc-100 py-10">
+      <h1 className='text-balance text-center text-2xl font-medium'>Hey. <span>Welcome to my hiding place on the web.</span></h1>
+      <p className='text-balance text-center text-zinc-600'>Try the UI below to discover more about me.</p>
+      <div className="grid w-full max-w-max grid-cols-2 gap-4 pt-4 md:max-w-screen-sm md:grid-cols-4 lg:gap-y-8 lg:pt-10">
         <Squircle
           cornerRadius={32}
           cornerSmoothing={1}
@@ -21,7 +23,7 @@ export default function Home() {
               Filipe Veronezi
             </span>
             <span className="text-xs text-zinc-600 transition-colors group-hover:text-cyan-600">
-              Design Engineer
+              :)
             </span>
           </div>
         </Squircle>
@@ -54,7 +56,7 @@ export default function Home() {
         <Squircle
           cornerRadius={32}
           cornerSmoothing={1}
-          className="group col-span-2 h-40 w-full -rotate-2 border-4 border-white bg-zinc-50 transition-all hover:rotate-2 hover:bg-orange-50"
+          className="group col-span-1 h-40 w-full rotate-2 border-4 border-white bg-zinc-50 transition-all hover:-rotate-2 hover:bg-orange-50"
         >
           <Link
             href="https://pilgrim.com.br"
@@ -63,7 +65,7 @@ export default function Home() {
             className="flex size-full flex-col gap-6 p-4"
           >
             <svg
-              className="size-8 grayscale transition-all group-hover:scale-125 group-hover:grayscale-0"
+              className="size-8 grayscale transition-all group-hover:scale-110 group-hover:grayscale-0"
               viewBox="0 0 171 221"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -87,49 +89,54 @@ export default function Home() {
             </svg>
             <div className="flex flex-col gap-2">
               <span className="text-sm font-medium transition-colors group-hover:text-orange-600">
-                Design Engineer, Head of Technology
+                Design Engineer
               </span>
               <span className="text-xs text-zinc-600 transition-colors group-hover:text-orange-500">
-                Currently <span className="line-through">working</span> building
-                for Pilgrim
+                Building for Pilgrim
               </span>
             </div>
           </Link>
         </Squircle>
-      </div>
-      <div className="flex flex-col items-center justify-center gap-4">
-        <div className="group relative overflow-hidden">
-          <div className="transition-transform duration-300 group-hover:-translate-y-32">
-            <h1 className="pointer-events-none bg-gradient-to-br from-zinc-300 to-zinc-700 bg-clip-text text-center font-serif text-5xl uppercase tracking-wider text-transparent lg:text-[7rem] lg:leading-[8rem]">
-              F. Veronezi
-            </h1>
-          </div>
-          <div className="absolute left-0 top-0 translate-y-32 transition-transform duration-300 group-hover:translate-y-0">
-            <span className="pointer-events-none bg-gradient-to-br from-zinc-600 to-zinc-950 bg-clip-text text-center font-serif text-[2.99rem] uppercase leading-[3.74rem] tracking-wider text-transparent lg:text-[6.99rem] lg:leading-[7.99rem]">
-              F. Veronezi
-            </span>
-          </div>
-        </div>
-        <div className="group relative flex w-full items-center justify-center overflow-hidden">
-          <div className="transition-transform duration-300 group-hover:-translate-y-16">
-            <p className="flex cursor-default bg-gradient-to-tl from-black to-zinc-300 bg-clip-text text-xl font-light lowercase tracking-tight text-transparent delay-75 lg:text-3xl">
-              Design Engineer.
-            </p>
-          </div>
-          <div className="absolute inset-x-0 top-0 mx-auto w-max translate-y-16 transition-transform duration-300 group-hover:translate-y-0">
-            <p className="flex cursor-default bg-gradient-to-tl from-black to-zinc-300 bg-clip-text text-xl font-light lowercase tracking-tight text-transparent delay-75 lg:text-3xl">
-              Building for the web.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div className="grid w-full max-w-max grid-cols-2 gap-4 md:max-w-screen-sm md:grid-cols-4">
+        <Squircle
+          cornerRadius={32}
+          cornerSmoothing={1}
+          className="group col-span-1 h-40 w-full -rotate-2 border-4 border-white bg-zinc-50 transition-all hover:rotate-2 hover:bg-stone-100"
+        >
+          <Link
+            href="https://x.com/fiveronezi"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex size-full flex-col gap-6 p-4"
+          >
+            <svg
+              width="1200"
+              height="1227"
+              viewBox="0 0 1200 1227"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="size-7 fill-zinc-400 transition-colors group-hover:fill-black"
+            >
+              <path d="M714.163 519.284L1160.89 0H1055.03L667.137 450.887L357.328 0H0L468.492 681.821L0 1226.37H105.866L515.491 750.218L842.672 1226.37H1200L714.137 519.284H714.163ZM569.165 687.828L521.697 619.934L144.011 79.6944H306.615L611.412 515.685L658.88 583.579L1055.08 1150.3H892.476L569.165 687.854V687.828Z" />
+            </svg>
+            <div className="flex flex-col gap-2">
+              <span className="text-sm font-medium transition-colors group-hover:text-stone-900">
+                @fiveronezi
+              </span>
+              <span className="text-xs text-zinc-600 transition-colors group-hover:text-stone-500">
+                Find me on X
+              </span>
+            </div>
+          </Link>
+        </Squircle>
         <Squircle
           cornerRadius={32}
           cornerSmoothing={1}
           className="group relative flex h-40 w-full -rotate-2 flex-col justify-between overflow-hidden border-4 border-white bg-zinc-50 transition-all hover:rotate-2 hover:bg-purple-50"
         >
-          <Link href="/craft" className="flex size-full flex-col justify-between p-4">
+          <Link
+            href="/craft"
+            className="flex size-full flex-col justify-between p-4"
+          >
             <span className="text-sm font-medium">My work</span>
             <span className="absolute bottom-0 left-0 font-serif text-7xl font-bold text-zinc-300/10 transition-colors group-hover:text-pink-500/10">
               Craft
@@ -214,7 +221,10 @@ export default function Home() {
           cornerSmoothing={1}
           className="group relative flex h-40 w-full -rotate-2 flex-col justify-between overflow-hidden border-4 border-white bg-zinc-50 transition-all hover:rotate-2 hover:bg-purple-50"
         >
-          <Link href="/about-me" className="flex size-full flex-col justify-between p-4">
+          <Link
+            href="/about-me"
+            className="flex size-full flex-col justify-between p-4"
+          >
             <span className="text-sm font-medium text-zinc-800 transition-colors group-hover:text-purple-800">
               Who am I?
             </span>
