@@ -1,5 +1,5 @@
 {
-  "extends": ["next", "prettier", "plugin:tailwindcss/recommended"],
+  "extends": ["next", "plugin:prettier/recommended", "plugin:tailwindcss/recommended"],
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js"],
