@@ -31,10 +31,10 @@ function getItemRotation(cellX: number, cellY: number) {
 }
 
 export default function CraftCanvas() {
-  const [mounted, setMounted] = useState(false);
+  const [mounted, setMounted] = useState(false)
   useEffect(() => {
-    setMounted(true);
-  }, []);
+    setMounted(true)
+  }, [])
   const containerRef = useRef<HTMLDivElement>(null)
   const [pan, setPan] = useState({ x: 0, y: 0 })
   const [drag, setDrag] = useState<{
@@ -179,7 +179,7 @@ export default function CraftCanvas() {
   const visibleItems = getVisibleItems()
 
   if (!mounted) {
-    return null;
+    return null
   }
 
   return (
@@ -209,7 +209,7 @@ export default function CraftCanvas() {
           const cellX = Math.floor(item.x / (imageSize + gridGap))
           const cellY = Math.floor(item.y / (imageSize + gridGap))
           const delaySeed = cellX * 10000 + cellY * 100 + 999 // Different seed for delay
-          const randomDelay = (seededRandom(delaySeed) * 0.5) // Random delay between 1-1.5s
+          const randomDelay = seededRandom(delaySeed) * 0.5 // Random delay between 1-1.5s
 
           return (
             <motion.a
@@ -235,7 +235,7 @@ export default function CraftCanvas() {
                 scale: 1,
                 opacity: 1,
                 transition: {
-                  duration: .4,
+                  duration: 0.4,
                   ease: 'easeOut',
                   delay: randomDelay
                 }
