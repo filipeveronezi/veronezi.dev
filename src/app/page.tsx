@@ -3,7 +3,6 @@
 import { Squircle } from '@squircle-js/react'
 import Link from 'next/link'
 import { motion } from 'motion/react'
-import { GlobeIcon, MapIcon, PinIcon, SmileIcon } from 'lucide-react'
 
 export default function Home() {
   return (
