@@ -7,13 +7,14 @@ import React, { useState, useRef, useEffect } from 'react'
 const ITEMS = [
   {
     imageUrl: '/pilgrim-week.png',
-    externalUrl: 'https://example.com/kitten1'
+    externalUrl: 'https://x.com/fiveronezi'
   }
-  // Add more items as needed
 ]
 
-const IMAGE_SIZE = 500 // Change this value to adjust image size
-const GRID_GAP = 110 // Gap between items in the grid
+const DEFAULT_IMAGE_SIZE = 500 // Desktop image size
+const MOBILE_IMAGE_SIZE = 310 // Mobile image size
+const DEFAULT_GRID_GAP = 110
+const MOBILE_GRID_GAP = 40
 const ROTATION_RANGE = 8 // Range of rotation in degrees (e.g., 10 = ±5 degrees)
 
 // Helper: seeded random for repeatable positions
@@ -39,6 +40,24 @@ export default function CraftCanvas() {
     panY: number
   } | null>(null)
   const [hasMoved, setHasMoved] = useState(false)
+  const [imageSize, setImageSize] = useState(DEFAULT_IMAGE_SIZE)
+  const [gridGap, setGridGap] = useState(DEFAULT_GRID_GAP)
+
+  // Responsive image size and grid gap
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth < 500) {
+        setImageSize(MOBILE_IMAGE_SIZE)
+        setGridGap(MOBILE_GRID_GAP)
+      } else {
+        setImageSize(DEFAULT_IMAGE_SIZE)
+        setGridGap(DEFAULT_GRID_GAP)
+      }
+    }
+    handleResize()
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   // Mouse/touch handlers
   function onPointerDown(e: React.PointerEvent) {
@@ -54,12 +73,17 @@ export default function CraftCanvas() {
   function onPointerMove(e: React.PointerEvent) {
     if (!drag) return
 
-    const deltaX = Math.abs(e.clientX - drag.startX)
-    const deltaY = Math.abs(e.clientY - drag.startY)
-
-    // If we've moved more than 5px, consider it a drag
-    if (deltaX > 5 || deltaY > 5) {
+    // Remove drag threshold for touch events (mobile)
+    // If it's a touch or pen, always set hasMoved to true
+    if (e.pointerType === 'touch' || e.pointerType === 'pen') {
       setHasMoved(true)
+    } else {
+      const deltaX = Math.abs(e.clientX - drag.startX)
+      const deltaY = Math.abs(e.clientY - drag.startY)
+      // If we've moved more than 5px, consider it a drag
+      if (deltaX > 5 || deltaY > 5) {
+        setHasMoved(true)
+      }
     }
 
     setPan({
@@ -86,7 +110,7 @@ export default function CraftCanvas() {
   const getVisibleItems = () => {
     if (!containerRef.current) {
       // Fallback for initial render - use window dimensions
-      const cellSize = IMAGE_SIZE + GRID_GAP
+      const cellSize = imageSize + gridGap
       const cols = Math.ceil(window.innerWidth / cellSize) + 4
       const rows = Math.ceil(window.innerHeight / cellSize) + 4
       const startCol = Math.floor(-pan.x / cellSize) - 2
@@ -115,7 +139,7 @@ export default function CraftCanvas() {
 
     const container = containerRef.current
     const rect = container.getBoundingClientRect()
-    const cellSize = IMAGE_SIZE + GRID_GAP
+    const cellSize = imageSize + gridGap
 
     // Calculate visible grid cells
     const cols = Math.ceil(rect.width / cellSize) + 4
@@ -150,7 +174,7 @@ export default function CraftCanvas() {
     <div
       ref={containerRef}
       className="relative h-screen w-screen select-none overflow-hidden bg-gray-100"
-      style={{ cursor: drag ? 'grabbing' : 'grab' }}
+      style={{ cursor: drag ? 'grabbing' : 'grab', touchAction: 'none' }}
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
       onPointerUp={onPointerUp}
@@ -165,13 +189,13 @@ export default function CraftCanvas() {
       >
         {visibleItems.map((item) => {
           const rotation = getItemRotation(
-            Math.floor(item.x / (IMAGE_SIZE + GRID_GAP)),
-            Math.floor(item.y / (IMAGE_SIZE + GRID_GAP))
+            Math.floor(item.x / (imageSize + gridGap)),
+            Math.floor(item.y / (imageSize + gridGap))
           )
 
           // Random delay for enter animation based on grid position
-          const cellX = Math.floor(item.x / (IMAGE_SIZE + GRID_GAP))
-          const cellY = Math.floor(item.y / (IMAGE_SIZE + GRID_GAP))
+          const cellX = Math.floor(item.x / (imageSize + gridGap))
+          const cellY = Math.floor(item.y / (imageSize + gridGap))
           const delaySeed = cellX * 10000 + cellY * 100 + 999 // Different seed for delay
           const randomDelay = (seededRandom(delaySeed) * 0.5) // Random delay between 1-1.5s
 
@@ -185,34 +209,37 @@ export default function CraftCanvas() {
               style={{
                 left: item.x,
                 top: item.y,
-                width: IMAGE_SIZE,
-                height: IMAGE_SIZE
+                width: imageSize,
+                height: imageSize
               }}
               initial={{
+                filter: 'blur(12px)',
                 rotate: rotation,
                 scale: 0.8,
                 opacity: 0
               }}
-              animate={{
+              whileInView={{
+                filter: 'blur(0px)',
                 scale: 1,
                 opacity: 1,
                 transition: {
-                  duration: 0.3,
+                  duration: .4,
                   ease: 'easeOut',
                   delay: randomDelay
                 }
               }}
+              viewport={{ once: true, amount: 0.2 }}
               whileHover={{
                 rotate: 0,
-                width: IMAGE_SIZE + 50,
-                height: IMAGE_SIZE + 50,
+                width: imageSize + 50,
+                height: imageSize + 50,
                 left: item.x - 25,
                 top: item.y - 25,
                 boxShadow: '0 0 40px 0 rgba(0, 0, 0, 0.05)',
-                transition: { duration: 0.3, ease: 'easeOut', delay: 0 }
+                transition: { duration: 0.15, ease: 'easeOut', delay: 0 }
               }}
               transition={{
-                duration: 0.3,
+                duration: 0.15,
                 ease: 'easeOut'
               }}
               onPointerDown={(e) => {
@@ -229,8 +256,8 @@ export default function CraftCanvas() {
             >
               <Image
                 src={item.imageUrl}
-                width={600}
-                height={600}
+                width={imageSize}
+                height={imageSize}
                 alt=""
                 className="pointer-events-none box-border size-full rounded-2xl border-2 border-gray-200 bg-white object-cover"
               />
