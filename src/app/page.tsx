@@ -8,84 +8,99 @@ export default function Home() {
   return (
     <main className="flex h-full min-h-screen flex-col items-center justify-center gap-4 bg-zinc-100 py-10">
       <motion.h1
-        className="text-balance text-center text-2xl font-medium"
+        className="max-w-md text-balance text-center text-2xl font-medium"
         initial={{ opacity: 0, translateY: 8, filter: 'blur(10px)' }}
         animate={{ opacity: 1, translateY: 0, filter: 'blur(0px)' }}
-        transition={{ duration: 1 }}
+        transition={{ duration: 0.3 }}
       >
-        Hey. Welcome to my place on the web.
+        Filipe Veronezi{' '}
+        <span className="text-zinc-500">
+          — blending design and code into world-class products
+        </span>
       </motion.h1>
-      <motion.p
-        className="text-balance text-center text-zinc-600"
-        initial={{ opacity: 0, translateY: 8, filter: 'blur(10px)' }}
-        animate={{ opacity: 1, translateY: 0, filter: 'blur(0px)' }}
-        transition={{ duration: 1, delay: 0.4 }}
-      >
-        Try the UI below to discover more about me.
-      </motion.p>
+      <div className="flex justify-center gap-2 pt-4">
+        <motion.div
+          initial={{ opacity: 0, translateY: 8, filter: 'blur(10px)' }}
+          animate={{ opacity: 1, translateY: 0, filter: 'blur(0px)' }}
+          transition={{ duration: 0.3, delay: 0.05 }}
+        >
+          <Link
+            className="text-balance rounded-full bg-gradient-to-tr from-black via-zinc-800 to-zinc-500 px-4 py-2 text-center text-sm font-medium text-white transition-all hover:brightness-150"
+            href="/craft"
+          >
+            View work
+          </Link>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, translateY: 8, filter: 'blur(10px)' }}
+          animate={{ opacity: 1, translateY: 0, filter: 'blur(0px)' }}
+          transition={{ duration: 0.3, delay: 0.1 }}
+        >
+          <Link
+            className="text-balance rounded-full border bg-white px-4 py-2 text-center text-sm font-medium text-zinc-900 transition-colors hover:bg-zinc-50"
+            href="/about-me"
+          >
+            About me
+          </Link>
+        </motion.div>
+      </div>
       <div className="grid w-full max-w-max grid-cols-2 gap-4 pt-4 md:max-w-screen-sm md:grid-cols-4 lg:gap-y-8 lg:pt-10">
         <motion.div
           initial={{ opacity: 0, translateY: 8, filter: 'blur(10px)' }}
           animate={{ opacity: 1, translateY: 0, filter: 'blur(0px)' }}
-          transition={{ duration: 1, delay: 1.2 }}
+          transition={{ duration: 0.3, delay: 0.15 }}
         >
           <Squircle
             cornerRadius={32}
             cornerSmoothing={1}
-            className="group flex h-40 w-36 rotate-2 cursor-default flex-col gap-6 border-4 border-white bg-zinc-50 p-4 transition-all hover:-rotate-2 hover:bg-cyan-50"
+            className="group relative flex h-40 w-36 rotate-2 cursor-default flex-col gap-6 border-4 border-white bg-[url('https://github.com/filipeveronezi.png')] bg-cover bg-center p-4 transition-all hover:-rotate-2 hover:bg-cyan-50"
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="https://github.com/filipeveronezi.png"
-              alt="Profile picture of Filipe Veronezi"
-              className="aspect-square size-10 rounded-full grayscale transition-all group-hover:rotate-6 group-hover:scale-110 group-hover:grayscale-0"
-            />
-            <div className="flex flex-col gap-1">
-              <span className="text-sm font-medium text-zinc-800 transition-colors group-hover:text-cyan-800">
-                Filipe Veronezi
-              </span>
-              <span className="text-xs text-zinc-600 transition-colors group-hover:text-cyan-600">
-                :)
-              </span>
-            </div>
+            <div className="absolute left-0 top-0 size-full bg-gradient-to-t from-zinc-50/80 to-zinc-50/20"></div>
           </Squircle>
         </motion.div>
         <motion.div
           initial={{ opacity: 0, translateY: 8, filter: 'blur(10px)' }}
           animate={{ opacity: 1, translateY: 0, filter: 'blur(0px)' }}
-          transition={{ duration: 1, delay: 1.4 }}
+          transition={{ duration: 0.3, delay: 0.2 }}
         >
           <Squircle
             cornerRadius={32}
             cornerSmoothing={1}
-            className="group flex h-40 w-36 -rotate-2 cursor-default flex-col gap-4 border-4 border-white bg-zinc-50 p-4 transition-all hover:rotate-2 hover:bg-yellow-50"
+            className="group relative flex h-40 w-full -rotate-2 flex-col justify-between overflow-hidden border-4 border-white bg-zinc-50 transition-all hover:rotate-2 hover:bg-purple-50"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              className="size-8 text-zinc-400 transition-all group-hover:scale-110 group-hover:text-emerald-400"
+            <Link
+              href="/craft"
+              className="flex size-full flex-col justify-start p-4"
             >
-              <path
-                fillRule="evenodd"
-                d="m11.54 22.351.07.04.028.016a.76.76 0 0 0 .723 0l.028-.015.071-.041a16.975 16.975 0 0 0 1.144-.742 19.58 19.58 0 0 0 2.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 0 0-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 0 0 2.682 2.282 16.975 16.975 0 0 0 1.145.742ZM12 13.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"
-                clipRule="evenodd"
-              />
-            </svg>
-            <div className="flex flex-col gap-1">
-              <span className="text-sm font-medium transition-colors group-hover:text-yellow-600">
-                Working from
+              <div className="flex w-full items-center justify-between">
+                <span className="w-full text-sm font-medium">My work</span>
+                <div className="flex w-max items-center justify-end">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="size-5 text-zinc-400 transition-colors group-hover:text-purple-400"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <span className="absolute bottom-0 left-0 font-serif text-7xl font-bold text-zinc-300/30 transition-colors group-hover:text-pink-500/10">
+                Craft
               </span>
-              <span className="text-xs transition-colors group-hover:text-yellow-600">
-                Sao Paulo, Brazil
-              </span>
-            </div>
+            </Link>
           </Squircle>
         </motion.div>
         <motion.div
           initial={{ opacity: 0, translateY: 8, filter: 'blur(10px)' }}
           animate={{ opacity: 1, translateY: 0, filter: 'blur(0px)' }}
-          transition={{ duration: 1, delay: 1.6 }}
+          transition={{ duration: 0.3, delay: 0.25 }}
         >
           <Squircle
             cornerRadius={32}
@@ -135,7 +150,7 @@ export default function Home() {
         <motion.div
           initial={{ opacity: 0, translateY: 8, filter: 'blur(10px)' }}
           animate={{ opacity: 1, translateY: 0, filter: 'blur(0px)' }}
-          transition={{ duration: 1, delay: 1.8 }}
+          transition={{ duration: 0.3, delay: 0.3 }}
         >
           <Squircle
             cornerRadius={32}
@@ -172,28 +187,39 @@ export default function Home() {
         <motion.div
           initial={{ opacity: 0, translateY: 8, filter: 'blur(10px)' }}
           animate={{ opacity: 1, translateY: 0, filter: 'blur(0px)' }}
-          transition={{ duration: 1, delay: 2.0 }}
+          transition={{ duration: 0.3, delay: 0.35 }}
         >
           <Squircle
             cornerRadius={32}
             cornerSmoothing={1}
-            className="group relative flex h-40 w-full -rotate-2 flex-col justify-between overflow-hidden border-4 border-white bg-zinc-50 transition-all hover:rotate-2 hover:bg-purple-50"
+            className="group flex h-40 w-36 -rotate-2 cursor-default flex-col gap-4 border-4 border-white bg-zinc-50 p-4 transition-all hover:rotate-2 hover:bg-yellow-50"
           >
-            <Link
-              href="/craft"
-              className="flex size-full flex-col justify-between p-4"
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              className="size-8 text-zinc-400 transition-all group-hover:scale-110 group-hover:text-emerald-400"
             >
-              <span className="text-sm font-medium">My work</span>
-              <span className="absolute bottom-0 left-0 font-serif text-7xl font-bold text-zinc-300/10 transition-colors group-hover:text-pink-500/10">
-                Craft
+              <path
+                fillRule="evenodd"
+                d="m11.54 22.351.07.04.028.016a.76.76 0 0 0 .723 0l.028-.015.071-.041a16.975 16.975 0 0 0 1.144-.742 19.58 19.58 0 0 0 2.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 0 0-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 0 0 2.682 2.282 16.975 16.975 0 0 0 1.145.742ZM12 13.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"
+                clipRule="evenodd"
+              />
+            </svg>
+            <div className="flex flex-col gap-1">
+              <span className="text-sm font-medium transition-colors group-hover:text-yellow-600">
+                Working from
               </span>
-            </Link>
+              <span className="text-xs transition-colors group-hover:text-yellow-600">
+                Sao Paulo, Brazil
+              </span>
+            </div>
           </Squircle>
         </motion.div>
         <motion.div
           initial={{ opacity: 0, translateY: 8, filter: 'blur(10px)' }}
           animate={{ opacity: 1, translateY: 0, filter: 'blur(0px)' }}
-          transition={{ duration: 1, delay: 2.2 }}
+          transition={{ duration: 0.3, delay: 0.4 }}
         >
           <Squircle
             cornerRadius={32}
@@ -226,7 +252,7 @@ export default function Home() {
         <motion.div
           initial={{ opacity: 0, translateY: 8, filter: 'blur(10px)' }}
           animate={{ opacity: 1, translateY: 0, filter: 'blur(0px)' }}
-          transition={{ duration: 1, delay: 2.4 }}
+          transition={{ duration: 0.3, delay: 0.45 }}
         >
           <Squircle
             cornerRadius={32}
@@ -277,7 +303,7 @@ export default function Home() {
         <motion.div
           initial={{ opacity: 0, translateY: 8, filter: 'blur(10px)' }}
           animate={{ opacity: 1, translateY: 0, filter: 'blur(0px)' }}
-          transition={{ duration: 1, delay: 2.6 }}
+          transition={{ duration: 0.3, delay: 0.5 }}
         >
           <Squircle
             cornerRadius={32}
