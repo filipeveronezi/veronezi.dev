@@ -31,6 +31,10 @@ function getItemRotation(cellX: number, cellY: number) {
 }
 
 export default function CraftCanvas() {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
   const containerRef = useRef<HTMLDivElement>(null)
   const [pan, setPan] = useState({ x: 0, y: 0 })
   const [drag, setDrag] = useState<{
@@ -110,6 +114,10 @@ export default function CraftCanvas() {
   const getVisibleItems = () => {
     if (!containerRef.current) {
       // Fallback for initial render - use window dimensions
+      if (typeof window === 'undefined') {
+        // On server, return an empty array or some safe default
+        return []
+      }
       const cellSize = imageSize + gridGap
       const cols = Math.ceil(window.innerWidth / cellSize) + 4
       const rows = Math.ceil(window.innerHeight / cellSize) + 4
@@ -169,6 +177,10 @@ export default function CraftCanvas() {
   }
 
   const visibleItems = getVisibleItems()
+
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <div
