@@ -296,7 +296,7 @@ export default function CraftCanvas() {
                 width={imageSize}
                 height={imageSize}
                 alt=""
-                className="pointer-events-none box-border size-full rounded-2xl border-2 border-gray-200 object-cover"
+                className="pointer-events-none box-border size-full rounded-2xl border-4 border-white object-cover outline outline-1 -outline-offset-4 outline-zinc-400/20"
               />
             </motion.a>
           )
