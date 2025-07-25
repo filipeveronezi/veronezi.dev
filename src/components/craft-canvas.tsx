@@ -267,6 +267,7 @@ export default function CraftCanvas() {
               }}
             >
               <Image
+                quality={100}
                 src={item.imageUrl}
                 width={imageSize}
                 height={imageSize}
