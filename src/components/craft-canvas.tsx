@@ -6,8 +6,32 @@ import React, { useState, useRef, useEffect } from 'react'
 
 const ITEMS = [
   {
-    imageUrl: '/pilgrim-week.png',
+    imageUrl: '/craft/pilgrim-week.png',
     externalUrl: 'https://x.com/fiveronezi'
+  },
+  {
+    imageUrl: '/craft/logo-fv.png',
+    externalUrl: null
+  },
+  {
+    imageUrl: '/craft/responsive-table.png',
+    externalUrl: 'https://x.com/fiveronezi'
+  },
+  {
+    imageUrl: '/craft/unfair-logo.png',
+    externalUrl: null
+  },
+  {
+    imageUrl: '/craft/dashboard-sidebar.png',
+    externalUrl: 'https://x.com/fiveronezi'
+  },
+  {
+    imageUrl: '/craft/polis-logo.png',
+    externalUrl: null
+  },
+  {
+    imageUrl: '/craft/pilgrim-compass.png',
+    externalUrl: null
   }
 ]
 
@@ -214,7 +238,7 @@ export default function CraftCanvas() {
           return (
             <motion.a
               key={item.key}
-              href={item.externalUrl}
+              href={item.externalUrl ?? undefined}
               target="_blank"
               rel="noopener noreferrer"
               className="absolute block select-none no-underline"
@@ -272,7 +296,7 @@ export default function CraftCanvas() {
                 width={imageSize}
                 height={imageSize}
                 alt=""
-                className="pointer-events-none box-border size-full rounded-2xl border-2 border-gray-200 bg-white object-cover"
+                className="pointer-events-none box-border size-full rounded-2xl border-2 border-gray-200 object-cover"
               />
             </motion.a>
           )
