@@ -16,3 +16,16 @@ html {
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none;  /* IE and Edge */
 }
+
+/* Prevent browser navigation gestures on craft page */
+body {
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Additional gesture prevention for craft canvas */
+.craft-canvas-container {
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: touch;
+  touch-action: none;
+}

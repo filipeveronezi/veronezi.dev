@@ -141,6 +141,29 @@ export default function CraftCanvas() {
   const [imageSize, setImageSize] = useState(DEFAULT_IMAGE_SIZE)
   const [gridGap, setGridGap] = useState(DEFAULT_GRID_GAP)
 
+  // Prevent trackpad horizontal scroll gestures from triggering browser navigation
+  useEffect(() => {
+    function handleGlobalWheel(e: WheelEvent) {
+      // Check if the event target is within our canvas container
+      if (
+        containerRef.current &&
+        containerRef.current.contains(e.target as Node)
+      ) {
+        // If there's significant horizontal scroll, prevent default to stop browser navigation
+        if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+          e.preventDefault()
+        }
+      }
+    }
+
+    // Use passive: false to allow preventDefault
+    document.addEventListener('wheel', handleGlobalWheel, { passive: false })
+
+    return () => {
+      document.removeEventListener('wheel', handleGlobalWheel)
+    }
+  }, [])
+
   // Responsive image size and grid gap
   useEffect(() => {
     function handleResize() {
@@ -277,8 +300,13 @@ export default function CraftCanvas() {
   return (
     <div
       ref={containerRef}
-      className="relative h-screen w-screen select-none overflow-hidden bg-gray-100"
-      style={{ cursor: drag ? 'grabbing' : 'grab', touchAction: 'none' }}
+      className="craft-canvas-container relative h-screen w-screen select-none overflow-hidden bg-gray-100"
+      style={{
+        cursor: drag ? 'grabbing' : 'grab',
+        touchAction: 'none',
+        WebkitOverflowScrolling: 'touch',
+        overscrollBehavior: 'none'
+      }}
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
       onPointerUp={onPointerUp}
