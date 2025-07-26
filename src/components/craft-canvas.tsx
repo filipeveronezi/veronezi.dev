@@ -6,35 +6,39 @@ import React, { useState, useRef, useEffect } from 'react'
 
 const ITEMS = [
   {
-    imageUrl: '/craft/pilgrim-week.png',
+    mediaUrl: '/craft/pilgrim-week.png',
     externalUrl: 'https://x.com/fiveronezi'
   },
   {
-    imageUrl: '/craft/logo-fv.png',
+    mediaUrl: '/craft/logo-fv.png',
     externalUrl: null
   },
   {
-    imageUrl: '/craft/responsive-table.png',
+    mediaUrl: '/craft/responsive-table.png',
     externalUrl: 'https://x.com/fiveronezi'
   },
   {
-    imageUrl: '/craft/unfair-logo.png',
+    mediaUrl: '/craft/unfair-logo.png',
     externalUrl: null
   },
   {
-    imageUrl: '/craft/dashboard-sidebar.png',
+    mediaUrl: '/craft/dashboard-sidebar.png',
     externalUrl: 'https://x.com/fiveronezi'
   },
   {
-    imageUrl: '/craft/polis-logo.png',
+    mediaUrl: '/craft/polis-logo.png',
     externalUrl: null
   },
   {
-    imageUrl: '/craft/pilgrim-compass.png',
+    mediaUrl: '/craft/pilgrim-compass.png',
     externalUrl: null
   },
   {
-    imageUrl: '/craft/bible-reader.png',
+    mediaUrl: '/craft/bible-reader.png',
+    externalUrl: 'https://app.pilgrim.com.br/tabs/b%C3%ADblia'
+  },
+  {
+    mediaUrl: '/craft/bible-toolbar-audio.mp4',
     externalUrl: 'https://app.pilgrim.com.br/tabs/b%C3%ADblia'
   }
 ]
@@ -56,6 +60,16 @@ function getItemRotation(cellX: number, cellY: number) {
   const seed = cellX * 10000 + cellY * 100
   // Random rotation between -ROTATION_RANGE/2 and +ROTATION_RANGE/2 degrees
   return seededRandom(seed) * ROTATION_RANGE - ROTATION_RANGE / 2
+}
+
+// Helper: check if media is a video
+function isVideo(mediaUrl: string): boolean {
+  return mediaUrl.toLowerCase().endsWith('.mp4')
+}
+
+// Helper: check if media is an image
+function isImage(mediaUrl: string): boolean {
+  return mediaUrl.toLowerCase().endsWith('.png')
 }
 
 // Helper: Hilbert curve implementation for optimal spatial distribution
@@ -344,14 +358,26 @@ export default function CraftCanvas() {
                 }
               }}
             >
-              <Image
-                quality={100}
-                src={item.imageUrl}
-                width={imageSize}
-                height={imageSize}
-                alt=""
-                className="pointer-events-none box-border size-full rounded-2xl border-4 border-white object-cover outline outline-1 -outline-offset-4 outline-zinc-400/20"
-              />
+              {isVideo(item.mediaUrl) ? (
+                <video
+                  src={item.mediaUrl}
+                  width={imageSize}
+                  height={imageSize}
+                  autoPlay
+                  loop
+                  muted
+                  className="pointer-events-none box-border size-full rounded-2xl border-4 border-white object-cover outline outline-1 -outline-offset-4 outline-zinc-400/20"
+                />
+              ) : (
+                <Image
+                  quality={100}
+                  src={item.mediaUrl}
+                  width={imageSize}
+                  height={imageSize}
+                  alt=""
+                  className="pointer-events-none box-border size-full rounded-2xl border-4 border-white object-cover outline outline-1 -outline-offset-4 outline-zinc-400/20"
+                />
+              )}
             </motion.a>
           )
         })}
