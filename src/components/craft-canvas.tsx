@@ -58,6 +58,58 @@ function getItemRotation(cellX: number, cellY: number) {
   return seededRandom(seed) * ROTATION_RANGE - ROTATION_RANGE / 2
 }
 
+// Helper: Hilbert curve implementation for optimal spatial distribution
+function hilbertCurve(x: number, y: number, order: number): number {
+  let rx,
+    ry,
+    s,
+    d = 0
+  for (s = order / 2; s > 0; s /= 2) {
+    rx = (x & s) > 0 ? 1 : 0
+    ry = (y & s) > 0 ? 1 : 0
+    d += s * s * ((3 * rx) ^ ry)
+    ;[x, y] = rot(s, x, y, rx, ry)
+  }
+  return d
+}
+
+// Helper: rotation for Hilbert curve
+function rot(
+  n: number,
+  x: number,
+  y: number,
+  rx: number,
+  ry: number
+): [number, number] {
+  if (ry === 0) {
+    if (rx === 1) {
+      x = n - 1 - x
+      y = n - 1 - y
+    }
+    return [y, x]
+  }
+  return [x, y]
+}
+
+// Helper: get item index using Hilbert curve pattern
+function getItemIndexForHilbert(cx: number, cy: number, totalItems: number) {
+  // Use Hilbert curve for optimal spatial distribution
+  // This ensures moving in any direction shows different items
+
+  // Calculate grid size (must be power of 2 for Hilbert curve)
+  const gridSize = Math.pow(2, Math.ceil(Math.log2(Math.sqrt(totalItems))))
+
+  // Normalize coordinates to positive space
+  const normalizedX = ((cx % gridSize) + gridSize) % gridSize
+  const normalizedY = ((cy % gridSize) + gridSize) % gridSize
+
+  // Get Hilbert curve index
+  const hilbertIndex = hilbertCurve(normalizedX, normalizedY, gridSize)
+
+  // Map to actual item index
+  return hilbertIndex % totalItems
+}
+
 export default function CraftCanvas() {
   const [mounted, setMounted] = useState(false)
   useEffect(() => {
@@ -156,8 +208,7 @@ export default function CraftCanvas() {
 
       for (let cx = startCol; cx < startCol + cols; cx++) {
         for (let cy = startRow; cy < startRow + rows; cy++) {
-          const itemIdx =
-            (((cx * 31 + cy * 17) % ITEMS.length) + ITEMS.length) % ITEMS.length
+          const itemIdx = getItemIndexForHilbert(cx, cy, ITEMS.length)
           const x = cx * cellSize
           const y = cy * cellSize
 
@@ -187,8 +238,7 @@ export default function CraftCanvas() {
 
     for (let cx = startCol; cx < startCol + cols; cx++) {
       for (let cy = startRow; cy < startRow + rows; cy++) {
-        const itemIdx =
-          (((cx * 31 + cy * 17) % ITEMS.length) + ITEMS.length) % ITEMS.length
+        const itemIdx = getItemIndexForHilbert(cx, cy, ITEMS.length)
         const x = cx * cellSize
         const y = cy * cellSize
 
