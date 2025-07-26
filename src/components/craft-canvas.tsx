@@ -32,6 +32,10 @@ const ITEMS = [
   {
     imageUrl: '/craft/pilgrim-compass.png',
     externalUrl: null
+  },
+  {
+    imageUrl: '/craft/bible-reader.png',
+    externalUrl: 'https://app.pilgrim.com.br/tabs/b%C3%ADblia'
   }
 ]
 
