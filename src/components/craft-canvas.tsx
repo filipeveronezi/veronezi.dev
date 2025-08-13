@@ -6,7 +6,7 @@ import React, { useState, useRef, useEffect } from 'react'
 
 const ITEMS = [
   {
-    mediaUrl: '/craft/pilgrim-week.png',
+    mediaUrl: '/craft/pilgrim-week.mp4',
     externalUrl: 'https://pilgrim.com.br/pilgrim-week'
   },
   {
