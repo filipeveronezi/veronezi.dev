@@ -7,7 +7,7 @@ import React, { useState, useRef, useEffect } from 'react'
 const ITEMS = [
   {
     mediaUrl: '/craft/pilgrim-week.png',
-    externalUrl: 'https://x.com/fiveronezi'
+    externalUrl: 'https://pilgrim.com.br/pilgrim-week'
   },
   {
     mediaUrl: '/craft/logo-fv.png',
@@ -15,7 +15,7 @@ const ITEMS = [
   },
   {
     mediaUrl: '/craft/responsive-table.png',
-    externalUrl: 'https://x.com/fiveronezi'
+    externalUrl: null // TODO: X post
   },
   {
     mediaUrl: '/craft/unfair-logo.png',
@@ -23,7 +23,7 @@ const ITEMS = [
   },
   {
     mediaUrl: '/craft/dashboard-sidebar.png',
-    externalUrl: 'https://x.com/fiveronezi'
+    externalUrl: null // TODO: X post
   },
   {
     mediaUrl: '/craft/polis-logo.png',
@@ -40,6 +40,10 @@ const ITEMS = [
   {
     mediaUrl: '/craft/bible-toolbar-audio.mp4',
     externalUrl: 'https://app.pilgrim.com.br/tabs/b%C3%ADblia'
+  },
+  {
+    mediaUrl: '/craft/calendar-elements.png',
+    externalUrl: 'https://pilgrim.com.br/pilgrim-week#day-5'
   }
 ]
 
@@ -300,7 +304,7 @@ export default function CraftCanvas() {
   return (
     <div
       ref={containerRef}
-      className="craft-canvas-container relative h-screen w-screen select-none overflow-hidden bg-gray-100"
+      className="craft-canvas-container relative h-screen w-screen select-none overflow-hidden bg-zinc-100"
       style={{
         cursor: drag ? 'grabbing' : 'grab',
         touchAction: 'none',
@@ -337,7 +341,7 @@ export default function CraftCanvas() {
               href={item.externalUrl ?? undefined}
               target="_blank"
               rel="noopener noreferrer"
-              className="absolute block select-none no-underline"
+              className="absolute block select-none rounded-2xl no-underline"
               style={{
                 left: item.x,
                 top: item.y,
