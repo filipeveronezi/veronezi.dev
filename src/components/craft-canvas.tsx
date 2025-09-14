@@ -7,7 +7,7 @@ import React, { useState, useRef, useEffect } from 'react'
 const ITEMS = [
   {
     mediaUrl: '/craft/pilgrim-week.mp4',
-    externalUrl: 'https://pilgrim.com.br/pilgrim-week'
+    externalUrl: 'https://pilgrim.com.br/pilgrim-week-01'
   },
   {
     mediaUrl: '/craft/logo-fv.png',
@@ -43,7 +43,15 @@ const ITEMS = [
   },
   {
     mediaUrl: '/craft/calendar-elements.png',
-    externalUrl: 'https://pilgrim.com.br/pilgrim-week#day-5'
+    externalUrl: 'https://pilgrim.com.br/pilgrim-week-01#day-5'
+  },
+  {
+    mediaUrl: '/craft/pilgrim-lp.png',
+    externalUrl: 'https://pilgrim.com.br'
+  },
+  {
+    mediaUrl: '/craft/eventsea.png',
+    externalUrl: null
   }
 ]
 
