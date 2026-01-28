@@ -303,7 +303,7 @@ export default function CraftCanvas() {
   return (
     <div
       ref={containerRef}
-      className="craft-canvas-container relative h-screen w-screen select-none overflow-hidden bg-zinc-100"
+      className="craft-canvas-container relative h-screen w-screen overflow-hidden bg-zinc-100 select-none"
       style={{
         cursor: drag ? 'grabbing' : 'grab',
         touchAction: 'none',
@@ -340,7 +340,7 @@ export default function CraftCanvas() {
               href={item.externalUrl ?? undefined}
               target="_blank"
               rel="noopener noreferrer"
-              className="absolute block select-none rounded-2xl no-underline"
+              className="absolute block rounded-2xl no-underline select-none"
               style={{
                 left: item.x,
                 top: item.y,

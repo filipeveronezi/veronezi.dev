@@ -14,7 +14,7 @@ export default function AboutMe() {
         className="
           flex flex-col gap-2 text-sm text-zinc-500
 
-          [&>p>em]:not-italic [&>p>em]:text-zinc-950
+          [&>p>em]:text-zinc-950 [&>p>em]:not-italic
         "
       >
         <p>
@@ -52,8 +52,8 @@ export default function AboutMe() {
           cornerRadius={20}
           cornerSmoothing={1}
           className="
-            my-2 h-max w-[120%] -rotate-1 self-center text-balance border-4 border-white bg-zinc-50 px-4 py-2
-            text-center text-base font-medium transition-all
+            my-2 h-max w-[120%] -rotate-1 self-center border-4 border-white bg-zinc-50 px-4 py-2 text-center text-base
+            font-medium text-balance transition-all
 
             hover:rotate-1 hover:bg-cyan-50 hover:text-cyan-500
           "

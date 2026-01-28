@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <main className="flex h-full min-h-screen flex-col items-center justify-center gap-4 bg-zinc-100 py-10">
       <motion.h1
-        className="max-w-md text-balance text-center text-2xl font-medium"
+        className="max-w-md text-center text-2xl font-medium text-balance"
         initial={{ opacity: 0, translateY: 8, filter: 'blur(10px)' }}
         animate={{ opacity: 1, translateY: 0, filter: 'blur(0px)' }}
         transition={{ duration: 0.3 }}
@@ -24,8 +24,8 @@ export default function Home() {
           <Squircle>
             <Link
               className="
-                text-balance rounded-md bg-linear-to-tr from-black via-zinc-800 to-zinc-500 px-4 py-2 text-center
-                text-sm font-medium text-white transition-all
+                rounded-md bg-linear-to-tr from-black via-zinc-800 to-zinc-500 px-4 py-2 text-center text-sm font-medium
+                text-balance text-white transition-all
 
                 hover:brightness-150
               "
@@ -42,7 +42,7 @@ export default function Home() {
         >
           <Link
             className="
-              text-balance rounded-full border bg-white px-4 py-2 text-center text-sm font-medium text-zinc-900
+              rounded-full border bg-white px-4 py-2 text-center text-sm font-medium text-balance text-zinc-900
               transition-colors
 
               hover:bg-zinc-50
@@ -77,7 +77,7 @@ export default function Home() {
               hover:-rotate-2 hover:bg-cyan-50
             "
           >
-            <div className="absolute left-0 top-0 size-full bg-linear-to-t from-zinc-50/80 to-zinc-50/20"></div>
+            <div className="absolute top-0 left-0 size-full bg-linear-to-t from-zinc-50/80 to-zinc-50/20"></div>
           </Squircle>
         </motion.div>
         <motion.div
