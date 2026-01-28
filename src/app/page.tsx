@@ -6,13 +6,26 @@ import { motion } from 'motion/react'
 export default function Home() {
   return (
     <main className="flex h-full min-h-screen flex-col items-center justify-center gap-4 bg-zinc-100 py-10">
+      <svg
+        className="size-10"
+        width="280"
+        height="284"
+        viewBox="0 0 280 284"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M0 0V284L50.1111 219V156H98.2178L137.304 106H50.1111V50H180.4L219.487 0H0Z" fill="#060606" />
+        <path d="M60.1333 284L279.62 0V84.1115L125.278 284H60.1333Z" fill="#060606" />
+        <ellipse cx="247.549" cy="252" rx="32.0711" ry="32" fill="#060606" />
+      </svg>
+
       <motion.h1
-        className="max-w-md text-center text-2xl font-medium text-balance"
+        className="max-w-md pt-4 text-center text-2xl font-medium text-balance"
         initial={{ opacity: 0, translateY: 8, filter: 'blur(10px)' }}
         animate={{ opacity: 1, translateY: 0, filter: 'blur(0px)' }}
         transition={{ duration: 0.3 }}
       >
-        Filipe Veronezi <span className="text-zinc-500">— blending design and code into world-class products</span>
+        Hey, I'm Filipe.<span className="text-zinc-500"> I turn ideas into world-class products.</span>
       </motion.h1>
       <div className="flex justify-center gap-2 pt-4">
         <motion.div
