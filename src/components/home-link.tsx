@@ -1,16 +1,13 @@
 import { cn } from '@/lib/utils'
-import { Squircle } from '@squircle-js/react'
 import Link from 'next/link'
 
 export function HomeLink({ className, dark }: { className?: string; dark?: boolean }) {
   return (
-    <Squircle
-      cornerRadius={12}
-      cornerSmoothing={1}
+    <div
       className={cn(
         `
-          group mb-8 flex size-12 rotate-6 items-center justify-center rounded-xl border-4 border-white bg-zinc-50
-          transition-all
+          group mb-8 flex size-12 rotate-6 items-center justify-center rounded-full border-4 border-white bg-zinc-50
+          transition-all corner-squircle
 
           hover:-rotate-6 hover:bg-purple-50
         `,
@@ -49,6 +46,6 @@ export function HomeLink({ className, dark }: { className?: string; dark?: boole
           />
         </svg>
       </Link>
-    </Squircle>
+    </div>
   )
 }

@@ -2,6 +2,8 @@
 
 @plugin 'tailwindcss-animate';
 
+@plugin "@toolwind/corner-shape";
+
 @custom-variant dark (&:is(.dark *));
 
 @utility container {

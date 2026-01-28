@@ -1,4 +1,3 @@
-import { Squircle } from '@squircle-js/react'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -48,18 +47,16 @@ export default function AboutMe() {
           My <em>framework/language/stack</em> of choice doesn&apos;t matter that much. It&apos;s just a tool.
         </p>
         <p>My code quality has to be good, though. But it will never be perfect. So what matters the most then?</p>
-        <Squircle
-          cornerRadius={20}
-          cornerSmoothing={1}
+        <div
           className="
-            my-2 h-max w-[120%] -rotate-1 self-center border-4 border-white bg-zinc-50 px-4 py-2 text-center text-base
-            font-medium text-balance transition-all
+            my-2 h-max w-[120%] -rotate-1 self-center rounded-full border-4 border-white bg-zinc-50 px-4 py-2
+            text-center text-base font-medium text-balance transition-all corner-squircle
 
             hover:rotate-1 hover:bg-cyan-50 hover:text-cyan-500
           "
         >
           &quot;What problems am I solving by building software?&quot;
-        </Squircle>
+        </div>
         <p>
           I&apos;m driven by the <em>challenge</em> of creating <em>useful</em> and <em>enjoyable</em> software.
         </p>

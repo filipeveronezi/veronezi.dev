@@ -1,6 +1,5 @@
 'use client'
 
-import { Squircle } from '@squircle-js/react'
 import Link from 'next/link'
 import { motion } from 'motion/react'
 
@@ -21,19 +20,17 @@ export default function Home() {
           animate={{ opacity: 1, translateY: 0, filter: 'blur(0px)' }}
           transition={{ duration: 0.3, delay: 0.05 }}
         >
-          <Squircle>
-            <Link
-              className="
-                rounded-md bg-linear-to-tr from-black via-zinc-800 to-zinc-500 px-4 py-2 text-center text-sm font-medium
-                text-balance text-white transition-all
+          <Link
+            className="
+              rounded-full bg-linear-to-tr from-black via-zinc-800 to-zinc-500 px-4 py-2 text-center text-sm font-medium
+              text-balance text-white transition-all corner-squircle
 
-                hover:brightness-150
-              "
-              href="/craft"
-            >
-              View work
-            </Link>
-          </Squircle>
+              hover:brightness-150
+            "
+            href="/craft"
+          >
+            View work
+          </Link>
         </motion.div>
         <motion.div
           initial={{ opacity: 0, translateY: 8, filter: 'blur(10px)' }}
@@ -43,7 +40,7 @@ export default function Home() {
           <Link
             className="
               rounded-full border bg-white px-4 py-2 text-center text-sm font-medium text-balance text-zinc-900
-              transition-colors
+              transition-colors corner-squircle
 
               hover:bg-zinc-50
             "
@@ -67,30 +64,26 @@ export default function Home() {
           animate={{ opacity: 1, translateY: 0, filter: 'blur(0px)' }}
           transition={{ duration: 0.3, delay: 0.15 }}
         >
-          <Squircle
-            cornerRadius={32}
-            cornerSmoothing={1}
+          <div
             className="
-              group relative flex h-40 w-36 rotate-2 cursor-default flex-col gap-6 border-4 border-white
-              bg-[url('https://github.com/filipeveronezi.png')] bg-cover bg-center p-4 transition-all
+              group relative flex h-40 w-36 rotate-2 cursor-default flex-col gap-6 rounded-full border-4 border-white
+              bg-[url('https://github.com/filipeveronezi.png')] bg-cover bg-center p-4 transition-all corner-squircle
 
               hover:-rotate-2 hover:bg-cyan-50
             "
           >
             <div className="absolute top-0 left-0 size-full bg-linear-to-t from-zinc-50/80 to-zinc-50/20"></div>
-          </Squircle>
+          </div>
         </motion.div>
         <motion.div
           initial={{ opacity: 0, translateY: 8, filter: 'blur(10px)' }}
           animate={{ opacity: 1, translateY: 0, filter: 'blur(0px)' }}
           transition={{ duration: 0.3, delay: 0.2 }}
         >
-          <Squircle
-            cornerRadius={32}
-            cornerSmoothing={1}
+          <div
             className="
-              group relative flex h-40 w-full -rotate-2 flex-col justify-between overflow-hidden border-4 border-white
-              bg-zinc-50 transition-all
+              group relative flex h-40 w-full -rotate-2 flex-col justify-between overflow-hidden rounded-full border-4
+              border-white bg-zinc-50 transition-all corner-squircle
 
               hover:rotate-2 hover:bg-purple-50
             "
@@ -117,7 +110,7 @@ export default function Home() {
               </div>
               <span
                 className="
-                  absolute bottom-0 left-0 font-serif text-7xl font-bold text-zinc-300/30 transition-colors
+                  absolute -bottom-4 left-0 font-serif text-[4.3rem] font-bold text-zinc-300/30 transition-colors
 
                   group-hover:text-pink-500/10
                 "
@@ -125,18 +118,17 @@ export default function Home() {
                 Craft
               </span>
             </Link>
-          </Squircle>
+          </div>
         </motion.div>
         <motion.div
           initial={{ opacity: 0, translateY: 8, filter: 'blur(10px)' }}
           animate={{ opacity: 1, translateY: 0, filter: 'blur(0px)' }}
           transition={{ duration: 0.3, delay: 0.25 }}
         >
-          <Squircle
-            cornerRadius={32}
-            cornerSmoothing={1}
+          <div
             className="
-              group col-span-1 h-40 w-full rotate-2 border-4 border-white bg-zinc-50 transition-all
+              group col-span-1 h-40 w-full rotate-2 rounded-full border-4 border-white bg-zinc-50 transition-all
+              corner-squircle
 
               hover:-rotate-2 hover:bg-orange-50
             "
@@ -244,18 +236,17 @@ export default function Home() {
                 </span>
               </div>
             </Link>
-          </Squircle>
+          </div>
         </motion.div>
         <motion.div
           initial={{ opacity: 0, translateY: 8, filter: 'blur(10px)' }}
           animate={{ opacity: 1, translateY: 0, filter: 'blur(0px)' }}
           transition={{ duration: 0.3, delay: 0.3 }}
         >
-          <Squircle
-            cornerRadius={32}
-            cornerSmoothing={1}
+          <div
             className="
-              group col-span-1 h-40 w-full -rotate-2 border-4 border-white bg-zinc-50 transition-all
+              group col-span-1 h-40 w-full -rotate-2 rounded-full border-4 border-white bg-zinc-50 transition-all
+              corner-squircle
 
               hover:rotate-2 hover:bg-stone-100
             "
@@ -301,19 +292,17 @@ export default function Home() {
                 </span>
               </div>
             </Link>
-          </Squircle>
+          </div>
         </motion.div>
         <motion.div
           initial={{ opacity: 0, translateY: 8, filter: 'blur(10px)' }}
           animate={{ opacity: 1, translateY: 0, filter: 'blur(0px)' }}
           transition={{ duration: 0.3, delay: 0.35 }}
         >
-          <Squircle
-            cornerRadius={32}
-            cornerSmoothing={1}
+          <div
             className="
-              group flex h-40 w-36 -rotate-2 cursor-default flex-col gap-4 border-4 border-white bg-zinc-50 p-4
-              transition-all
+              group flex h-40 w-36 -rotate-2 cursor-default flex-col gap-4 rounded-full border-4 border-white bg-zinc-50
+              p-4 transition-all corner-squircle
 
               hover:rotate-2 hover:bg-yellow-50
             "
@@ -354,18 +343,17 @@ export default function Home() {
                 Sao Paulo, Brazil
               </span>
             </div>
-          </Squircle>
+          </div>
         </motion.div>
         <motion.div
           initial={{ opacity: 0, translateY: 8, filter: 'blur(10px)' }}
           animate={{ opacity: 1, translateY: 0, filter: 'blur(0px)' }}
           transition={{ duration: 0.3, delay: 0.4 }}
         >
-          <Squircle
-            cornerRadius={32}
-            cornerSmoothing={1}
+          <div
             className="
-              group flex h-40 w-36 rotate-2 flex-col gap-6 border-4 border-white bg-zinc-50 transition-all
+              group flex h-40 w-36 rotate-2 flex-col gap-6 rounded-full border-4 border-white bg-zinc-50 transition-all
+              corner-squircle
 
               hover:-rotate-2 hover:bg-green-50
             "
@@ -407,18 +395,17 @@ export default function Home() {
                 </span>
               </div>
             </Link>
-          </Squircle>
+          </div>
         </motion.div>
         <motion.div
           initial={{ opacity: 0, translateY: 8, filter: 'blur(10px)' }}
           animate={{ opacity: 1, translateY: 0, filter: 'blur(0px)' }}
           transition={{ duration: 0.3, delay: 0.45 }}
         >
-          <Squircle
-            cornerRadius={32}
-            cornerSmoothing={1}
+          <div
             className="
-              group flex h-40 w-36 -rotate-2 flex-col gap-6 border-4 border-white bg-zinc-50 transition-all
+              group flex h-40 w-36 -rotate-2 flex-col gap-6 rounded-full border-4 border-white bg-zinc-50 transition-all
+              corner-squircle
 
               hover:rotate-2 hover:bg-cyan-50
             "
@@ -427,7 +414,7 @@ export default function Home() {
               href="https://linkedin.com/in/filipeveronezi"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex size-full flex-col gap-6 p-4"
+              className="flex size-full flex-col gap-6 px-4 py-6"
             >
               <svg
                 version="1.1"
@@ -472,19 +459,17 @@ export default function Home() {
                 </span>
               </div>
             </Link>
-          </Squircle>
+          </div>
         </motion.div>
         <motion.div
           initial={{ opacity: 0, translateY: 8, filter: 'blur(10px)' }}
           animate={{ opacity: 1, translateY: 0, filter: 'blur(0px)' }}
           transition={{ duration: 0.3, delay: 0.5 }}
         >
-          <Squircle
-            cornerRadius={32}
-            cornerSmoothing={1}
+          <div
             className="
-              group relative flex h-40 w-full -rotate-2 flex-col justify-between overflow-hidden border-4 border-white
-              bg-zinc-50 transition-all
+              group relative flex h-40 w-full -rotate-2 flex-col justify-between overflow-hidden rounded-full border-4
+              border-white bg-zinc-50 transition-all corner-squircle
 
               hover:rotate-2 hover:bg-purple-50
             "
@@ -545,7 +530,7 @@ export default function Home() {
                 </svg>
               </div>
             </Link>
-          </Squircle>
+          </div>
         </motion.div>
       </div>
     </main>
