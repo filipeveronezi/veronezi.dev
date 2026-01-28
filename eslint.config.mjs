@@ -30,7 +30,7 @@ export default [
   {
     settings: {
       'better-tailwindcss': {
-        entryPoint: 'tailwind.config.js'
+        entryPoint: 'src/app/globals.css'
       }
     }
   },
@@ -68,6 +68,7 @@ export default [
       'better-tailwindcss/enforce-consistent-line-wrapping': [
         'error',
         {
+          strictness: "loose",
           printWidth: 120,
           group: 'emptyLine'
         }

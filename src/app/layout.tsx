@@ -3,6 +3,7 @@ import clsx from 'clsx'
 import type { Metadata } from 'next'
 import { geist, libreCaslonCondensed } from './fonts'
 import './globals.css'
+import React from 'react'
 
 export const metadata: Metadata = {
   title: 'F. Veronezi — Home',

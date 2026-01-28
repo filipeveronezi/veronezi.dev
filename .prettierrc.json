@@ -8,6 +8,5 @@
   "quoteProps": "consistent",
   "bracketSameLine": false,
   "bracketSpacing": true,
-  "arrowParens": "always",
-  "plugins": []
+  "arrowParens": "always"
 }
