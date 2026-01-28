@@ -71,6 +71,13 @@
   }
 }
 
+/* Ensure Tailwind's `font-serif` always resolves to our Next.js local font */
+@layer utilities {
+  .font-serif {
+    font-family: var(--font-libre-caslon-condensed);
+  }
+}
+
 /*
   The default border color has changed to `currentcolor` in Tailwind CSS v4,
   so we've added these compatibility styles to make sure everything still
