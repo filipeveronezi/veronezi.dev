@@ -79,11 +79,6 @@ function isVideo(mediaUrl: string): boolean {
   return mediaUrl.toLowerCase().endsWith('.mp4')
 }
 
-// Helper: check if media is an image
-function isImage(mediaUrl: string): boolean {
-  return mediaUrl.toLowerCase().endsWith('.png')
-}
-
 // Helper: Hilbert curve implementation for optimal spatial distribution
 function hilbertCurve(x: number, y: number, order: number): number {
   let rx,
@@ -294,6 +289,7 @@ export default function CraftCanvas() {
     return items
   }
 
+  // eslint-disable-next-line react-hooks/refs
   const visibleItems = getVisibleItems()
 
   if (!mounted) {
@@ -303,7 +299,7 @@ export default function CraftCanvas() {
   return (
     <div
       ref={containerRef}
-      className="craft-canvas-container relative h-screen w-screen overflow-hidden bg-zinc-100 select-none"
+      className="relative h-screen w-screen overflow-hidden bg-zinc-100 select-none"
       style={{
         cursor: drag ? 'grabbing' : 'grab',
         touchAction: 'none',
@@ -399,7 +395,7 @@ export default function CraftCanvas() {
                   muted
                   className="
                     pointer-events-none box-border size-full rounded-2xl border-4 border-white object-cover outline
-                    outline-1 -outline-offset-4 outline-zinc-400/20
+                    -outline-offset-4 outline-zinc-400/20
                   "
                 />
               ) : (
@@ -411,7 +407,7 @@ export default function CraftCanvas() {
                   alt=""
                   className="
                     pointer-events-none box-border size-full rounded-2xl border-4 border-white object-cover outline
-                    outline-1 -outline-offset-4 outline-zinc-400/20
+                    -outline-offset-4 outline-zinc-400/20
                   "
                 />
               )}
