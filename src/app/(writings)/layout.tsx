@@ -1,6 +1,4 @@
 import { HomeLink } from '@/components/home-link'
-import { Squircle } from '@squircle-js/react'
-import Link from 'next/link'
 
 interface LayoutProps {
   children?: React.ReactNode

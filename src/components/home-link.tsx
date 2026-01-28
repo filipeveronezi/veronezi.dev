@@ -2,20 +2,24 @@ import { cn } from '@/lib/utils'
 import { Squircle } from '@squircle-js/react'
 import Link from 'next/link'
 
-export function HomeLink({
-  className,
-  dark
-}: {
-  className?: string
-  dark?: boolean
-}) {
+export function HomeLink({ className, dark }: { className?: string; dark?: boolean }) {
   return (
     <Squircle
       cornerRadius={12}
       cornerSmoothing={1}
       className={cn(
-        'group mb-8 flex size-12 rotate-6 items-center justify-center rounded-xl border-4 border-white bg-zinc-50 transition-all hover:-rotate-6 hover:bg-purple-50',
-        dark && 'border-none bg-zinc-900 hover:bg-zinc-700',
+        `
+          group mb-8 flex size-12 rotate-6 items-center justify-center rounded-xl border-4 border-white bg-zinc-50
+          transition-all
+
+          hover:-rotate-6 hover:bg-purple-50
+        `,
+        dark &&
+          `
+            border-none bg-zinc-900
+
+            hover:bg-zinc-700
+          `,
         className
       )}
     >
@@ -25,8 +29,17 @@ export function HomeLink({
           viewBox="0 0 20 20"
           fill="currentColor"
           className={cn(
-            'size-5 text-zinc-400 transition-colors group-hover:text-purple-400',
-            dark && 'text-zinc-50 group-hover:text-white'
+            `
+              size-5 text-zinc-400 transition-colors
+
+              group-hover:text-purple-400
+            `,
+            dark &&
+              `
+                text-zinc-50
+
+                group-hover:text-white
+              `
           )}
         >
           <path

@@ -100,13 +100,7 @@ function hilbertCurve(x: number, y: number, order: number): number {
 }
 
 // Helper: rotation for Hilbert curve
-function rot(
-  n: number,
-  x: number,
-  y: number,
-  rx: number,
-  ry: number
-): [number, number] {
+function rot(n: number, x: number, y: number, rx: number, ry: number): [number, number] {
   if (ry === 0) {
     if (rx === 1) {
       x = n - 1 - x
@@ -157,10 +151,7 @@ export default function CraftCanvas() {
   useEffect(() => {
     function handleGlobalWheel(e: WheelEvent) {
       // Check if the event target is within our canvas container
-      if (
-        containerRef.current &&
-        containerRef.current.contains(e.target as Node)
-      ) {
+      if (containerRef.current && containerRef.current.contains(e.target as Node)) {
         // If there's significant horizontal scroll, prevent default to stop browser navigation
         if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
           e.preventDefault()
@@ -406,7 +397,10 @@ export default function CraftCanvas() {
                   autoPlay
                   loop
                   muted
-                  className="pointer-events-none box-border size-full rounded-2xl border-4 border-white object-cover outline outline-1 -outline-offset-4 outline-zinc-400/20"
+                  className="
+                    pointer-events-none box-border size-full rounded-2xl border-4 border-white object-cover outline
+                    outline-1 -outline-offset-4 outline-zinc-400/20
+                  "
                 />
               ) : (
                 <Image
@@ -415,7 +409,10 @@ export default function CraftCanvas() {
                   width={imageSize}
                   height={imageSize}
                   alt=""
-                  className="pointer-events-none box-border size-full rounded-2xl border-4 border-white object-cover outline outline-1 -outline-offset-4 outline-zinc-400/20"
+                  className="
+                    pointer-events-none box-border size-full rounded-2xl border-4 border-white object-cover outline
+                    outline-1 -outline-offset-4 outline-zinc-400/20
+                  "
                 />
               )}
             </motion.a>

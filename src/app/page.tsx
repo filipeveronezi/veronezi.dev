@@ -13,10 +13,7 @@ export default function Home() {
         animate={{ opacity: 1, translateY: 0, filter: 'blur(0px)' }}
         transition={{ duration: 0.3 }}
       >
-        Filipe Veronezi{' '}
-        <span className="text-zinc-500">
-          — blending design and code into world-class products
-        </span>
+        Filipe Veronezi <span className="text-zinc-500">— blending design and code into world-class products</span>
       </motion.h1>
       <div className="flex justify-center gap-2 pt-4">
         <motion.div
@@ -24,12 +21,19 @@ export default function Home() {
           animate={{ opacity: 1, translateY: 0, filter: 'blur(0px)' }}
           transition={{ duration: 0.3, delay: 0.05 }}
         >
-          <Link
-            className="text-balance rounded-full bg-gradient-to-tr from-black via-zinc-800 to-zinc-500 px-4 py-2 text-center text-sm font-medium text-white transition-all hover:brightness-150"
-            href="/craft"
-          >
-            View work
-          </Link>
+          <Squircle>
+            <Link
+              className="
+                text-balance rounded-md bg-gradient-to-tr from-black via-zinc-800 to-zinc-500 px-4 py-2 text-center
+                text-sm font-medium text-white transition-all
+
+                hover:brightness-150
+              "
+              href="/craft"
+            >
+              View work
+            </Link>
+          </Squircle>
         </motion.div>
         <motion.div
           initial={{ opacity: 0, translateY: 8, filter: 'blur(10px)' }}
@@ -37,14 +41,27 @@ export default function Home() {
           transition={{ duration: 0.3, delay: 0.1 }}
         >
           <Link
-            className="text-balance rounded-full border bg-white px-4 py-2 text-center text-sm font-medium text-zinc-900 transition-colors hover:bg-zinc-50"
+            className="
+              text-balance rounded-full border bg-white px-4 py-2 text-center text-sm font-medium text-zinc-900
+              transition-colors
+
+              hover:bg-zinc-50
+            "
             href="/about-me"
           >
             About me
           </Link>
         </motion.div>
       </div>
-      <div className="grid w-full max-w-max grid-cols-2 gap-4 pt-4 md:max-w-screen-sm md:grid-cols-4 lg:gap-y-8 lg:pt-10">
+      <div
+        className="
+          grid w-full max-w-max grid-cols-2 gap-4 pt-4
+
+          md:max-w-screen-sm md:grid-cols-4
+
+          lg:gap-y-8 lg:pt-10
+        "
+      >
         <motion.div
           initial={{ opacity: 0, translateY: 8, filter: 'blur(10px)' }}
           animate={{ opacity: 1, translateY: 0, filter: 'blur(0px)' }}
@@ -53,7 +70,12 @@ export default function Home() {
           <Squircle
             cornerRadius={32}
             cornerSmoothing={1}
-            className="group relative flex h-40 w-36 rotate-2 cursor-default flex-col gap-6 border-4 border-white bg-[url('https://github.com/filipeveronezi.png')] bg-cover bg-center p-4 transition-all hover:-rotate-2 hover:bg-cyan-50"
+            className="
+              group relative flex h-40 w-36 rotate-2 cursor-default flex-col gap-6 border-4 border-white
+              bg-[url('https://github.com/filipeveronezi.png')] bg-cover bg-center p-4 transition-all
+
+              hover:-rotate-2 hover:bg-cyan-50
+            "
           >
             <div className="absolute left-0 top-0 size-full bg-gradient-to-t from-zinc-50/80 to-zinc-50/20"></div>
           </Squircle>
@@ -66,12 +88,14 @@ export default function Home() {
           <Squircle
             cornerRadius={32}
             cornerSmoothing={1}
-            className="group relative flex h-40 w-full -rotate-2 flex-col justify-between overflow-hidden border-4 border-white bg-zinc-50 transition-all hover:rotate-2 hover:bg-purple-50"
+            className="
+              group relative flex h-40 w-full -rotate-2 flex-col justify-between overflow-hidden border-4 border-white
+              bg-zinc-50 transition-all
+
+              hover:rotate-2 hover:bg-purple-50
+            "
           >
-            <Link
-              href="/craft"
-              className="flex size-full flex-col justify-start p-4"
-            >
+            <Link href="/craft" className="flex size-full flex-col justify-start p-4">
               <div className="flex w-full items-center justify-between">
                 <span className="w-full text-sm font-medium">My work</span>
                 <div className="flex w-max items-center justify-end">
@@ -81,17 +105,23 @@ export default function Home() {
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="size-5 text-zinc-400 transition-colors group-hover:text-purple-400"
+                    className="
+                      size-5 text-zinc-400 transition-colors
+
+                      group-hover:text-purple-400
+                    "
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
-                    />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
                   </svg>
                 </div>
               </div>
-              <span className="absolute bottom-0 left-0 font-serif text-7xl font-bold text-zinc-300/30 transition-colors group-hover:text-pink-500/10">
+              <span
+                className="
+                  absolute bottom-0 left-0 font-serif text-7xl font-bold text-zinc-300/30 transition-colors
+
+                  group-hover:text-pink-500/10
+                "
+              >
                 Craft
               </span>
             </Link>
@@ -105,7 +135,11 @@ export default function Home() {
           <Squircle
             cornerRadius={32}
             cornerSmoothing={1}
-            className="group col-span-1 h-40 w-full rotate-2 border-4 border-white bg-zinc-50 transition-all hover:-rotate-2 hover:bg-orange-50"
+            className="
+              group col-span-1 h-40 w-full rotate-2 border-4 border-white bg-zinc-50 transition-all
+
+              hover:-rotate-2 hover:bg-orange-50
+            "
           >
             <Link
               href="https://pilgrim.com.br"
@@ -114,7 +148,11 @@ export default function Home() {
               className="flex size-full flex-col gap-6 p-4"
             >
               <svg
-                className="size-8 grayscale transition-all group-hover:scale-110 group-hover:grayscale-0"
+                className="
+                  size-8 grayscale transition-all
+
+                  group-hover:scale-110 group-hover:grayscale-0
+                "
                 width="298"
                 height="298"
                 viewBox="0 0 298 298"
@@ -186,10 +224,22 @@ export default function Home() {
               </svg>
 
               <div className="flex flex-col gap-2">
-                <span className="text-sm font-medium transition-colors group-hover:text-orange-600">
+                <span
+                  className="
+                    text-sm font-medium transition-colors
+
+                    group-hover:text-orange-600
+                  "
+                >
                   Design Engineer
                 </span>
-                <span className="text-xs text-zinc-600 transition-colors group-hover:text-orange-500">
+                <span
+                  className="
+                    text-xs text-zinc-600 transition-colors
+
+                    group-hover:text-orange-500
+                  "
+                >
                   Building for Pilgrim
                 </span>
               </div>
@@ -204,7 +254,11 @@ export default function Home() {
           <Squircle
             cornerRadius={32}
             cornerSmoothing={1}
-            className="group col-span-1 h-40 w-full -rotate-2 border-4 border-white bg-zinc-50 transition-all hover:rotate-2 hover:bg-stone-100"
+            className="
+              group col-span-1 h-40 w-full -rotate-2 border-4 border-white bg-zinc-50 transition-all
+
+              hover:rotate-2 hover:bg-stone-100
+            "
           >
             <Link
               href="https://x.com/fiveronezi"
@@ -218,15 +272,31 @@ export default function Home() {
                 viewBox="0 0 1200 1227"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
-                className="size-7 fill-zinc-400 transition-colors group-hover:fill-black"
+                className="
+                  size-7 fill-zinc-400 transition-colors
+
+                  group-hover:fill-black
+                "
               >
                 <path d="M714.163 519.284L1160.89 0H1055.03L667.137 450.887L357.328 0H0L468.492 681.821L0 1226.37H105.866L515.491 750.218L842.672 1226.37H1200L714.137 519.284H714.163ZM569.165 687.828L521.697 619.934L144.011 79.6944H306.615L611.412 515.685L658.88 583.579L1055.08 1150.3H892.476L569.165 687.854V687.828Z" />
               </svg>
               <div className="flex flex-col gap-2">
-                <span className="text-sm font-medium transition-colors group-hover:text-stone-900">
+                <span
+                  className="
+                    text-sm font-medium transition-colors
+
+                    group-hover:text-stone-900
+                  "
+                >
                   @fiveronezi
                 </span>
-                <span className="text-xs text-zinc-600 transition-colors group-hover:text-stone-500">
+                <span
+                  className="
+                    text-xs text-zinc-600 transition-colors
+
+                    group-hover:text-stone-500
+                  "
+                >
                   Find me on X
                 </span>
               </div>
@@ -241,13 +311,22 @@ export default function Home() {
           <Squircle
             cornerRadius={32}
             cornerSmoothing={1}
-            className="group flex h-40 w-36 -rotate-2 cursor-default flex-col gap-4 border-4 border-white bg-zinc-50 p-4 transition-all hover:rotate-2 hover:bg-yellow-50"
+            className="
+              group flex h-40 w-36 -rotate-2 cursor-default flex-col gap-4 border-4 border-white bg-zinc-50 p-4
+              transition-all
+
+              hover:rotate-2 hover:bg-yellow-50
+            "
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               fill="currentColor"
-              className="size-8 text-zinc-400 transition-all group-hover:scale-110 group-hover:text-emerald-400"
+              className="
+                size-8 text-zinc-400 transition-all
+
+                group-hover:scale-110 group-hover:text-emerald-400
+              "
             >
               <path
                 fillRule="evenodd"
@@ -256,10 +335,22 @@ export default function Home() {
               />
             </svg>
             <div className="flex flex-col gap-1">
-              <span className="text-sm font-medium transition-colors group-hover:text-yellow-600">
+              <span
+                className="
+                  text-sm font-medium transition-colors
+
+                  group-hover:text-yellow-600
+                "
+              >
                 Working from
               </span>
-              <span className="text-xs transition-colors group-hover:text-yellow-600">
+              <span
+                className="
+                  text-xs transition-colors
+
+                  group-hover:text-yellow-600
+                "
+              >
                 Sao Paulo, Brazil
               </span>
             </div>
@@ -273,7 +364,11 @@ export default function Home() {
           <Squircle
             cornerRadius={32}
             cornerSmoothing={1}
-            className="group flex h-40 w-36 rotate-2 flex-col gap-6 border-4 border-white bg-zinc-50 transition-all hover:-rotate-2 hover:bg-green-50"
+            className="
+              group flex h-40 w-36 rotate-2 flex-col gap-6 border-4 border-white bg-zinc-50 transition-all
+
+              hover:-rotate-2 hover:bg-green-50
+            "
           >
             <Link
               href="https://github.com/filipeveronezi"
@@ -285,13 +380,29 @@ export default function Home() {
               <img
                 src="https://github.com/github.png"
                 alt="GitHub logo"
-                className="aspect-square size-8 rounded-full opacity-50 transition-all group-hover:scale-110 group-hover:opacity-60"
+                className="
+                  aspect-square size-8 rounded-full opacity-50 transition-all
+
+                  group-hover:scale-110 group-hover:opacity-60
+                "
               />
               <div className="flex flex-col gap-1">
-                <span className="text-sm font-medium text-zinc-800 transition-colors group-hover:text-green-800">
+                <span
+                  className="
+                    text-sm font-medium text-zinc-800 transition-colors
+
+                    group-hover:text-green-800
+                  "
+                >
                   /filipeveronezi
                 </span>
-                <span className="text-xs text-zinc-600 transition-colors group-hover:text-green-600">
+                <span
+                  className="
+                    text-xs text-zinc-600 transition-colors
+
+                    group-hover:text-green-600
+                  "
+                >
                   Find me on GitHub
                 </span>
               </div>
@@ -306,7 +417,11 @@ export default function Home() {
           <Squircle
             cornerRadius={32}
             cornerSmoothing={1}
-            className="group flex h-40 w-36 -rotate-2 flex-col gap-6 border-4 border-white bg-zinc-50 transition-all hover:rotate-2 hover:bg-cyan-50"
+            className="
+              group flex h-40 w-36 -rotate-2 flex-col gap-6 border-4 border-white bg-zinc-50 transition-all
+
+              hover:rotate-2 hover:bg-cyan-50
+            "
           >
             <Link
               href="https://linkedin.com/in/filipeveronezi"
@@ -319,7 +434,11 @@ export default function Home() {
                 id="Layer_1"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 310 310"
-                className="size-6 fill-current text-zinc-400 transition-all group-hover:scale-110 group-hover:text-cyan-800"
+                className="
+                  size-6 fill-current text-zinc-400 transition-all
+
+                  group-hover:scale-110 group-hover:text-cyan-800
+                "
               >
                 <g id="XMLID_801_">
                   <path
@@ -342,7 +461,13 @@ export default function Home() {
                 </g>
               </svg>
               <div className="flex flex-col gap-1">
-                <span className="text-sm font-medium text-zinc-800 transition-colors group-hover:text-cyan-800">
+                <span
+                  className="
+                    text-sm font-medium text-zinc-800 transition-colors
+
+                    group-hover:text-cyan-800
+                  "
+                >
                   Find me on LinkedIn
                 </span>
               </div>
@@ -357,23 +482,49 @@ export default function Home() {
           <Squircle
             cornerRadius={32}
             cornerSmoothing={1}
-            className="group relative flex h-40 w-full -rotate-2 flex-col justify-between overflow-hidden border-4 border-white bg-zinc-50 transition-all hover:rotate-2 hover:bg-purple-50"
+            className="
+              group relative flex h-40 w-full -rotate-2 flex-col justify-between overflow-hidden border-4 border-white
+              bg-zinc-50 transition-all
+
+              hover:rotate-2 hover:bg-purple-50
+            "
           >
-            <Link
-              href="/about-me"
-              className="flex size-full flex-col justify-between p-4"
-            >
-              <span className="text-sm font-medium text-zinc-800 transition-colors group-hover:text-purple-800">
+            <Link href="/about-me" className="flex size-full flex-col justify-between p-4">
+              <span
+                className="
+                  text-sm font-medium text-zinc-800 transition-colors
+
+                  group-hover:text-purple-800
+                "
+              >
                 Who am I?
               </span>
               <div className="flex flex-col">
-                <span className="text-xs text-zinc-600 transition-colors group-hover:text-purple-600">
+                <span
+                  className="
+                    text-xs text-zinc-600 transition-colors
+
+                    group-hover:text-purple-600
+                  "
+                >
                   as a developer,
                 </span>
-                <span className="text-xs text-zinc-600 transition-colors group-hover:text-purple-600">
+                <span
+                  className="
+                    text-xs text-zinc-600 transition-colors
+
+                    group-hover:text-purple-600
+                  "
+                >
                   as a designer,
                 </span>
-                <span className="text-xs text-zinc-600 transition-colors group-hover:text-purple-600">
+                <span
+                  className="
+                    text-xs text-zinc-600 transition-colors
+
+                    group-hover:text-purple-600
+                  "
+                >
                   as a builder
                 </span>
               </div>
@@ -384,13 +535,13 @@ export default function Home() {
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="size-5 text-zinc-400 transition-colors group-hover:text-purple-400"
+                  className="
+                    size-5 text-zinc-400 transition-colors
+
+                    group-hover:text-purple-400
+                  "
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
-                  />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
                 </svg>
               </div>
             </Link>
