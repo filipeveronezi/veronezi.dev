@@ -24,7 +24,7 @@ export default function Home() {
           <Squircle>
             <Link
               className="
-                text-balance rounded-md bg-gradient-to-tr from-black via-zinc-800 to-zinc-500 px-4 py-2 text-center
+                text-balance rounded-md bg-linear-to-tr from-black via-zinc-800 to-zinc-500 px-4 py-2 text-center
                 text-sm font-medium text-white transition-all
 
                 hover:brightness-150
@@ -57,7 +57,7 @@ export default function Home() {
         className="
           grid w-full max-w-max grid-cols-2 gap-4 pt-4
 
-          md:max-w-screen-sm md:grid-cols-4
+          md:max-w-(--breakpoint-sm) md:grid-cols-4
 
           lg:gap-y-8 lg:pt-10
         "
@@ -77,7 +77,7 @@ export default function Home() {
               hover:-rotate-2 hover:bg-cyan-50
             "
           >
-            <div className="absolute left-0 top-0 size-full bg-gradient-to-t from-zinc-50/80 to-zinc-50/20"></div>
+            <div className="absolute left-0 top-0 size-full bg-linear-to-t from-zinc-50/80 to-zinc-50/20"></div>
           </Squircle>
         </motion.div>
         <motion.div
