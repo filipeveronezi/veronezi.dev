@@ -15,7 +15,7 @@ export function InteractiveWriting() {
           <ConeIcon className="size-4 rotate-215 text-zinc-500" />
           <span>Interactive writing</span>
         </h2>
-        <p className="text-zinc-500">Everything I learn, shared in three main formats:</p>
+        <p className="text-zinc-500">Everything I learn, shared in three formats:</p>
         <ul className="text-zinc-500">
           <li className="inline">
             <button className="group relative text-zinc-900" onClick={() => setFilter("articles")}>
