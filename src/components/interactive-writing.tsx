@@ -97,7 +97,7 @@ export function InteractiveWriting() {
             >
               <p>Thoughts on specific themes around design engineering, product and tech.</p>
               <p>
-                Whenever I learn something useful, I turn it into an{" "}
+                Whenever I learn something useful and want to share it, I turn it into an{" "}
                 <em className="font-medium text-zinc-900 not-italic">Article</em>.
               </p>
             </motion.div>
