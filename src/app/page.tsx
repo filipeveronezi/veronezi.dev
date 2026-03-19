@@ -3,6 +3,7 @@ import { PilgrimLogo } from "@/components/logos/pilgrim-logo";
 import { XLogo } from "@/components/logos/x-logo";
 import { BoxIcon } from "lucide-react";
 import Link from "next/link";
+import { Suspense } from "react";
 
 export default function Home() {
   return (
@@ -59,7 +60,9 @@ export default function Home() {
         </h2>
         <p className="text-zinc-500">Soon.</p>
       </section>
-      <InteractiveWriting />
+      <Suspense>
+        <InteractiveWriting />
+      </Suspense>
     </main>
   );
 }
