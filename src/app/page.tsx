@@ -1,65 +1,65 @@
-import Image from "next/image";
+import { InteractiveWritings } from "@/components/interactive-writings";
+import { PilgrimLogo } from "@/components/logos/pilgrim-logo";
+import { XLogo } from "@/components/logos/x-logo";
+import { BoxIcon } from "lucide-react";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="flex flex-1 flex-col items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex w-full max-w-3xl flex-1 flex-col items-center justify-between bg-white px-16 py-32 sm:items-start dark:bg-black">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl leading-10 font-semibold tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="bg-foreground text-background flex h-12 w-full items-center justify-center gap-2 rounded-full px-5 transition-colors hover:bg-[#383838] md:w-[158px] dark:hover:bg-[#ccc]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+    <main className="mx-auto w-full max-w-2xl px-4 pt-20">
+      <section className="flex flex-col gap-px py-6">
+        <h1 className="flex items-center gap-1 font-medium text-zinc-900">
+          <span>Filipe Veronezi</span>
+        </h1>
+        <span className="font-medium text-zinc-500">
+          Design Engineer, Head of Technology at Pilgrim
+        </span>
+      </section>
+      <section className="space-y-2 pb-20 leading-loose text-zinc-500">
+        <p>
+          I&apos;m currently building software and leading a small, talented team at{" "}
+          <Link
+            className="group"
+            href="https://pilgrim.com.br"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] md:w-[158px] dark:border-white/[.145] dark:hover:bg-[#1a1a1a]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            <PilgrimLogo className="inline size-4 -translate-y-0.5 grayscale" />{" "}
+            <span className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-5 transition-colors group-hover:decoration-zinc-500">
+              Pilgrim
+            </span>
+          </Link>
+          . Our mission is to create the best biblical learning experience possible for Christians.
+        </p>
+        <p>
+          I deeply value polished interfaces and thoughtful user experiences. I truly believe
+          software shouldn’t just be useful, it should be{" "}
+          <em className="font-medium text-zinc-900 not-italic">enjoyable</em>.
+        </p>
+        <p>
+          You can reach out to me on{" "}
+          <Link
+            className="group"
+            href="https://x.com/fiveronezi"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+            <XLogo className="inline size-3.5 translate-y-[-0.05rem]" />{" "}
+            <span className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-5 transition-colors group-hover:decoration-zinc-500">
+              @fiveronezi
+            </span>
+          </Link>{" "}
+          or check out some of my work below.
+        </p>
+      </section>
+      <section className="space-y-2 pb-20">
+        <h2 className="flex items-center gap-1 font-medium text-zinc-900">
+          <BoxIcon className="size-4 text-zinc-500" />
+          <span>OSS Projects</span>
+        </h2>
+        <p className="text-zinc-500">Soon.</p>
+      </section>
+      <InteractiveWritings />
+    </main>
   );
 }

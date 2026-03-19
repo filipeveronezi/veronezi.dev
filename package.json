@@ -12,9 +12,14 @@
     "fmt:check": "oxfmt --check"
   },
   "dependencies": {
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.577.0",
+    "motion": "^12.38.0",
     "next": "16.2.0",
+    "nuqs": "^2.8.9",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "tailwind-merge": "^3.5.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
