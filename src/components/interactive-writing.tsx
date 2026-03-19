@@ -21,7 +21,7 @@ export function InteractiveWriting() {
             <button className="group relative text-zinc-900" onClick={() => setFilter("articles")}>
               {filter === "articles" || !filter ? (
                 <motion.span
-                  className="absolute -inset-[0.15rem] rounded-md bg-zinc-200"
+                  className="corner-squircle absolute -inset-[0.15rem] rounded-2xl bg-zinc-200"
                   layoutId="background"
                 />
               ) : null}
@@ -46,7 +46,7 @@ export function InteractiveWriting() {
             >
               {filter === "components" ? (
                 <motion.span
-                  className="absolute -inset-[0.15rem] rounded-md bg-zinc-200"
+                  className="corner-squircle absolute -inset-[0.15rem] rounded-2xl bg-zinc-200"
                   layoutId="background"
                 />
               ) : null}
@@ -68,7 +68,7 @@ export function InteractiveWriting() {
             <button className="group relative text-zinc-900" onClick={() => setFilter("mimics")}>
               {filter === "mimics" ? (
                 <motion.span
-                  className="absolute -inset-[0.15rem] rounded-md bg-zinc-200"
+                  className="corner-squircle absolute -inset-[0.15rem] rounded-2xl bg-zinc-200"
                   layoutId="background"
                 />
               ) : null}
@@ -110,10 +110,10 @@ export function InteractiveWriting() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 5 }}
             >
-              <p>Reusable pieces of code with interactive examples.</p>
+              <p>Reusable pieces of code explained.</p>
               <p>
-                While practicing my creativity I usually end up with some cool{" "}
-                <em className="font-medium text-zinc-900 not-italic">Components</em>.
+                While exploring ideas, some cool{" "}
+                <em className="font-medium text-zinc-900 not-italic">Components</em> stand out.
               </p>
             </motion.div>
           ) : null}
@@ -126,12 +126,14 @@ export function InteractiveWriting() {
               exit={{ opacity: 0, y: 5 }}
             >
               <p>
-                This is both (1) an appreciation wall for people who inspire me and (2) the fastest
-                way to develop design engineering skills.
+                This is both (1) an appreciation wall for builders who inspire me and (2) the
+                fastest way to develop design engineering skills.
               </p>
               <p>
-                Relying on creativity to practice technical skills is not productive. That's why I
-                like to create <em className="font-medium text-zinc-900 not-italic">Mimics</em>.
+                Relying on pure creativity to practice technical skills is not productive. That's
+                why I like to create{" "}
+                <em className="font-medium text-zinc-900 not-italic">Mimics</em> of beautiful and
+                well-designed software.
               </p>
             </motion.div>
           ) : null}
