@@ -1,6 +1,6 @@
 import type { ContentItem } from "@/lib/content";
 import { ScanIcon } from "lucide-react";
-import Link from "next/link";
+import { TransitionLink as Link } from "@/components/page-transition";
 
 export function ArticleItem({ item }: { item: ContentItem }) {
   return (

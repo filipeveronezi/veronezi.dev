@@ -1,6 +1,6 @@
 import type { ContentItem } from "@/lib/content";
 import { VectorSquareIcon } from "lucide-react";
-import Link from "next/link";
+import { TransitionLink as Link } from "@/components/page-transition";
 
 export function MimicItem({ item }: { item: ContentItem }) {
   return (

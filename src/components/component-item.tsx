@@ -1,6 +1,6 @@
 import type { ContentItem } from "@/lib/content";
 import { AtomIcon } from "lucide-react";
-import Link from "next/link";
+import { TransitionLink as Link } from "@/components/page-transition";
 
 export function ComponentItem({ item }: { item: ContentItem }) {
   return (
