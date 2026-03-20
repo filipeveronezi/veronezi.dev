@@ -114,7 +114,7 @@ export function InteractiveWriting({ content }: { content: ContentItem[] }) {
             </button>
           </li>
         </ul>
-        <AnimatePresence mode="wait">
+        <AnimatePresence mode="wait" initial={false}>
           {isAll ? (
             <motion.div
               key="all"
@@ -182,7 +182,7 @@ export function InteractiveWriting({ content }: { content: ContentItem[] }) {
             </motion.div>
           ) : null}
         </AnimatePresence>
-        <AnimatePresence mode="wait">
+        <AnimatePresence mode="wait" initial={false}>
           <motion.ul
             key={isAll ? "all" : filter}
             initial={{ opacity: 0, y: 5 }}
