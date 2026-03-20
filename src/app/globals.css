@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @plugin "@toolwind/corner-shape";
+@source "../";
 
 :root {
   --background: #ffffff;

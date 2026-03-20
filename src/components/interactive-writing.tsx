@@ -1,25 +1,53 @@
 "use client";
 
 import { cn } from "@/lib/cn";
-import { AtomIcon, ConeIcon, ScanIcon, VectorSquareIcon } from "lucide-react";
+import type { ContentItem } from "@/lib/content";
+import { ArticleItem } from "@/components/article-item";
+import { ComponentItem } from "@/components/component-item";
+import { MimicItem } from "@/components/mimic-item";
+import { AtomIcon, ConeIcon, ListFilterIcon, ScanIcon, VectorSquareIcon } from "lucide-react";
 import { AnimatePresence, motion, MotionConfig } from "motion/react";
 import { useQueryState } from "nuqs";
 
-export function InteractiveWriting() {
+export function InteractiveWriting({ content }: { content: ContentItem[] }) {
   const [filter, setFilter] = useQueryState("filter");
+
+  const isAll = !filter || filter === "all";
+  const filtered = isAll ? content : content.filter((item) => item.type === filter);
 
   return (
     <MotionConfig transition={{ duration: 0.3, type: "spring", bounce: 0 }}>
       <section className="space-y-2 pb-20 leading-loose">
-        <h2 className="flex items-center gap-1 font-medium text-zinc-900">
+        <h2 className="flex items-center gap-1 px-4 font-medium text-zinc-900">
           <ConeIcon className="size-4 rotate-215 text-zinc-500" />
           <span>Interactive writing</span>
         </h2>
-        <p className="text-zinc-500">Everything I learn, shared in three formats:</p>
-        <ul className="text-zinc-500">
+        <p className="px-4 text-zinc-500">
+          <span className="relative z-10">Everything I learn, shared in </span>
+          <button className="group relative text-zinc-900" onClick={() => setFilter("all")}>
+            {isAll ? (
+              <motion.span
+                className="corner-squircle absolute -inset-[0.15rem] rounded-2xl bg-zinc-200"
+                layoutId="background"
+              />
+            ) : null}
+            <span
+              className={cn(
+                isAll
+                  ? "decoration-zinc-200 group-hover:decoration-zinc-200 text-zinc-900"
+                  : "decoration-zinc-300 text-zinc-500 group-hover:decoration-zinc-500 group-hover:text-zinc-900",
+                "relative z-10 font-medium underline underline-offset-5 transition-colors",
+              )}
+            >
+              three formats
+            </span>
+          </button>
+          <span className="relative z-10">:</span>
+        </p>
+        <ul className="px-4 text-zinc-500">
           <li className="inline">
             <button className="group relative text-zinc-900" onClick={() => setFilter("articles")}>
-              {filter === "articles" || !filter ? (
+              {filter === "articles" ? (
                 <motion.span
                   className="corner-squircle absolute -inset-[0.15rem] rounded-2xl bg-zinc-200"
                   layoutId="background"
@@ -28,7 +56,7 @@ export function InteractiveWriting() {
               <ScanIcon className="relative z-10 inline size-4 -translate-y-0.5" />{" "}
               <span
                 className={cn(
-                  filter === "articles" || !filter
+                  filter === "articles"
                     ? "decoration-zinc-200 group-hover:decoration-zinc-200 text-zinc-900"
                     : "decoration-zinc-300 text-zinc-500 group-hover:decoration-zinc-500 group-hover:text-zinc-900",
                   "relative z-10 font-medium underline underline-offset-5 transition-colors",
@@ -87,10 +115,26 @@ export function InteractiveWriting() {
           </li>
         </ul>
         <AnimatePresence mode="wait">
-          {filter === "articles" || !filter ? (
+          {isAll ? (
+            <motion.div
+              key="all"
+              className="px-4 text-zinc-500"
+              initial={{ opacity: 0, y: 5 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 5 }}
+            >
+              <p className="-mt-1 hidden text-sm text-zinc-400 lg:block">
+                (click items above to filter)
+              </p>
+              <p className="-mt-1 text-sm text-zinc-400 lg:hidden">
+                (tap on the items above to filter)
+              </p>
+            </motion.div>
+          ) : null}
+          {filter === "articles" ? (
             <motion.div
               key="articles"
-              className="text-zinc-500"
+              className="px-4 text-zinc-500"
               initial={{ opacity: 0, y: 5 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 5 }}
@@ -105,7 +149,7 @@ export function InteractiveWriting() {
           {filter === "components" ? (
             <motion.div
               key="components"
-              className="text-zinc-500"
+              className="px-4 text-zinc-500"
               initial={{ opacity: 0, y: 5 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 5 }}
@@ -120,7 +164,7 @@ export function InteractiveWriting() {
           {filter === "mimics" ? (
             <motion.div
               key="mimics"
-              className="text-zinc-500"
+              className="px-4 text-zinc-500"
               initial={{ opacity: 0, y: 5 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 5 }}
@@ -137,6 +181,23 @@ export function InteractiveWriting() {
               </p>
             </motion.div>
           ) : null}
+        </AnimatePresence>
+        <AnimatePresence mode="wait">
+          <motion.ul
+            key={isAll ? "all" : filter}
+            initial={{ opacity: 0, y: 5 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 5 }}
+            className="space-y-px px-2 pt-4"
+          >
+            {filtered.map((item) => (
+              <li key={`${item.type}/${item.slug}`}>
+                {item.type === "articles" && <ArticleItem item={item} />}
+                {item.type === "components" && <ComponentItem item={item} />}
+                {item.type === "mimics" && <MimicItem item={item} />}
+              </li>
+            ))}
+          </motion.ul>
         </AnimatePresence>
       </section>
     </MotionConfig>

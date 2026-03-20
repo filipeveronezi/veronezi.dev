@@ -1,14 +1,16 @@
 import { InteractiveWriting } from "@/components/interactive-writing";
+import { getAllContent } from "@/lib/content";
 import { PilgrimLogo } from "@/components/logos/pilgrim-logo";
 import { XLogo } from "@/components/logos/x-logo";
 import { BoxIcon } from "lucide-react";
 import Link from "next/link";
 import { Suspense } from "react";
 
-export default function Home() {
+export default async function Home() {
+  const content = await getAllContent();
   return (
-    <main className="mx-auto w-full max-w-2xl px-4 pt-20">
-      <section className="flex flex-col gap-px py-6">
+    <main className="mx-auto w-full max-w-2xl pt-20">
+      <section className="flex flex-col gap-px px-4 py-6">
         <h1 className="flex items-center gap-1 font-medium text-zinc-900">
           <span>Filipe Veronezi</span>
         </h1>
@@ -16,7 +18,7 @@ export default function Home() {
           Design Engineer, Head of Technology at Pilgrim
         </span>
       </section>
-      <section className="space-y-2 pb-20 leading-loose text-zinc-500">
+      <section className="space-y-2 px-4 pb-20 leading-loose text-zinc-500">
         <p>
           I&apos;m currently building software and leading a small, talented team at{" "}
           <Link
@@ -53,7 +55,7 @@ export default function Home() {
           or check out some of my work below.
         </p>
       </section>
-      <section className="space-y-2 pb-20">
+      <section className="space-y-2 px-4 pb-20">
         <h2 className="flex items-center gap-1 font-medium text-zinc-900">
           <BoxIcon className="size-4 text-zinc-500" />
           <span>OSS Projects</span>
@@ -61,7 +63,7 @@ export default function Home() {
         <p className="text-zinc-500">Soon.</p>
       </section>
       <Suspense>
-        <InteractiveWriting />
+        <InteractiveWriting content={content} />
       </Suspense>
     </main>
   );
