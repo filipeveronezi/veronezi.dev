@@ -1,6 +1,6 @@
 import type { ContentItem } from "@/lib/content";
 import { VectorSquareIcon } from "lucide-react";
-import { TransitionLink as Link } from "@/components/page-transition";
+import { TransitionLink as Link } from "@/components/transition-link";
 
 export function MimicItem({ item }: { item: ContentItem }) {
   return (
@@ -23,6 +23,7 @@ export function MimicItem({ item }: { item: ContentItem }) {
         <span className="shrink-0 text-sm text-zinc-400">
           {new Date(item.publishedAt).toLocaleDateString("en-US", {
             month: "short",
+            day: "2-digit",
             year: "numeric",
           })}
         </span>

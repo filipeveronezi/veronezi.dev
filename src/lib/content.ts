@@ -43,9 +43,7 @@ export async function getComponents(): Promise<ContentItem[]> {
 export async function getMimics(): Promise<ContentItem[]> {
   return Promise.all(
     slugs("mimics").map(async (slug) => {
-      const mod = await import(
-        `../app/(writing)/mimics/${slug}/details/page.mdx`
-      );
+      const mod = await import(`../app/(writing)/mimics/${slug}/details/page.mdx`);
       return { slug, type: "mimics" as const, ...mod.metadata };
     }),
   );

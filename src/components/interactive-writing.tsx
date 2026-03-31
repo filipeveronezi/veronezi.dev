@@ -5,7 +5,7 @@ import type { ContentItem } from "@/lib/content";
 import { ArticleItem } from "@/components/article-item";
 import { ComponentItem } from "@/components/component-item";
 import { MimicItem } from "@/components/mimic-item";
-import { AtomIcon, ConeIcon, ListFilterIcon, ScanIcon, VectorSquareIcon } from "lucide-react";
+import { AtomIcon, ConeIcon, ScanIcon, VectorSquareIcon } from "lucide-react";
 import { AnimatePresence, motion, MotionConfig } from "motion/react";
 import { useQueryState } from "nuqs";
 
@@ -35,8 +35,8 @@ export function InteractiveWriting({ content }: { content: ContentItem[] }) {
               className={cn(
                 isAll
                   ? "decoration-zinc-200 group-hover:decoration-zinc-200 text-zinc-900"
-                  : "decoration-zinc-300 text-zinc-500 group-hover:decoration-zinc-500 group-hover:text-zinc-900",
-                "relative z-10 font-medium underline underline-offset-5 transition-colors",
+                  : "decoration-zinc-400 text-zinc-500 group-hover:decoration-zinc-600 group-hover:text-zinc-900",
+                "relative z-10 font-medium underline decoration-dotted underline-offset-5 transition-colors",
               )}
             >
               three formats
@@ -58,8 +58,8 @@ export function InteractiveWriting({ content }: { content: ContentItem[] }) {
                 className={cn(
                   filter === "articles"
                     ? "decoration-zinc-200 group-hover:decoration-zinc-200 text-zinc-900"
-                    : "decoration-zinc-300 text-zinc-500 group-hover:decoration-zinc-500 group-hover:text-zinc-900",
-                  "relative z-10 font-medium underline underline-offset-5 transition-colors",
+                    : "decoration-zinc-400 text-zinc-500 group-hover:decoration-zinc-600 group-hover:text-zinc-900",
+                  "relative z-10 font-medium underline decoration-dotted underline-offset-5 transition-colors",
                 )}
               >
                 Articles
@@ -83,8 +83,8 @@ export function InteractiveWriting({ content }: { content: ContentItem[] }) {
                 className={cn(
                   filter === "components"
                     ? "decoration-zinc-200 group-hover:decoration-zinc-200 text-zinc-900"
-                    : "decoration-zinc-300 text-zinc-500 group-hover:decoration-zinc-500 group-hover:text-zinc-900",
-                  "relative z-10 font-medium underline underline-offset-5 transition-colors",
+                    : "decoration-zinc-400 text-zinc-500 group-hover:decoration-zinc-600 group-hover:text-zinc-900",
+                  "relative z-10 font-medium underline decoration-dotted underline-offset-5 transition-colors",
                 )}
               >
                 Components
@@ -105,8 +105,8 @@ export function InteractiveWriting({ content }: { content: ContentItem[] }) {
                 className={cn(
                   filter === "mimics"
                     ? "decoration-zinc-200 group-hover:decoration-zinc-200 text-zinc-900"
-                    : "decoration-zinc-300 text-zinc-500 group-hover:decoration-zinc-500 group-hover:text-zinc-900",
-                  "relative z-10 font-medium underline underline-offset-5 transition-colors",
+                    : "decoration-zinc-400 text-zinc-500 group-hover:decoration-zinc-600 group-hover:text-zinc-900",
+                  "relative z-10 font-medium underline decoration-dotted underline-offset-5 transition-colors",
                 )}
               >
                 Mimics
@@ -139,7 +139,9 @@ export function InteractiveWriting({ content }: { content: ContentItem[] }) {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 5 }}
             >
-              <p>Thoughts on specific themes around design engineering, product and tech.</p>
+              <p>
+                Thoughts on specific themes around design engineering, product, tech and career.
+              </p>
               <p>
                 Whenever I learn something useful and want to share it, I turn it into an{" "}
                 <em className="font-medium text-zinc-900 not-italic">Article</em>.

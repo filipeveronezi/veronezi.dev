@@ -1,6 +1,6 @@
 import type { ContentItem } from "@/lib/content";
 import { AtomIcon } from "lucide-react";
-import { TransitionLink as Link } from "@/components/page-transition";
+import { TransitionLink as Link } from "@/components/transition-link";
 
 export function ComponentItem({ item }: { item: ContentItem }) {
   return (
@@ -17,6 +17,7 @@ export function ComponentItem({ item }: { item: ContentItem }) {
         <span className="shrink-0 text-sm text-zinc-400">
           {new Date(item.publishedAt).toLocaleDateString("en-US", {
             month: "short",
+            day: "2-digit",
             year: "numeric",
           })}
         </span>

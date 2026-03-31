@@ -28,7 +28,7 @@ export default async function Home() {
             rel="noopener noreferrer"
           >
             <PilgrimLogo className="inline size-4 -translate-y-0.5 grayscale" />{" "}
-            <span className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-5 transition-colors group-hover:decoration-zinc-500">
+            <span className="font-medium text-zinc-900 underline decoration-zinc-400 decoration-dotted underline-offset-5 transition-colors group-hover:decoration-zinc-500">
               Pilgrim
             </span>
           </Link>
@@ -48,7 +48,7 @@ export default async function Home() {
             rel="noopener noreferrer"
           >
             <XLogo className="inline size-3.5 translate-y-[-0.05rem]" />{" "}
-            <span className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-5 transition-colors group-hover:decoration-zinc-500">
+            <span className="font-medium text-zinc-900 underline decoration-zinc-400 decoration-dotted underline-offset-5 transition-colors group-hover:decoration-zinc-500">
               @fiveronezi
             </span>
           </Link>{" "}
