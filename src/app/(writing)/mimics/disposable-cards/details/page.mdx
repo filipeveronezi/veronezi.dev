@@ -1,0 +1,136 @@
+import { DisposablePileDemo, ScaleReorderDemo, StaticStackDemo } from "./demos";
+
+export const metadata = {
+  title: "Disposable cards",
+  publishedAt: "2026-03-19",
+  originalBy: "Caleb Wu",
+  originalUrl: "https://example.com",
+};
+
+# Disposable cards
+
+The trick is to avoid real page scroll. The component catches wheel/touch input, turns it into a direction, and rotates a stack of cards.
+
+The cursor hint is separate. This page only breaks down the pile.
+
+## Static pile
+
+The base is just absolute cards. First item is top card. Each next card moves down, scales down, and receives lower `zIndex`.
+
+<StaticStackDemo />
+
+```tsx
+const stackY = index * stackOffset;
+const stackScale = 1 - index * stackScaleStep;
+
+style={{
+  zIndex: cards.length - index,
+  transform: `translateY(${stackY}px) scale(${stackScale})`,
+}}
+```
+
+This gives the pile shape before any animation exists.
+
+## Animated reorder
+
+Stable card keys are the important part. When order changes, Motion sees the same card moving from one index to another, so scale and `y` animate naturally.
+
+<ScaleReorderDemo />
+
+```tsx
+{order.map((card, index) => (
+  <motion.div
+    key={card.id}
+    animate={{
+      y: index * stackOffset,
+      scale: 1 - index * stackScaleStep,
+    }}
+  />
+))}
+```
+
+If the key changes on every reorder, Motion remounts the card and the scale transition disappears.
+
+## Disposable action
+
+The full behavior needs one action object and one hidden-card state.
+
+<DisposablePileDemo />
+
+```tsx
+type Action = {
+  direction: "next" | "previous";
+  cardId: string;
+} | null;
+
+type HiddenCard = {
+  id: string;
+  placement: "top" | "stack";
+} | null;
+```
+
+`action` describes the visible animation. `hiddenCard` exists only to move cards without showing ugly intermediate frames.
+
+## Throw top
+
+Scroll down marks the first card as leaving. It moves upward, fades out, and rotates slightly.
+
+```tsx
+const isLeaving = action?.direction === "next" && action.cardId === card.id;
+const shouldThrow = isLeaving && !isHidden;
+
+animate={{
+  opacity: isLeaving || isHidden ? 0 : 1,
+  rotate: shouldThrow ? -8 : 0,
+  y: shouldThrow ? "-55vh" : stackY,
+}}
+```
+
+After the throw, the top card is moved to the bottom while hidden in stack placement.
+
+```tsx
+setHiddenCard({ id: card.id, placement: "stack" });
+
+setOrder((order) => {
+  const topCard = order[0];
+  return topCard ? [...order.slice(1), topCard] : order;
+});
+```
+
+That hidden reinsert prevents the card from visibly sliding into the last row.
+
+## Bring last
+
+Scroll up is the reverse. Move the last card to the front while it is hidden above the screen, then reveal it.
+
+```tsx
+setHiddenCard({ id: card.id, placement: "top" });
+setOrder((order) => [card, ...order.slice(0, -1)]);
+
+setTimeout(() => {
+  setHiddenCard(null);
+  setAction({ direction: "previous", cardId: card.id });
+}, 20);
+```
+
+The tiny delay gives the browser one frame to place the card above the pile before Motion animates it down.
+
+## Scroll input
+
+The wrapper captures input and converts it into a signed delta.
+
+```tsx
+function handleWheel(event: WheelEvent<HTMLDivElement>) {
+  event.preventDefault();
+  handleInputDelta(event.deltaY);
+}
+```
+
+Positive delta throws top. Negative delta brings last. A threshold and lock keep it to one card per gesture.
+
+```tsx
+if (nextDelta >= scrollThreshold) startAction("next");
+if (nextDelta <= -scrollThreshold) startAction("previous");
+```
+
+The page itself gets route-scoped `overscroll-none`, so this fake scroll does not rubber-band the document.
