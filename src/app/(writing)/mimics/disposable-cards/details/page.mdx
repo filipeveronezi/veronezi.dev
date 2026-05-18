@@ -1,136 +1,183 @@
-import { DisposablePileDemo, ScaleReorderDemo, StaticStackDemo } from "./demos";
+import {
+  FoundationDemo,
+  LoopDemo,
+  ProgressDemo,
+  SlotsDemo,
+  SnapDemo,
+  TweakingDetailsDemo,
+} from "./demos";
 
 export const metadata = {
   title: "Disposable cards",
   publishedAt: "2026-03-19",
   originalBy: "Caleb Wu",
-  originalUrl: "https://example.com",
+  originalUrl: "https://www.calebwu.ca/",
 };
 
 # Disposable cards
 
-The trick is to avoid real page scroll. The component catches wheel/touch input, turns it into a direction, and rotates a stack of cards.
+I wanted to recreate the card pile from Caleb Wu's site. The part that made it interesting was not the card styling. It was the illusion that the page is scrolling while the page itself stays still.
 
-The cursor hint is separate. This page only breaks down the pile.
+The version I ended up with has three rules:
 
-## Static pile
+- the cards stay mounted
+- scroll input changes one progress value
+- every card derives its position from that progress
 
-The base is just absolute cards. First item is top card. Each next card moves down, scales down, and receives lower `zIndex`.
+## Foundation
 
-<StaticStackDemo />
+The base is a fixed stage with absolute cards. The page does not need document scroll for the effect. It only needs a place where cards can overlap.
 
 ```tsx
-const stackY = index * stackOffset;
-const stackScale = 1 - index * stackScaleStep;
-
-style={{
-  zIndex: cards.length - index,
-  transform: `translateY(${stackY}px) scale(${stackScale})`,
-}}
+<section className="fixed inset-0 overflow-hidden">
+  <div className="relative">
+    {cards.map((card, index) => (
+      <DisposableCard key={card.id} card={card} index={index} />
+    ))}
+  </div>
+</section>
 ```
 
-This gives the pile shape before any animation exists.
+<FoundationDemo />
 
-## Animated reorder
+This was the first useful constraint. If the cards stay mounted, I do not have to fight React remounts, exit animations, or reorder timing.
 
-Stable card keys are the important part. When order changes, Motion sees the same card moving from one index to another, so scale and `y` animate naturally.
+## Challenge 1: Turning scroll into progress
 
-<ScaleReorderDemo />
-
-```tsx
-{order.map((card, index) => (
-  <motion.div
-    key={card.id}
-    animate={{
-      y: index * stackOffset,
-      scale: 1 - index * stackScaleStep,
-    }}
-  />
-))}
-```
-
-If the key changes on every reorder, Motion remounts the card and the scale transition disappears.
-
-## Disposable action
-
-The full behavior needs one action object and one hidden-card state.
-
-<DisposablePileDemo />
+I did not want the page to scroll. I wanted scroll input to move the pile. So the wheel delta becomes a number.
 
 ```tsx
-type Action = {
-  direction: "next" | "previous";
-  cardId: string;
-} | null;
+const rawProgress = useMotionValue(0);
+const progress = useSpring(rawProgress);
 
-type HiddenCard = {
-  id: string;
-  placement: "top" | "stack";
-} | null;
-```
-
-`action` describes the visible animation. `hiddenCard` exists only to move cards without showing ugly intermediate frames.
-
-## Throw top
-
-Scroll down marks the first card as leaving. It moves upward, fades out, and rotates slightly.
-
-```tsx
-const isLeaving = action?.direction === "next" && action.cardId === card.id;
-const shouldThrow = isLeaving && !isHidden;
-
-animate={{
-  opacity: isLeaving || isHidden ? 0 : 1,
-  rotate: shouldThrow ? -8 : 0,
-  y: shouldThrow ? "-55vh" : stackY,
-}}
-```
-
-After the throw, the top card is moved to the bottom while hidden in stack placement.
-
-```tsx
-setHiddenCard({ id: card.id, placement: "stack" });
-
-setOrder((order) => {
-  const topCard = order[0];
-  return topCard ? [...order.slice(1), topCard] : order;
-});
-```
-
-That hidden reinsert prevents the card from visibly sliding into the last row.
-
-## Bring last
-
-Scroll up is the reverse. Move the last card to the front while it is hidden above the screen, then reveal it.
-
-```tsx
-setHiddenCard({ id: card.id, placement: "top" });
-setOrder((order) => [card, ...order.slice(0, -1)]);
-
-setTimeout(() => {
-  setHiddenCard(null);
-  setAction({ direction: "previous", cardId: card.id });
-}, 20);
-```
-
-The tiny delay gives the browser one frame to place the card above the pile before Motion animates it down.
-
-## Scroll input
-
-The wrapper captures input and converts it into a signed delta.
-
-```tsx
-function handleWheel(event: WheelEvent<HTMLDivElement>) {
-  event.preventDefault();
-  handleInputDelta(event.deltaY);
+function movePile(delta: number) {
+  rawProgress.set(rawProgress.get() + delta / scrollStep);
 }
 ```
 
-Positive delta throws top. Negative delta brings last. A threshold and lock keep it to one card per gesture.
+`rawProgress` is the target. `progress` is the eased value the cards actually read. That separation keeps input responsive without making the animation feel mechanical.
 
-```tsx
-if (nextDelta >= scrollThreshold) startAction("next");
-if (nextDelta <= -scrollThreshold) startAction("previous");
+<ProgressDemo />
+
+Whole numbers are resting points:
+
+```txt
+0 = first card on top
+1 = second card on top
+2 = third card on top
 ```
 
-The page itself gets route-scoped `overscroll-none`, so this fake scroll does not rubber-band the document.
+Decimals are the in-between states.
+
+## Challenge 2: Thinking in slots
+
+This was the mental model that made the rest easier.
+
+A card's index is its identity in the source list. A card's slot is where it currently is in the pile.
+
+```tsx
+const slot = index - progress;
+```
+
+That simplified version is enough to see the idea:
+
+```txt
+slot 0 = top card
+slot 1 = second card
+slot 2 = third card
+slot -1 = card leaving above the pile
+```
+
+<SlotsDemo />
+
+The slot can be fractional. That is what makes the animation smooth. When progress is `0.5`, the first card is halfway out and the second card is halfway into the top position.
+
+The important distinction is:
+
+```txt
+index = who the card is
+slot = where the card is right now
+```
+
+Once I had that, the visual transforms became small mappings:
+
+```tsx
+const y = useTransform(slot, [-1, 0, 1, 2], [-700, 0, 28, 56]);
+const scale = useTransform(slot, [-1, 0, 1, 2], [0.96, 1, 0.965, 0.93]);
+```
+
+## Challenge 3: Making the pile loop
+
+The stack needs to be cyclic. After the last card leaves, the first card should become the next top card.
+
+I did not want to reorder the array. I only wanted progress to loop.
+
+```tsx
+function wrap(value: number, length: number) {
+  return ((value % length) + length) % length;
+}
+```
+
+Then slot is based on wrapped progress:
+
+```tsx
+const distance = index - wrap(progress, cards.length);
+const slot = distance <= -1 ? distance + cards.length : distance;
+```
+
+<LoopDemo />
+
+That extra `distance + cards.length` is the part that prevents the first card from feeling like it teleports. It lets a card move to the back side of the pile when it crosses past the top.
+
+## Challenge 4: Never rest halfway
+
+The pile can move through decimals, but it should not stop there. If I stop scrolling halfway through a card, the animation should finish in the direction I was going.
+
+```tsx
+snapTimer.current = setTimeout(() => {
+  const nextProgress = delta > 0 ? Math.ceil(rawProgress.get()) : Math.floor(rawProgress.get());
+
+  rawProgress.set(nextProgress);
+}, snapDelay);
+```
+
+`Math.ceil` completes a forward gesture. `Math.floor` completes a backward gesture.
+
+<SnapDemo />
+
+Using `Math.round` felt wrong because it could snap backward. The pile should respect the last scroll direction.
+
+## Challenge 5: Tweaking details
+
+After the model worked, most of the polish came from small transform choices.
+
+```tsx
+const opacity = useTransform(slot, [-1, 0, 2, visibleDepth], [0, 1, 1, 0]);
+const y = useTransform(slot, [-1, 0, 1, 2, visibleDepth], [-700, 0, 28, 56, 28]);
+const x = useTransform(slot, [-1, 0, 1, 2, visibleDepth], [30, 0, 0, 0, 0]);
+const rotate = useTransform(slot, [-1, 0, 1, 2, visibleDepth], [10, 0, 0, 0, 0]);
+```
+
+<TweakingDetailsDemo />
+
+The negative slot is the throw. That is where the card moves up, fades, shifts slightly on the x axis, and rotates.
+
+The last value in the `y` mapping is also doing work. Instead of pushing hidden cards farther down forever, it pulls the back card upward again:
+
+```tsx
+[-700, 0, 28, 56, 28];
+```
+
+That makes the loop feel like the card gets absorbed back into the pile before returning.
+
+The spring controls the overall feel:
+
+```tsx
+const progress = useSpring(rawProgress, {
+  stiffness: 180,
+  damping: 30,
+  mass: 0.25,
+});
+```
+
+I used the transforms for the shape of the animation and the spring for how quickly the pile settles into the next card.
