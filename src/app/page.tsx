@@ -70,16 +70,18 @@ export default async function Home() {
       <section className="space-y-2 px-4 pb-20">
         <h2 className="flex items-center gap-1 font-medium text-zinc-900">
           <LayoutGridIcon className="size-4 text-zinc-500" />
+          <span>Visual Playground</span>
+        </h2>
+        <p className="text-zinc-500">
+          A personal collection of visual exploration. Mostly UI design, brand design and
+          photography. A place where I meet my memories visually.{" "}
           <TransitionLink
             className="font-medium text-zinc-900 underline decoration-zinc-400 decoration-dotted underline-offset-5 transition-colors hover:decoration-zinc-600"
             href="/visual-playground"
           >
-            Visual Playground
+            Explore it
           </TransitionLink>
-        </h2>
-        <p className="text-zinc-500">
-          A personal collection of visual exploration. Mostly UI design, brand design and
-          photography. A place where I meet my memories visually.
+          .
         </p>
       </section>
     </main>
