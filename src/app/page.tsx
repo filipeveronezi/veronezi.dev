@@ -1,4 +1,5 @@
 import { InteractiveWriting } from "@/components/interactive-writing";
+import { InteractiveWritingFallback } from "@/components/interactive-writing-fallback";
 import { getAllContent } from "@/lib/content";
 import { PilgrimLogo } from "@/components/logos/pilgrim-logo";
 import { XLogo } from "@/components/logos/x-logo";
@@ -56,7 +57,7 @@ export default async function Home() {
           or check out some of my work below.
         </p>
       </section>
-      <Suspense>
+      <Suspense fallback={<InteractiveWritingFallback content={content} />}>
         <InteractiveWriting content={content} />
       </Suspense>
       <section className="space-y-2 px-4 pb-20">
