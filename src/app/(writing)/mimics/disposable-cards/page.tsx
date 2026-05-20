@@ -77,6 +77,7 @@ export default function DisposableCardsPage() {
     mass: 0.25,
   });
   const touchY = useRef<number | null>(null);
+  const touchDelta = useRef(0);
   const wheelDelta = useRef(0);
   const wheelLocked = useRef(false);
   const inertiaDirection = useRef<1 | -1 | null>(null);
@@ -95,8 +96,12 @@ export default function DisposableCardsPage() {
     };
   }, []);
 
-  function triggerGesture(direction: 1 | -1) {
+  function stepProgress(direction: 1 | -1) {
     rawProgress.set(rawProgress.get() + direction);
+  }
+
+  function triggerWheelGesture(direction: 1 | -1) {
+    stepProgress(direction);
     wheelLocked.current = true;
     wheelDelta.current = 0;
     inertiaDirection.current = direction;
@@ -132,9 +137,26 @@ export default function DisposableCardsPage() {
       Math.sign(wheelDelta.current) === Math.sign(delta) ? wheelDelta.current + delta : delta;
 
     if (wheelDelta.current >= scrollThreshold) {
-      triggerGesture(1);
+      triggerWheelGesture(1);
     } else if (wheelDelta.current <= -scrollThreshold) {
-      triggerGesture(-1);
+      triggerWheelGesture(-1);
+    }
+  }
+
+  function handleTouchDelta(delta: number) {
+    if (delta === 0) return;
+
+    touchDelta.current =
+      Math.sign(touchDelta.current) === Math.sign(delta) ? touchDelta.current + delta : delta;
+
+    while (touchDelta.current >= scrollThreshold) {
+      stepProgress(1);
+      touchDelta.current -= scrollThreshold;
+    }
+
+    while (touchDelta.current <= -scrollThreshold) {
+      stepProgress(-1);
+      touchDelta.current += scrollThreshold;
     }
   }
 
@@ -147,6 +169,7 @@ export default function DisposableCardsPage() {
       }}
       onTouchStart={(event) => {
         touchY.current = event.touches[0]?.clientY ?? null;
+        touchDelta.current = 0;
       }}
       onTouchMove={(event) => {
         event.preventDefault();
@@ -154,14 +177,16 @@ export default function DisposableCardsPage() {
         const nextY = event.touches[0]?.clientY;
         if (touchY.current === null || nextY === undefined) return;
 
-        handleWheelDelta(touchY.current - nextY);
+        handleTouchDelta(touchY.current - nextY);
         touchY.current = nextY;
       }}
       onTouchEnd={() => {
         touchY.current = null;
+        touchDelta.current = 0;
       }}
       onTouchCancel={() => {
         touchY.current = null;
+        touchDelta.current = 0;
       }}
     >
       <div className="relative flex w-full max-w-xl items-center justify-center">
