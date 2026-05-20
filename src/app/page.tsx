@@ -2,9 +2,10 @@ import { InteractiveWriting } from "@/components/interactive-writing";
 import { getAllContent } from "@/lib/content";
 import { PilgrimLogo } from "@/components/logos/pilgrim-logo";
 import { XLogo } from "@/components/logos/x-logo";
-import { BoxIcon } from "lucide-react";
+import { BoxIcon, LayoutGridIcon } from "lucide-react";
 import Link from "next/link";
 import { Suspense } from "react";
+import { TransitionLink } from "@/components/transition-link";
 
 export default async function Home() {
   const content = await getAllContent();
@@ -55,6 +56,9 @@ export default async function Home() {
           or check out some of my work below.
         </p>
       </section>
+      <Suspense>
+        <InteractiveWriting content={content} />
+      </Suspense>
       <section className="space-y-2 px-4 pb-20">
         <h2 className="flex items-center gap-1 font-medium text-zinc-900">
           <BoxIcon className="size-4 text-zinc-500" />
@@ -62,9 +66,21 @@ export default async function Home() {
         </h2>
         <p className="text-zinc-500">Soon.</p>
       </section>
-      <Suspense>
-        <InteractiveWriting content={content} />
-      </Suspense>
+      <section className="space-y-2 px-4 pb-20">
+        <h2 className="flex items-center gap-1 font-medium text-zinc-900">
+          <LayoutGridIcon className="size-4 text-zinc-500" />
+          <TransitionLink
+            className="font-medium text-zinc-900 underline decoration-zinc-400 decoration-dotted underline-offset-5 transition-colors hover:decoration-zinc-600"
+            href="/visual-playground"
+          >
+            Visual Playground
+          </TransitionLink>
+        </h2>
+        <p className="text-zinc-500">
+          A personal collection of visual exploration. Mostly UI design, brand design and
+          photography. A place where I meet my memories visually.
+        </p>
+      </section>
     </main>
   );
 }
