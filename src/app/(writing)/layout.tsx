@@ -16,7 +16,7 @@ export default function WritingLayout({ children }: { children: React.ReactNode 
         </div>
         <WritingContentMeta />
       </section>
-      <section className="leading-loose">{children}</section>
+      <section className="min-h-[calc(100vh-11rem)] leading-loose">{children}</section>
     </main>
   );
 }

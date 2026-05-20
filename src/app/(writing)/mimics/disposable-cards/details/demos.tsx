@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { motion, useSpring } from "motion/react";
+import { motion, useMotionValue, useMotionValueEvent, useSpring, useTransform } from "motion/react";
 import { Demo } from "@/components/demo";
 import { cn } from "@/lib/cn";
+import { MouseIcon } from "lucide-react";
 
 const cards = [
   { id: "rose", color: "bg-gradient-to-tr from-rose-300 to-rose-100" },
@@ -13,8 +14,6 @@ const cards = [
   { id: "violet", color: "bg-gradient-to-tr from-violet-300 to-violet-100" },
   { id: "yellow", color: "bg-gradient-to-tr from-yellow-300 to-yellow-100" },
 ];
-
-const visibleDepth = 3;
 
 function wrap(value: number, length: number) {
   return ((value % length) + length) % length;
@@ -90,24 +89,41 @@ function MiniPile({ progress, showSlots = false }: { progress: number; showSlots
 
 export function FoundationDemo() {
   return (
-    <Demo>
+    <Demo className="pb-16">
       <MiniPile progress={0} />
     </Demo>
   );
 }
 
 export function ProgressDemo() {
-  const [progress, setProgress] = useState(0);
+  const rawProgress = useMotionValue(0);
+  const progress = useSpring(rawProgress);
+
+  const [progressState, setProgressState] = useState(0);
+
+  function triggerGesture(direction: 1 | -1) {
+    rawProgress.set(rawProgress.get() + direction);
+  }
+
+  useMotionValueEvent(progress, "change", (latest) => {
+    setProgressState(Math.round(latest));
+  });
 
   return (
     <Demo>
-      <MiniPile progress={progress} />
-      <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
-        <div className="flex gap-2">
-          <DemoButton onClick={() => setProgress((value) => value - 0.25)}>Back</DemoButton>
-          <DemoButton onClick={() => setProgress((value) => value + 0.25)}>Forward</DemoButton>
-        </div>
-        <span className="font-mono text-sm text-zinc-500">progress {progress.toFixed(2)}</span>
+      <div
+        className="relative flex size-full flex-col items-center justify-center overflow-scroll py-32"
+        onWheel={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          triggerGesture(e.deltaY > 0 ? 1 : -1);
+        }}
+      >
+        <span className="absolute bottom-0 flex flex-col items-center justify-center gap-1 font-medium text-zinc-400">
+          <MouseIcon className="size-6" />
+          <span className="max-w-32 text-center text-sm">Scroll here to capture events</span>
+        </span>
+        <span className="font-mono text-3xl font-semibold">{progressState}%</span>
       </div>
     </Demo>
   );
@@ -151,19 +167,32 @@ export function SlotsDemo() {
 }
 
 export function LoopDemo() {
-  const [progress, setProgress] = useState(4);
+  const [progress, setProgress] = useState(0);
 
   return (
     <Demo>
-      <MiniPile progress={progress} />
-      <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
-        <div className="flex gap-2">
-          <DemoButton onClick={() => setProgress(4)}>Near end</DemoButton>
-          <DemoButton onClick={() => setProgress((value) => value + 1)}>Advance</DemoButton>
-        </div>
-        <span className="font-mono text-sm text-zinc-500">
-          progress {progress} / wrapped {wrap(progress, cards.length)}
+      <div className="flex flex-col items-center justify-between gap-10 py-4">
+        <span className="text-sm text-zinc-600">
+          Assuming{" "}
+          <span className="corner-squircle rounded-full border border-zinc-200 bg-white px-1 py-0.5 font-mono text-xs text-zinc-600">
+            cards.length = 6
+          </span>{" "}
+          and{" "}
+          <span className="corner-squircle rounded-full border border-zinc-200 bg-white px-1 py-0.5 font-mono text-xs text-zinc-600">
+            index = 0
+          </span>{" "}
         </span>
+        <div className="flex flex-col items-center justify-center gap-2 font-mono text-lg font-medium">
+          <span>progress {progress}</span>
+          <span>wrapped {wrap(progress, cards.length)}</span>
+          <span>slot {getSlot(0, progress)}</span>
+        </div>
+        <div className="flex gap-2">
+          <DemoButton onClick={() => setProgress(0)}>Reset</DemoButton>
+          <DemoButton onClick={() => setProgress((value) => value + 1)}>
+            Increase progress
+          </DemoButton>
+        </div>
       </div>
     </Demo>
   );
@@ -212,7 +241,7 @@ export function SnapDemo() {
 }
 
 export function TweakingDetailsDemo() {
-  const [slot, setSlot] = useState(-0.45);
+  const [slot, setSlot] = useState(0);
   const style = getStyle(slot);
 
   return (
@@ -220,7 +249,7 @@ export function TweakingDetailsDemo() {
       <div className="flex h-56 items-center justify-center">
         <motion.div
           animate={style}
-          className="flex aspect-[4/2.6] w-60 items-center justify-center rounded-lg border-2 border-white bg-gradient-to-tr from-violet-300 to-violet-100 text-2xl font-semibold text-white shadow-lg"
+          className="flex aspect-[4/2.6] w-60 items-center justify-center rounded-lg border-2 border-white bg-linear-to-tr from-violet-300 to-violet-100 text-2xl font-semibold text-white shadow-lg"
           transition={{ duration: 0.18 }}
         >
           slot {slot.toFixed(2)}
@@ -235,7 +264,7 @@ export function TweakingDetailsDemo() {
         type="range"
         value={slot}
       />
-      <div className="mt-4 grid grid-cols-2 gap-2 font-mono text-sm text-zinc-500 md:grid-cols-5">
+      <div className="mt-4 flex flex-col items-center justify-center gap-2 font-mono text-sm text-zinc-500 md:grid-cols-5">
         <span>opacity {style.opacity.toFixed(2)}</span>
         <span>x {style.x.toFixed(0)}</span>
         <span>y {style.y.toFixed(0)}</span>

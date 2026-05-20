@@ -95,7 +95,7 @@ function CodeBlock({ children }: { children?: ReactNode }) {
       <div className="flex items-center justify-between border-b border-white/10 px-4 py-2">
         <span className="font-mono text-xs text-zinc-400">{language ?? "code"}</span>
       </div>
-      <pre className="overflow-x-auto p-4 text-sm leading-relaxed">
+      <pre className="overflow-x-auto p-4 text-sm leading-normal">
         <code className="font-mono text-zinc-100">{highlightCode(code)}</code>
       </pre>
     </div>
@@ -105,10 +105,10 @@ function CodeBlock({ children }: { children?: ReactNode }) {
 const components = {
   // Allows customizing built-in components, e.g. to add styling.
   h1: ({ children }) => (
-    <h1 className="mb-4 text-lg font-medium text-balance text-zinc-900">{children}</h1>
+    <h1 className="mb-2 text-lg font-medium text-balance text-zinc-900">{children}</h1>
   ),
   h2: ({ children }) => (
-    <h2 className="text-base font-medium text-balance text-zinc-900">{children}</h2>
+    <h2 className="mb-2 text-base font-medium text-balance text-zinc-900">{children}</h2>
   ),
   p: ({ children }) => <p className="mb-4 text-zinc-600">{children}</p>,
   img: (props) => (
@@ -116,8 +116,10 @@ const components = {
   ),
   strong: (props) => <strong className="font-medium text-zinc-900" {...props} />,
   li: ({ children }) => <li className="ml-4 marker:text-zinc-400">{children}</li>,
-  ul: ({ children }) => <ul className="list-disc text-zinc-600">{children}</ul>,
-  ol: ({ children }) => <ol className="list-decimal text-zinc-600 marker:text-sm">{children}</ol>,
+  ul: ({ children }) => <ul className="mb-4 list-disc text-zinc-600">{children}</ul>,
+  ol: ({ children }) => (
+    <ol className="mb-4 list-decimal text-zinc-600 marker:text-sm">{children}</ol>
+  ),
   a: ({ children, href }) => (
     <TransitionLink
       href={href}

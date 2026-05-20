@@ -14,8 +14,9 @@ const cards = [
 ];
 
 const visibleDepth = 3;
-const scrollStep = 3000;
-const snapDelay = 100;
+const scrollThreshold = 80;
+const inputCooldown = 400;
+const inertiaDeltaLimit = 40;
 
 function wrap(value: number, length: number) {
   return ((value % length) + length) % length;
@@ -43,20 +44,27 @@ function DisposableCard({
 
   return (
     <motion.div
-      className={cn(
-        card.color,
-        "absolute flex aspect-[4/2.6] w-full items-center justify-center rounded-xl border-2 border-white text-5xl font-semibold text-white shadow-xl",
-      )}
-      style={{
-        opacity,
-        y,
-        scale,
-        rotate,
-        zIndex,
-        x,
-      }}
+      className="absolute flex aspect-[4/2.6] w-[90%] items-center justify-center lg:w-full"
+      initial={{ opacity: 0, scale: index === 0 ? 0.8 : 1, translateY: index === 0 ? 0 : -20 }}
+      animate={{ opacity: 1, scale: 1, translateY: 0 }}
+      transition={{ delay: index * 0.25 }}
     >
-      {index + 1}
+      <motion.div
+        className={cn(
+          card.color,
+          "absolute flex aspect-[4/2.6] w-full items-center justify-center rounded-xl border-2 border-white text-5xl font-semibold text-white shadow-xl",
+        )}
+        style={{
+          opacity,
+          y,
+          scale,
+          rotate,
+          zIndex,
+          x,
+        }}
+      >
+        {index + 1}
+      </motion.div>
     </motion.div>
   );
 }
@@ -69,31 +77,65 @@ export default function DisposableCardsPage() {
     mass: 0.25,
   });
   const touchY = useRef<number | null>(null);
-  const snapTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const wheelDelta = useRef(0);
+  const wheelLocked = useRef(false);
+  const inertiaDirection = useRef<1 | -1 | null>(null);
+  const wheelTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     document.documentElement.classList.add("overflow-hidden");
+    window.scrollTo(0, 0);
 
     return () => {
       document.documentElement.classList.remove("overflow-hidden");
 
-      if (snapTimer.current) {
-        clearTimeout(snapTimer.current);
+      if (wheelTimer.current) {
+        clearTimeout(wheelTimer.current);
       }
     };
   }, []);
 
-  function movePile(delta: number) {
-    rawProgress.set(rawProgress.get() + delta / scrollStep);
+  function triggerGesture(direction: 1 | -1) {
+    rawProgress.set(rawProgress.get() + direction);
+    wheelLocked.current = true;
+    wheelDelta.current = 0;
+    inertiaDirection.current = direction;
+    scheduleWheelUnlock();
+  }
 
-    if (snapTimer.current) {
-      clearTimeout(snapTimer.current);
+  function scheduleWheelUnlock() {
+    if (wheelTimer.current) {
+      clearTimeout(wheelTimer.current);
     }
 
-    snapTimer.current = setTimeout(() => {
-      const nextProgress = delta > 0 ? Math.ceil(rawProgress.get()) : Math.floor(rawProgress.get());
-      rawProgress.set(nextProgress);
-    }, snapDelay);
+    wheelTimer.current = setTimeout(() => {
+      wheelLocked.current = false;
+    }, inputCooldown);
+  }
+
+  function handleWheelDelta(delta: number) {
+    if (wheelLocked.current) {
+      return;
+    }
+
+    const direction = delta > 0 ? 1 : -1;
+
+    if (inertiaDirection.current === direction && Math.abs(delta) < inertiaDeltaLimit) {
+      return;
+    }
+
+    if (inertiaDirection.current !== direction || Math.abs(delta) >= inertiaDeltaLimit) {
+      inertiaDirection.current = null;
+    }
+
+    wheelDelta.current =
+      Math.sign(wheelDelta.current) === Math.sign(delta) ? wheelDelta.current + delta : delta;
+
+    if (wheelDelta.current >= scrollThreshold) {
+      triggerGesture(1);
+    } else if (wheelDelta.current <= -scrollThreshold) {
+      triggerGesture(-1);
+    }
   }
 
   return (
@@ -101,7 +143,7 @@ export default function DisposableCardsPage() {
       className="fixed inset-0 z-0 flex touch-none items-center justify-center overflow-hidden"
       onWheel={(event) => {
         event.preventDefault();
-        movePile(event.deltaY);
+        handleWheelDelta(event.deltaY);
       }}
       onTouchStart={(event) => {
         touchY.current = event.touches[0]?.clientY ?? null;
@@ -112,7 +154,7 @@ export default function DisposableCardsPage() {
         const nextY = event.touches[0]?.clientY;
         if (touchY.current === null || nextY === undefined) return;
 
-        movePile(touchY.current - nextY);
+        handleWheelDelta(touchY.current - nextY);
         touchY.current = nextY;
       }}
       onTouchEnd={() => {
