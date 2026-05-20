@@ -105,7 +105,7 @@ function CodeBlock({ children }: { children?: ReactNode }) {
 const components = {
   // Allows customizing built-in components, e.g. to add styling.
   h1: ({ children }) => (
-    <h1 className="mb-2 text-lg font-medium text-balance text-zinc-900">{children}</h1>
+    <h1 className="mb-6 text-lg font-medium text-balance text-zinc-900">{children}</h1>
   ),
   h2: ({ children }) => (
     <h2 className="mb-2 text-base font-medium text-balance text-zinc-900">{children}</h2>
@@ -140,7 +140,7 @@ const components = {
     </code>
   ),
   hr: () => (
-    <hr className="mx-auto my-20 h-px w-full rounded-full border-none bg-linear-to-r from-transparent via-zinc-300/80 to-transparent" />
+    <hr className="mx-auto my-16 h-px w-full rounded-full border-none bg-linear-to-r from-transparent via-zinc-300/80 to-transparent" />
   ),
 } satisfies MDXComponents;
 
