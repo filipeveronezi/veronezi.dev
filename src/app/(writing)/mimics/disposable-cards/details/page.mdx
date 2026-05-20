@@ -20,11 +20,15 @@ export const metadata = {
 
 I wanted to recreate the card pile from <ExternalLink href="https://calebwu.ca">Caleb Wu's personal website</ExternalLink>. Even though the style of each card is pretty unique and visual appealing, what **sparked my curiosity** was how the **scroll transition effect** was made.
 
+---
+
 ## Foundation
 
 To start off, no special trick was needed. The base is just a **fixed stage** with **absolute positioned cards**.
 
 <FoundationDemo />
+
+---
 
 ## Transforming scroll -> progress
 
@@ -50,6 +54,8 @@ function triggerGesture(direction: 1 | -1) {
 That combined approach enables us to transform **scroll events** into **measurable progress**.
 
 <ProgressDemo />
+
+---
 
 ## Transforming progress -> slots
 
@@ -79,6 +85,8 @@ It's important to mention that we need to keep slot `0...-1` valid, this is the 
 - slot 2: third card
 - slot 3: fourth card (hidden)
 - slot -0.5: card leaving above the pile
+
+---
 
 ## Tweaking details
 
