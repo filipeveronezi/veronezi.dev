@@ -1,0 +1,35 @@
+import { SearchPromptEditor } from "@/components/search-prompt-editor";
+import { Demo } from "@/components/demo";
+
+export const metadata = {
+  title: "Search prompt editor",
+  publishedAt: "2026-03-19",
+};
+
+# Search prompt editor
+
+An editable search prompt with a smooth focus transition.
+
+<Demo>
+  <SearchPromptEditor />
+</Demo>
+
+## How it works
+
+The idea is simple: an AI search result is displayed with a heading-like button on the top showing the **original input**. Clicking it opens a **focused editing surface**, where the user can change the prompt and submit it again.
+
+This pattern is useful when **the submitted text remains important after the action**. Instead of hiding the prompt inside a form, the UI lets it stay visible, editable and **connected to the current result state**.
+
+The main detail I wanted to preserve is the feeling that the displayed prompt and the edit form are the **same object** in **different states**.
+
+That is why the component uses a shared `layoutId` between the collapsed prompt and the expanded form. The animation makes the transition feel less like opening a modal and more like **directly editing the text already on screen**.
+
+```tsx
+<motion.div layoutId="editable-search">...</motion.div>
+```
+
+The edit state also keeps a few small **keyboard shortcuts**:
+
+- `Enter` submits the prompt
+- `Shift + Enter` keeps typing on a new line
+- `Escape` closes the editor
