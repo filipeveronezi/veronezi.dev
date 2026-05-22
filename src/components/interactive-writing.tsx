@@ -40,12 +40,26 @@ const fadeInAfterHeight = {
   },
 };
 
+const fadeOutUp = {
+  opacity: 0,
+  y: -12,
+  transition: {
+    opacity: { duration: 0.12 },
+    y: { duration: 0.12 },
+  },
+};
+
 export function InteractiveWriting({ content }: { content: ContentItem[] }) {
   const [filter, setFilter] = useQueryState("filter");
   const [contentRef, contentHeight] = useElementHeight();
+  const [shouldAnimateHeight, setShouldAnimateHeight] = useState(false);
 
   const isAll = !filter || filter === "all";
   const filtered = isAll ? content : content.filter((item) => item.type === filter);
+  const setFilterWithHeightAnimation = (value: string) => {
+    setShouldAnimateHeight(true);
+    setFilter(value);
+  };
 
   return (
     <MotionConfig transition={{ duration: 0.3, type: "spring", bounce: 0 }}>
@@ -56,7 +70,10 @@ export function InteractiveWriting({ content }: { content: ContentItem[] }) {
         </h2>
         <p className="px-4 text-zinc-500">
           <span className="relative z-10">Everything I learn, shared in </span>
-          <button className="group relative text-zinc-900" onClick={() => setFilter("all")}>
+          <button
+            className="group relative text-zinc-900"
+            onClick={() => setFilterWithHeightAnimation("all")}
+          >
             {isAll ? (
               <motion.span
                 className="corner-squircle absolute -inset-[0.15rem] rounded-2xl bg-zinc-200"
@@ -78,7 +95,10 @@ export function InteractiveWriting({ content }: { content: ContentItem[] }) {
         </p>
         <ul className="px-4 text-zinc-500">
           <li className="inline">
-            <button className="group relative text-zinc-900" onClick={() => setFilter("articles")}>
+            <button
+              className="group relative text-zinc-900"
+              onClick={() => setFilterWithHeightAnimation("articles")}
+            >
               {filter === "articles" ? (
                 <motion.span
                   className="corner-squircle absolute -inset-[0.15rem] rounded-2xl bg-zinc-200"
@@ -102,7 +122,7 @@ export function InteractiveWriting({ content }: { content: ContentItem[] }) {
           <li className="inline">
             <button
               className="group relative text-zinc-900"
-              onClick={() => setFilter("components")}
+              onClick={() => setFilterWithHeightAnimation("components")}
             >
               {filter === "components" ? (
                 <motion.span
@@ -125,7 +145,10 @@ export function InteractiveWriting({ content }: { content: ContentItem[] }) {
           </li>{" "}
           <span className="relative z-10">and </span>
           <li className="inline">
-            <button className="group relative text-zinc-900" onClick={() => setFilter("mimics")}>
+            <button
+              className="group relative text-zinc-900"
+              onClick={() => setFilterWithHeightAnimation("mimics")}
+            >
               {filter === "mimics" ? (
                 <motion.span
                   className="corner-squircle absolute -inset-[0.15rem] rounded-2xl bg-zinc-200"
@@ -147,7 +170,11 @@ export function InteractiveWriting({ content }: { content: ContentItem[] }) {
           </li>
         </ul>
         <motion.div
-          animate={contentHeight === undefined ? undefined : { height: contentHeight }}
+          animate={
+            shouldAnimateHeight && contentHeight !== undefined
+              ? { height: contentHeight }
+              : undefined
+          }
           className="overflow-hidden"
         >
           <div ref={contentRef} className="space-y-2">
@@ -156,9 +183,9 @@ export function InteractiveWriting({ content }: { content: ContentItem[] }) {
                 <motion.div
                   key="all"
                   className="px-4 text-zinc-500"
-                  initial={{ opacity: 0, y: -5 }}
+                  initial={{ opacity: 0, y: -12 }}
                   animate={fadeInAfterHeight}
-                  exit={{ opacity: 0, y: -5 }}
+                  exit={fadeOutUp}
                 >
                   <p className="-mt-1 hidden text-sm text-zinc-400 lg:block">
                     (click items above to filter)
@@ -174,7 +201,7 @@ export function InteractiveWriting({ content }: { content: ContentItem[] }) {
                   className="px-4 text-zinc-500"
                   initial={{ opacity: 0, y: -5 }}
                   animate={fadeInAfterHeight}
-                  exit={{ opacity: 0, y: -5 }}
+                  exit={fadeOutUp}
                 >
                   <p>
                     Thoughts on specific themes around design engineering, product, tech and career.
@@ -191,7 +218,7 @@ export function InteractiveWriting({ content }: { content: ContentItem[] }) {
                   className="px-4 text-zinc-500"
                   initial={{ opacity: 0, y: -5 }}
                   animate={fadeInAfterHeight}
-                  exit={{ opacity: 0, y: -5 }}
+                  exit={fadeOutUp}
                 >
                   <p>Reusable pieces of code explained.</p>
                   <p>
@@ -206,7 +233,7 @@ export function InteractiveWriting({ content }: { content: ContentItem[] }) {
                   className="px-4 text-zinc-500"
                   initial={{ opacity: 0, y: -5 }}
                   animate={fadeInAfterHeight}
-                  exit={{ opacity: 0, y: -5 }}
+                  exit={fadeOutUp}
                 >
                   <p>
                     This is both (1) an appreciation wall for builders who inspire me and (2) the
@@ -226,7 +253,7 @@ export function InteractiveWriting({ content }: { content: ContentItem[] }) {
                 key={isAll ? "all" : filter}
                 initial={{ opacity: 0, y: -5 }}
                 animate={fadeInAfterHeight}
-                exit={{ opacity: 0, y: -5 }}
+                exit={fadeOutUp}
                 className="space-y-px px-2 pt-4"
               >
                 {filtered.map((item) => (
