@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { motion } from "motion/react";
 import React, { useState, useRef, useEffect } from "react";
+import { TransitionLink } from "./transition-link";
+import { LogOutIcon } from "lucide-react";
 
 const ITEMS = [
   {
@@ -312,6 +314,13 @@ export function VisualPlayground() {
       onPointerLeave={onPointerUp}
       onWheel={onWheel}
     >
+      <TransitionLink
+        className="corner-squircle fixed inset-x-0 bottom-4 z-50 mx-auto flex w-max items-center justify-center gap-2 rounded-full border border-white bg-linear-to-tr from-zinc-900 via-zinc-900 to-zinc-500 px-5 py-2 text-white shadow-2xl transition-transform hover:scale-105 active:scale-100"
+        href="/"
+      >
+        <LogOutIcon className="size-4" />
+        <span>Leave Playground</span>
+      </TransitionLink>
       <div
         className="absolute will-change-transform"
         style={{
