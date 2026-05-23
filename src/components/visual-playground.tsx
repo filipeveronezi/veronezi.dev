@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "motion/react";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useMemo, useState, useRef, useEffect } from "react";
 import { TransitionLink } from "./transition-link";
 import { LogOutIcon } from "lucide-react";
 
@@ -10,58 +10,206 @@ const ITEMS = [
   {
     mediaUrl: "/visual-playground/pilgrim-week.mp4",
     externalUrl: "https://pilgrim.com.br/pilgrim-week-01",
+    width: 1256,
+    height: 1256,
+  },
+  {
+    mediaUrl: "/visual-playground/pilgrim-week.png",
+    externalUrl: "https://pilgrim.com.br/pilgrim-week-01",
+    width: 1512,
+    height: 1350,
   },
   {
     mediaUrl: "/visual-playground/logo-fv.png",
     externalUrl: null,
+    width: 1000,
+    height: 1000,
   },
   {
     mediaUrl: "/visual-playground/responsive-table.png",
     externalUrl: null, // TODO: X post
+    width: 1932,
+    height: 1930,
   },
   {
     mediaUrl: "/visual-playground/unfair-logo.png",
     externalUrl: null,
+    width: 1000,
+    height: 1000,
   },
   {
     mediaUrl: "/visual-playground/dashboard-sidebar.png",
     externalUrl: null, // TODO: X post
+    width: 1000,
+    height: 1000,
   },
   {
     mediaUrl: "/visual-playground/polis-logo.png",
     externalUrl: null,
+    width: 1798,
+    height: 1798,
   },
   {
     mediaUrl: "/visual-playground/pilgrim-compass.png",
     externalUrl: null,
+    width: 2166,
+    height: 2166,
   },
   {
     mediaUrl: "/visual-playground/bible-reader.png",
     externalUrl: "https://app.pilgrim.com.br/tabs/b%C3%ADblia",
+    width: 1095,
+    height: 1094,
   },
   {
     mediaUrl: "/visual-playground/bible-toolbar-audio.mp4",
     externalUrl: "https://app.pilgrim.com.br/tabs/b%C3%ADblia",
+    width: 1000,
+    height: 1000,
   },
   {
     mediaUrl: "/visual-playground/calendar-elements.png",
     externalUrl: "https://pilgrim.com.br/pilgrim-week-01#day-5",
+    width: 1546,
+    height: 1546,
   },
   {
     mediaUrl: "/visual-playground/pilgrim-lp.png",
     externalUrl: "https://pilgrim.com.br",
+    width: 1000,
+    height: 1000,
   },
   {
     mediaUrl: "/visual-playground/eventsea.png",
     externalUrl: null,
+    width: 960,
+    height: 960,
+  },
+  {
+    mediaUrl: "/visual-playground/canada_1.png",
+    externalUrl: null,
+    width: 1153,
+    height: 2048,
+  },
+  {
+    mediaUrl: "/visual-playground/canada_2.png",
+    externalUrl: null,
+    width: 1153,
+    height: 2048,
+  },
+  {
+    mediaUrl: "/visual-playground/canada_3.png",
+    externalUrl: null,
+    width: 1153,
+    height: 2048,
+  },
+  {
+    mediaUrl: "/visual-playground/canada_4.png",
+    externalUrl: null,
+    width: 1153,
+    height: 2048,
+  },
+  {
+    mediaUrl: "/visual-playground/canada_5.png",
+    externalUrl: null,
+    width: 1153,
+    height: 2048,
+  },
+  {
+    mediaUrl: "/visual-playground/canada_6.png",
+    externalUrl: null,
+    width: 1536,
+    height: 2048,
+  },
+  {
+    mediaUrl: "/visual-playground/canada_7.png",
+    externalUrl: null,
+    width: 1536,
+    height: 2048,
+  },
+  {
+    mediaUrl: "/visual-playground/canada_8.png",
+    externalUrl: null,
+    width: 1536,
+    height: 2048,
+  },
+  {
+    mediaUrl: "/visual-playground/canada_9.png",
+    externalUrl: null,
+    width: 1153,
+    height: 2048,
+  },
+  {
+    mediaUrl: "/visual-playground/canada_10.png",
+    externalUrl: null,
+    width: 1153,
+    height: 2048,
+  },
+  {
+    mediaUrl: "/visual-playground/canada_11.png",
+    externalUrl: null,
+    width: 1153,
+    height: 2048,
+  },
+  {
+    mediaUrl: "/visual-playground/canada_12.png",
+    externalUrl: null,
+    width: 1153,
+    height: 2048,
+  },
+  {
+    mediaUrl: "/visual-playground/canada_13.png",
+    externalUrl: null,
+    width: 1153,
+    height: 2048,
+  },
+  {
+    mediaUrl: "/visual-playground/canada_14.png",
+    externalUrl: null,
+    width: 1153,
+    height: 2048,
+  },
+  {
+    mediaUrl: "/visual-playground/canada_15.png",
+    externalUrl: null,
+    width: 1153,
+    height: 2048,
+  },
+  {
+    mediaUrl: "/visual-playground/disney_1.png",
+    externalUrl: null,
+    width: 1536,
+    height: 2048,
+  },
+  {
+    mediaUrl: "/visual-playground/disney_2.png",
+    externalUrl: null,
+    width: 1153,
+    height: 2048,
+  },
+  {
+    mediaUrl: "/visual-playground/foots.png",
+    externalUrl: null,
+    width: 1395,
+    height: 2048,
+  },
+  {
+    mediaUrl: "/visual-playground/universal_1.png",
+    externalUrl: null,
+    width: 1153,
+    height: 2048,
   },
 ];
 
-const DEFAULT_IMAGE_SIZE = 500; // Desktop image size
-const MOBILE_IMAGE_SIZE = 310; // Mobile image size
+type PlaygroundItem = (typeof ITEMS)[number];
+
+const DEFAULT_IMAGE_SIZE = 500; // Desktop column width
+const MOBILE_IMAGE_SIZE = 310; // Mobile column width
 const DEFAULT_GRID_GAP = 110;
 const MOBILE_GRID_GAP = 40;
+const GRID_OVERSCAN = 1;
 const ROTATION_RANGE = 8; // Range of rotation in degrees (e.g., 10 = ±5 degrees)
+const ENTER_BLUR = "6px";
 
 // Helper: seeded random for repeatable positions
 function seededRandom(seed: number) {
@@ -81,50 +229,52 @@ function isVideo(mediaUrl: string): boolean {
   return mediaUrl.toLowerCase().endsWith(".mp4");
 }
 
-// Helper: Hilbert curve implementation for optimal spatial distribution
-function hilbertCurve(x: number, y: number, order: number): number {
-  let rx,
-    ry,
-    s,
-    d = 0;
-  for (s = order / 2; s > 0; s /= 2) {
-    rx = (x & s) > 0 ? 1 : 0;
-    ry = (y & s) > 0 ? 1 : 0;
-    d += s * s * ((3 * rx) ^ ry);
-    [x, y] = rot(s, x, y, rx, ry);
-  }
-  return d;
+function positiveModulo(value: number, modulo: number) {
+  return ((value % modulo) + modulo) % modulo;
 }
 
-// Helper: rotation for Hilbert curve
-function rot(n: number, x: number, y: number, rx: number, ry: number): [number, number] {
-  if (ry === 0) {
-    if (rx === 1) {
-      x = n - 1 - x;
-      y = n - 1 - y;
+function getMasonryCycleSize(totalItems: number) {
+  return totalItems;
+}
+
+function getItemIndex(cellX: number, cellY: number, totalItems: number) {
+  return positiveModulo(cellX * 7 + cellY * 11, totalItems);
+}
+
+function getRenderedItemHeight(item: PlaygroundItem, width: number) {
+  return Math.round((width * item.height) / item.width);
+}
+
+function getMasonryCycleHeight(cellX: number, width: number, gap: number) {
+  let cycleHeight = 0;
+
+  for (let row = 0; row < getMasonryCycleSize(ITEMS.length); row++) {
+    const item = ITEMS[getItemIndex(cellX, row, ITEMS.length)];
+    cycleHeight += getRenderedItemHeight(item, width) + gap;
+  }
+
+  return cycleHeight;
+}
+
+function getMasonryY(cellX: number, cellY: number, width: number, gap: number) {
+  const cycleSize = getMasonryCycleSize(ITEMS.length);
+  const normalizedY = ((cellY % cycleSize) + cycleSize) % cycleSize;
+  const cycleIndex = Math.floor(cellY / cycleSize);
+  let cycleHeight = 0;
+  let offsetY = 0;
+
+  for (let row = 0; row < cycleSize; row++) {
+    const item = ITEMS[getItemIndex(cellX, row, ITEMS.length)];
+    const rowHeight = getRenderedItemHeight(item, width) + gap;
+
+    cycleHeight += rowHeight;
+
+    if (row < normalizedY) {
+      offsetY += rowHeight;
     }
-    return [y, x];
   }
-  return [x, y];
-}
 
-// Helper: get item index using Hilbert curve pattern
-function getItemIndexForHilbert(cx: number, cy: number, totalItems: number) {
-  // Use Hilbert curve for optimal spatial distribution
-  // This ensures moving in any direction shows different items
-
-  // Calculate grid size (must be power of 2 for Hilbert curve)
-  const gridSize = Math.pow(2, Math.ceil(Math.log2(Math.sqrt(totalItems))));
-
-  // Normalize coordinates to positive space
-  const normalizedX = ((cx % gridSize) + gridSize) % gridSize;
-  const normalizedY = ((cy % gridSize) + gridSize) % gridSize;
-
-  // Get Hilbert curve index
-  const hilbertIndex = hilbertCurve(normalizedX, normalizedY, gridSize);
-
-  // Map to actual item index
-  return hilbertIndex % totalItems;
+  return cycleIndex * cycleHeight + offsetY;
 }
 
 export function VisualPlayground() {
@@ -134,6 +284,8 @@ export function VisualPlayground() {
   }, []);
   const containerRef = useRef<HTMLDivElement>(null);
   const [pan, setPan] = useState({ x: 0, y: 0 });
+  const panRef = useRef(pan);
+  const panFrameRef = useRef<number | null>(null);
   const [drag, setDrag] = useState<{
     startX: number;
     startY: number;
@@ -143,6 +295,27 @@ export function VisualPlayground() {
   const [hasMoved, setHasMoved] = useState(false);
   const [imageSize, setImageSize] = useState(DEFAULT_IMAGE_SIZE);
   const [gridGap, setGridGap] = useState(DEFAULT_GRID_GAP);
+
+  useEffect(() => {
+    return () => {
+      if (panFrameRef.current !== null) {
+        cancelAnimationFrame(panFrameRef.current);
+      }
+    };
+  }, []);
+
+  function schedulePan(nextPan: { x: number; y: number }) {
+    panRef.current = nextPan;
+
+    if (panFrameRef.current !== null) {
+      return;
+    }
+
+    panFrameRef.current = requestAnimationFrame(() => {
+      panFrameRef.current = null;
+      setPan(panRef.current);
+    });
+  }
 
   // Prevent trackpad horizontal scroll gestures from triggering browser navigation
   useEffect(() => {
@@ -186,8 +359,8 @@ export function VisualPlayground() {
     setDrag({
       startX: e.clientX,
       startY: e.clientY,
-      panX: pan.x,
-      panY: pan.y,
+      panX: panRef.current.x,
+      panY: panRef.current.y,
     });
   }
 
@@ -207,7 +380,7 @@ export function VisualPlayground() {
       }
     }
 
-    setPan({
+    schedulePan({
       x: drag.panX + (e.clientX - drag.startX),
       y: drag.panY + (e.clientY - drag.startY),
     });
@@ -221,70 +394,109 @@ export function VisualPlayground() {
   function onWheel(e: React.WheelEvent) {
     // Prevent default browser scroll
     e.preventDefault();
-    setPan((prev) => ({
-      x: prev.x - e.deltaX,
-      y: prev.y - e.deltaY,
-    }));
+    schedulePan({
+      x: panRef.current.x - e.deltaX,
+      y: panRef.current.y - e.deltaY,
+    });
   }
 
   // Calculate which items to render based on viewport and pan
   const getVisibleItems = () => {
+    if (typeof window === "undefined") {
+      return [];
+    }
+
+    const columnWidth = imageSize;
+    const columnPitch = columnWidth + gridGap;
+    const viewportWidth = containerRef.current?.getBoundingClientRect().width ?? window.innerWidth;
+    const viewportHeight =
+      containerRef.current?.getBoundingClientRect().height ?? window.innerHeight;
+    const viewportTop = -pan.y;
+    const viewportBottom = viewportTop + viewportHeight;
+
     if (!containerRef.current) {
       // Fallback for initial render - use window dimensions
-      if (typeof window === "undefined") {
-        // On server, return an empty array or some safe default
-        return [];
-      }
-      const cellSize = imageSize + gridGap;
-      const cols = Math.ceil(window.innerWidth / cellSize) + 4;
-      const rows = Math.ceil(window.innerHeight / cellSize) + 4;
-      const startCol = Math.floor(-pan.x / cellSize) - 2;
-      const startRow = Math.floor(-pan.y / cellSize) - 2;
+      const cols = Math.ceil(viewportWidth / columnPitch) + GRID_OVERSCAN * 2;
+      const startCol = Math.floor(-pan.x / columnPitch) - GRID_OVERSCAN;
 
       const items = [];
 
       for (let cx = startCol; cx < startCol + cols; cx++) {
-        for (let cy = startRow; cy < startRow + rows; cy++) {
-          const itemIdx = getItemIndexForHilbert(cx, cy, ITEMS.length);
-          const x = cx * cellSize;
-          const y = cy * cellSize;
+        const cycleSize = getMasonryCycleSize(ITEMS.length);
+        const cycleHeight = getMasonryCycleHeight(cx, columnWidth, gridGap);
+        const startCycle = Math.floor(viewportTop / cycleHeight) - GRID_OVERSCAN;
+        const endCycle = Math.floor(viewportBottom / cycleHeight) + GRID_OVERSCAN;
 
-          items.push({
-            ...ITEMS[itemIdx],
-            x,
-            y,
-            key: `${cx}-${cy}`,
-          });
+        for (let cycle = startCycle; cycle <= endCycle; cycle++) {
+          for (let row = 0; row < cycleSize; row++) {
+            const cy = cycle * cycleSize + row;
+            const itemIdx = getItemIndex(cx, cy, ITEMS.length);
+            const item = ITEMS[itemIdx];
+            const x = cx * columnPitch;
+            const y = getMasonryY(cx, cy, columnWidth, gridGap);
+            const height = getRenderedItemHeight(item, columnWidth);
+            const isVisible = y + height >= viewportTop && y <= viewportBottom;
+            const animationDelay = seededRandom(cx * 10000 + cy * 100 + 999) * 0.18;
+
+            if (y + height < viewportTop - gridGap || y > viewportBottom + gridGap) {
+              continue;
+            }
+
+            items.push({
+              ...item,
+              x,
+              y,
+              width: columnWidth,
+              renderedHeight: height,
+              isVisible,
+              animationDelay,
+              key: `${cx}-${cy}`,
+            });
+          }
         }
       }
 
       return items;
     }
 
-    const container = containerRef.current;
-    const rect = container.getBoundingClientRect();
-    const cellSize = imageSize + gridGap;
-
     // Calculate visible grid cells
-    const cols = Math.ceil(rect.width / cellSize) + 4;
-    const rows = Math.ceil(rect.height / cellSize) + 4;
-    const startCol = Math.floor(-pan.x / cellSize) - 2;
-    const startRow = Math.floor(-pan.y / cellSize) - 2;
+    const cols = Math.ceil(viewportWidth / columnPitch) + GRID_OVERSCAN * 2;
+    const startCol = Math.floor(-pan.x / columnPitch) - GRID_OVERSCAN;
 
     const items = [];
 
     for (let cx = startCol; cx < startCol + cols; cx++) {
-      for (let cy = startRow; cy < startRow + rows; cy++) {
-        const itemIdx = getItemIndexForHilbert(cx, cy, ITEMS.length);
-        const x = cx * cellSize;
-        const y = cy * cellSize;
+      const cycleSize = getMasonryCycleSize(ITEMS.length);
+      const cycleHeight = getMasonryCycleHeight(cx, columnWidth, gridGap);
+      const startCycle = Math.floor(viewportTop / cycleHeight) - GRID_OVERSCAN;
+      const endCycle = Math.floor(viewportBottom / cycleHeight) + GRID_OVERSCAN;
 
-        items.push({
-          ...ITEMS[itemIdx],
-          x,
-          y,
-          key: `${cx}-${cy}`,
-        });
+      for (let cycle = startCycle; cycle <= endCycle; cycle++) {
+        for (let row = 0; row < cycleSize; row++) {
+          const cy = cycle * cycleSize + row;
+          const itemIdx = getItemIndex(cx, cy, ITEMS.length);
+          const item = ITEMS[itemIdx];
+          const x = cx * columnPitch;
+          const y = getMasonryY(cx, cy, columnWidth, gridGap);
+          const height = getRenderedItemHeight(item, columnWidth);
+          const isVisible = y + height >= viewportTop && y <= viewportBottom;
+          const animationDelay = seededRandom(cx * 10000 + cy * 100 + 999) * 0.18;
+
+          if (y + height < viewportTop - gridGap || y > viewportBottom + gridGap) {
+            continue;
+          }
+
+          items.push({
+            ...item,
+            x,
+            y,
+            width: columnWidth,
+            renderedHeight: height,
+            isVisible,
+            animationDelay,
+            key: `${cx}-${cy}`,
+          });
+        }
       }
     }
 
@@ -292,7 +504,11 @@ export function VisualPlayground() {
   };
 
   //
-  const visibleItems = getVisibleItems();
+  const visibleItems = useMemo(
+    () => getVisibleItems(),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [pan.x, pan.y, imageSize, gridGap, mounted],
+  );
 
   if (!mounted) {
     return null;
@@ -324,20 +540,14 @@ export function VisualPlayground() {
       <div
         className="absolute will-change-transform"
         style={{
-          transform: `translate(${pan.x}px, ${pan.y}px)`,
+          transform: `translate3d(${pan.x}px, ${pan.y}px, 0)`,
         }}
       >
         {visibleItems.map((item) => {
           const rotation = getItemRotation(
             Math.floor(item.x / (imageSize + gridGap)),
-            Math.floor(item.y / (imageSize + gridGap)),
+            Math.floor(item.y / (item.renderedHeight + gridGap)),
           );
-
-          // Random delay for enter animation based on grid position
-          const cellX = Math.floor(item.x / (imageSize + gridGap));
-          const cellY = Math.floor(item.y / (imageSize + gridGap));
-          const delaySeed = cellX * 10000 + cellY * 100 + 999; // Different seed for delay
-          const randomDelay = seededRandom(delaySeed) * 0.5; // Random delay between 1-1.5s
 
           return (
             <motion.a
@@ -349,32 +559,29 @@ export function VisualPlayground() {
               style={{
                 left: item.x,
                 top: item.y,
-                width: imageSize,
-                height: imageSize,
+                width: item.width,
+                height: item.renderedHeight,
               }}
               initial={{
-                filter: "blur(12px)",
+                filter: `blur(${ENTER_BLUR})`,
                 rotate: rotation,
-                scale: 0.8,
+                scale: 0.94,
                 opacity: 0,
               }}
-              whileInView={{
-                filter: "blur(0px)",
-                scale: 1,
-                opacity: 1,
+              animate={{
+                filter: item.isVisible ? "blur(0px)" : `blur(${ENTER_BLUR})`,
+                rotate: rotation,
+                scale: item.isVisible ? 1 : 0.94,
+                opacity: item.isVisible ? 1 : 0,
                 transition: {
-                  duration: 0.4,
+                  duration: 0.45,
                   ease: "easeOut",
-                  delay: randomDelay,
+                  delay: item.isVisible ? item.animationDelay : 0,
                 },
               }}
-              viewport={{ once: true, amount: 0.2 }}
               whileHover={{
                 rotate: 0,
-                width: imageSize + 50,
-                height: imageSize + 50,
-                left: item.x - 25,
-                top: item.y - 25,
+                scale: 1.08,
                 boxShadow: "0 0 40px 0 rgba(0, 0, 0, 0.05)",
                 transition: { duration: 0.15, ease: "easeOut", delay: 0 },
               }}
@@ -397,19 +604,23 @@ export function VisualPlayground() {
               {isVideo(item.mediaUrl) ? (
                 <video
                   src={item.mediaUrl}
-                  width={imageSize}
-                  height={imageSize}
+                  width={item.width}
+                  height={item.renderedHeight}
                   autoPlay
                   loop
                   muted
+                  playsInline
+                  preload="metadata"
                   className="pointer-events-none box-border size-full rounded-2xl border-4 border-white object-cover outline -outline-offset-4 outline-zinc-400/20"
                 />
               ) : (
                 <Image
                   quality={100}
                   src={item.mediaUrl}
-                  width={imageSize}
-                  height={imageSize}
+                  width={item.width}
+                  height={item.renderedHeight}
+                  sizes={`${item.width}px`}
+                  decoding="async"
                   alt=""
                   className="pointer-events-none box-border size-full rounded-2xl border-4 border-white object-cover outline -outline-offset-4 outline-zinc-400/20"
                 />
