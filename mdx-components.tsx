@@ -28,7 +28,7 @@ function highlightCode(code: string) {
         {parts.map((part, partIndex) => {
           if (part.startsWith("//") || part.startsWith("/*")) {
             return (
-              <span key={partIndex} className="text-zinc-500">
+              <span key={partIndex} className="text-[#8b8b8b]">
                 {part}
               </span>
             );
@@ -36,7 +36,7 @@ function highlightCode(code: string) {
 
           if (/^["'`]/.test(part)) {
             return (
-              <span key={partIndex} className="text-emerald-300">
+              <span key={partIndex} className="text-[#a45f00]">
                 {part}
               </span>
             );
@@ -48,7 +48,7 @@ function highlightCode(code: string) {
             )
           ) {
             return (
-              <span key={partIndex} className="text-sky-300">
+              <span key={partIndex} className="text-[#49AF94]">
                 {part}
               </span>
             );
@@ -56,7 +56,7 @@ function highlightCode(code: string) {
 
           if (/^\d/.test(part)) {
             return (
-              <span key={partIndex} className="text-amber-300">
+              <span key={partIndex} className="text-[#a45f00]">
                 {part}
               </span>
             );
@@ -64,7 +64,7 @@ function highlightCode(code: string) {
 
           if (/^<\/?[\w.-]+$/.test(part)) {
             return (
-              <span key={partIndex} className="text-violet-300">
+              <span key={partIndex} className="text-[#a45f00]">
                 {part}
               </span>
             );
@@ -72,7 +72,7 @@ function highlightCode(code: string) {
 
           if (/^[{}()[\].,;:?]$/.test(part)) {
             return (
-              <span key={partIndex} className="text-zinc-500">
+              <span key={partIndex} className="text-[#8b8b8b]">
                 {part}
               </span>
             );
@@ -91,12 +91,12 @@ function CodeBlock({ children }: { children?: ReactNode }) {
   const code = textFromNode(codeElement?.props.children ?? children).trimEnd();
 
   return (
-    <div className="my-6 overflow-hidden rounded-lg border border-zinc-200 bg-zinc-950 shadow-sm">
-      <div className="flex items-center justify-between border-b border-white/10 px-4 py-2">
-        <span className="font-mono text-xs text-zinc-400">{language ?? "code"}</span>
+    <div className="my-6 overflow-hidden rounded-lg border border-[#e7e5df] bg-[#fbfaf7]">
+      <div className="flex items-center justify-between border-b border-[#e7e5df] px-4 py-2">
+        <span className="font-mono text-xs text-[#7f7a70]">{language ?? "code"}</span>
       </div>
       <pre className="overflow-x-auto p-4 text-sm leading-normal">
-        <code className="font-mono text-zinc-100">{highlightCode(code)}</code>
+        <code className="font-mono text-[#222222]">{highlightCode(code)}</code>
       </pre>
     </div>
   );
