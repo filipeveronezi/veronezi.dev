@@ -24,7 +24,7 @@ function highlightCode(code: string) {
     const parts = line.split(tokenPattern).filter(Boolean);
 
     return (
-      <span key={lineIndex} className="block min-h-[1lh]">
+      <span key={lineIndex} className="block min-h-lh">
         {parts.map((part, partIndex) => {
           if (part.startsWith("//") || part.startsWith("/*")) {
             return (
