@@ -1,22 +1,36 @@
-import { Analytics } from '@vercel/analytics/react'
-import clsx from 'clsx'
-import type { Metadata } from 'next'
-import { geist, libreCaslonCondensed } from './fonts'
-import './globals.css'
-import React from 'react'
+import type { Metadata } from "next";
+import { Inter, Geist_Mono } from "next/font/google";
+import "./globals.css";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
+import { Footer } from "@/components/footer";
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+  weight: "400",
+});
 
 export const metadata: Metadata = {
-  title: 'F. Veronezi — Home',
-  description: 'Design Engineer. Building for the web.'
-}
+  title: "Filipe Veronezi",
+  description: "Design Engineer",
+};
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
-    <html lang="en">
-      <body className={clsx(geist.variable, libreCaslonCondensed.variable, 'font-sans antialiased')}>
-        {children}
-        <Analytics />
+    <html lang="en" className={`${inter.variable} ${geistMono.variable} min-h-full antialiased`}>
+      <body className="flex min-h-full flex-col">
+        <NuqsAdapter>{children}</NuqsAdapter>
+        <Footer />
       </body>
     </html>
-  )
+  );
 }

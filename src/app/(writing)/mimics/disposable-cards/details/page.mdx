@@ -1,0 +1,106 @@
+import {
+  FoundationDemo,
+  LoopDemo,
+  ProgressDemo,
+  SlotsDemo,
+  SnapDemo,
+  TweakingDetailsDemo,
+} from "./demos";
+
+import { ExternalLink } from "@/components/external-link";
+
+export const metadata = {
+  title: "Disposable cards",
+  publishedAt: "2026-05-20T12:00",
+  originalBy: "Caleb Wu",
+  originalUrl: "https://www.calebwu.ca/",
+};
+
+# Disposable cards
+
+I wanted to recreate the card pile from <ExternalLink href="https://calebwu.ca">Caleb Wu's personal website</ExternalLink>. Even though the style of each card is pretty unique and visual appealing, what **sparked my curiosity** was how the **scroll transition effect** was made.
+
+---
+
+## Foundation
+
+To start off, no special trick was needed. The base is just a **fixed stage** with **absolute positioned cards**.
+
+<FoundationDemo />
+
+---
+
+## Transforming scroll -> progress
+
+The first real tricky part was how to transform user input, in this case **scroll events**, into **progressively animated cards**.
+
+`useMotionValue` and `useSpring` are really useful helpers for creating animations based on **value changes**. Besides helping to **smooth out** the value changes, they're **very performant** as they do not trigger re-renders in the React render tree.
+
+```tsx
+const rawProgress = useMotionValue(0);
+const progress = useSpring(rawProgress);
+```
+
+Scroll events bring a lot of **complexity** into our problem. Users can interact with scroll with different **intensity**, **speed** and **frequency**. Scroll can be dispatched by **touch** on mobile, or have an **intertia effect** on trackpads, or even slightly **different behaviors** with different types of mice.
+
+All that diversity is just noise for our use case, that's why I decided to **reduce** scroll events to **direction intent**. This way it just works like **simple gestures**.
+
+```tsx
+function triggerGesture(direction: 1 | -1) {
+  rawProgress.set(rawProgress.get() + direction);
+}
+```
+
+That combined approach enables us to transform **scroll events** into **measurable progress**.
+
+<ProgressDemo />
+
+---
+
+## Transforming progress -> slots
+
+While progress tells us **where the user is** in terms of scrolling, slots tells us **where each card should be** relative to where the user is.
+
+`useTransform` comes in pretty handy to achieve this. Each card receives the current progress and calculates the current slot value based on the original index.
+
+A `wrap` helper function is also needed to wrap infinite progress into loopable progress.
+
+```tsx
+function wrap(value: number, length: number) {
+  return ((value % length) + length) % length;
+}
+
+const slot = useTransform(progress, (value) => {
+  const distance = index - wrap(value, cards.length);
+  return distance <= -1 ? distance + cards.length : distance;
+});
+```
+
+<LoopDemo />
+
+It's important to mention that we need to keep slot `0...-1` valid, this is the only way we can animate the **exit** and **enter** animations of the top card. That simplified version is enough to see the idea:
+
+- slot 0: top card
+- slot 1: second card
+- slot 2: third card
+- slot 3: fourth card (hidden)
+- slot -0.5: card leaving above the pile
+
+---
+
+## Tweaking details
+
+After everything has worked, most of the polish came from mapping **slot values** into **small transform choices**:
+
+```tsx
+const opacity = useTransform(slot, [-1, 0, 2, visibleDepth], [0, 1, 1, 0]);
+const y = useTransform(slot, [-1, 0, 1, 2, visibleDepth], [-700, 0, 28, 56, 28]);
+const x = useTransform(slot, [-1, 0, 1, 2, visibleDepth], [30, 0, 0, 0, 0]);
+const rotate = useTransform(slot, [-1, 0, 1, 2, visibleDepth], [10, 0, 0, 0, 0]);
+```
+
+<TweakingDetailsDemo />
+
+I'm sounding like this was a fast phase, but the reality is that polishing is a phase that never ends, you just have to decide when to give up.
+
+One tiny detail I was very happy to notice in my iterations is how the last card enters and leaves the pile when transitioning from the visual depth limit. [Go back to the demo](/mimics/disposable-cards) and see if you notice it.

@@ -1,9 +1,0 @@
-{
-  "extends": ["next", "plugin:prettier/recommended", "plugin:tailwindcss/recommended"],
-  "overrides": [
-    {
-      "files": ["*.ts", "*.tsx", "*.js"],
-      "parser": "@typescript-eslint/parser"
-    }
-  ]
-}
