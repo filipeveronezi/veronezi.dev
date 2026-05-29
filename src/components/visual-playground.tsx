@@ -199,6 +199,12 @@ const ITEMS = [
     width: 1153,
     height: 2048,
   },
+  {
+    mediaUrl: "/visual-playground/invested.png",
+    externalUrl: "https://x.com/fiveronezi/status/2060354711706820961",
+    width: 1600,
+    height: 900,
+  },
 ];
 
 type PlaygroundItem = (typeof ITEMS)[number];
