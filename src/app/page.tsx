@@ -3,10 +3,18 @@ import { InteractiveWritingFallback } from "@/components/interactive-writing-fal
 import { getAllContent } from "@/lib/content";
 import { PilgrimLogo } from "@/components/logos/pilgrim-logo";
 import { XLogo } from "@/components/logos/x-logo";
-import { BoxIcon, LayoutGridIcon } from "lucide-react";
+import {
+  BoxIcon,
+  CircleDashedIcon,
+  CuboidIcon,
+  CylinderIcon,
+  LayoutGridIcon,
+  PackageOpenIcon,
+} from "lucide-react";
 import Link from "next/link";
 import { Suspense } from "react";
 import { TransitionLink } from "@/components/transition-link";
+import { OSSProjectItem } from "@/components/oss-project-item";
 
 export default async function Home() {
   const content = await getAllContent();
@@ -62,10 +70,15 @@ export default async function Home() {
       </Suspense>
       <section className="space-y-2 px-4 pb-20">
         <h2 className="flex items-center gap-1 font-medium text-zinc-900">
-          <BoxIcon className="size-4 text-zinc-500" />
+          <CuboidIcon className="size-4 text-zinc-500" />
           <span>OSS Projects</span>
         </h2>
-        <p className="text-zinc-500">Soon.</p>
+        <OSSProjectItem
+          name="Vespertine"
+          description="Peppermint and orange-flavored light theme for Zed, inspired by Vesper."
+          logoUrl="/vespertine-logo.svg"
+          externalUrl="https://github.com/filipeveronezi/vespertine"
+        />
       </section>
       <section className="space-y-2 px-4 pb-20">
         <h2 className="flex items-center gap-1 font-medium text-zinc-900">
