@@ -3,14 +3,7 @@ import { InteractiveWritingFallback } from "@/components/interactive-writing-fal
 import { getAllContent } from "@/lib/content";
 import { PilgrimLogo } from "@/components/logos/pilgrim-logo";
 import { XLogo } from "@/components/logos/x-logo";
-import {
-  BoxIcon,
-  CircleDashedIcon,
-  CuboidIcon,
-  CylinderIcon,
-  LayoutGridIcon,
-  PackageOpenIcon,
-} from "lucide-react";
+import { CuboidIcon, LayoutGridIcon } from "lucide-react";
 import Link from "next/link";
 import { Suspense } from "react";
 import { TransitionLink } from "@/components/transition-link";

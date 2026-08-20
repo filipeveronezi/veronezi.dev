@@ -58,7 +58,7 @@ export function InteractiveWriting({ content }: { content: ContentItem[] }) {
   const filtered = isAll ? content : content.filter((item) => item.type === filter);
   const setFilterWithHeightAnimation = (value: string) => {
     setShouldAnimateHeight(true);
-    setFilter(value);
+    void setFilter(value);
   };
 
   return (

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { motion, useMotionValue, useMotionValueEvent, useSpring, useTransform } from "motion/react";
+import { motion, useMotionValue, useMotionValueEvent, useSpring } from "motion/react";
 import { Demo } from "@/components/demo";
 import { cn } from "@/lib/cn";
 import { MouseIcon } from "lucide-react";

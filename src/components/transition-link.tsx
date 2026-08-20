@@ -24,7 +24,7 @@ export function TransitionLink({ href, onClick, children, ...props }: Props) {
         if (e.defaultPrevented) return;
         if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
         e.preventDefault();
-        navigate(href, router.push);
+        navigate(href, (nextHref) => router.push(nextHref));
       }}
       {...props}
     >
