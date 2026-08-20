@@ -1,0 +1,34 @@
+import { ScrollbarGutterDemo } from "./demos";
+
+export const metadata = {
+  title: "Preventing layout shifts with scrollbar-gutter",
+  publishedAt: "2026-08-19T12:00",
+};
+
+# Preventing layout shifts with `scrollbar-gutter`
+
+Opening a dialog usually makes the page **non-scrollable**. On systems with classic scrollbars, setting `overflow: hidden` removes the scrollbar and gives its width back to the page. Centered content moves a few pixels as a result.
+
+Try both buttons below. Keep an eye on the green dot and the text behind the modal. The isolated preview uses a classic scrollbar so the difference remains visible even if your operating system uses overlay scrollbars.
+
+<ScrollbarGutterDemo />
+
+## How it works
+
+`scrollbar-gutter` lets us reserve the space where a scrollbar may appear. The `stable` value keeps that gutter even when the page does not need a scrollbar, or when scrolling is temporarily disabled.
+
+```css
+html {
+  scrollbar-gutter: stable;
+}
+```
+
+Tailwind has a `scrollbar-gutter-stable` utility for applying that CSS property value. That comes in really handy.
+
+Without a stable gutter, the scrollbar disappears and the layout expands into the newly available space. With it, that space remains reserved, so centered and right-aligned content stays put.
+
+## One small caveat
+
+Some operating systems use **overlay scrollbars**, which sit on top of the page instead of taking up layout space. On those systems there may be no layout shift to prevent. The preview above simulates a classic scrollbar so the behavior is easy to compare everywhere.
+
+For most sites, applying `scrollbar-gutter: stable` to `html` is a small, progressive enhancement that prevents layout shifts.
