@@ -8,6 +8,7 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { VisualPlayground } from "@/components/visual-playground";
 import { OSSProjectItem } from "@/components/oss-project-item";
+import { Enjoyable } from "@/components/enjoyable";
 
 export default async function Home() {
   const content = await getAllContent();
@@ -39,8 +40,8 @@ export default async function Home() {
             . Our mission is to create the best biblical learning experience possible for Christians.
           </p>
           <p>
-            I believe software shouldn’t just be useful, it should be{" "}
-            <em className="font-medium text-zinc-900 not-italic">enjoyable</em>.
+            I believe software shouldn’t just be useful, it should{" "}
+            <Enjoyable />.
           </p>
           <p>
             You can reach out to me on{" "}
