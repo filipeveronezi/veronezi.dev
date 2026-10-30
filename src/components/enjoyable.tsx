@@ -5,12 +5,12 @@ import type { MouseEvent } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 
-// Placeholder copy and matching emoji palettes, ready to refine together.
 const WORDS = [
   { text: "be enjoyable", emojis: ["✨", "😊", "💛"] },
-  { text: "be fun", emojis: ["🎉", "🤸", "🎈"] },
+  { text: "make you smile", emojis: ["😁", "☀️", "🌈"] },
+  { text: "spark curiosity", emojis: ["👀", "💡", "🔍"] },
+  { text: "feel like magic", emojis: ["🪄", "✨", "🔮"] },
   { text: "make you feel something", emojis: ["🥹", "❤️", "💫"] },
-  { text: "be delightful", emojis: ["🌈", "✨", "😍"] },
 ];
 
 export function Enjoyable() {
@@ -32,6 +32,7 @@ export function Enjoyable() {
 
   function changeWord(event: MouseEvent<HTMLButtonElement>) {
     const next = (indexRef.current + 1) % WORDS.length;
+    const palette = WORDS[next].emojis;
     indexRef.current = next;
     setIndex(next);
 
@@ -50,7 +51,6 @@ export function Enjoyable() {
 
     for (let i = 0; i < 14; i++) {
       const particle = document.createElement("span");
-      const palette = WORDS[next].emojis;
       particle.textContent = palette[i % palette.length];
       particle.style.cssText = `position:absolute;left:${x}px;top:${y}px;font-size:${22 + Math.random() * 16}px;line-height:1;`;
       layer.appendChild(particle);
