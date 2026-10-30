@@ -20,24 +20,30 @@ export default async function Home() {
             <span>Filipe Veronezi</span>
           </h1>
           <span className="font-medium text-zinc-500">
-            Design Engineer, Head of Technology at Pilgrim
+            Design Engineer
           </span>
         </section>
         <section className="space-y-2 px-4 leading-loose text-zinc-500">
           <p>
-            I&apos;m currently building software and leading a small, talented team at{" "}
+            I’m a design engineer and head of technology at{" "}
             <Link
               className="group"
               href="https://pilgrim.com.br"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <PilgrimLogo className="inline size-4 -translate-y-0.5 grayscale" />{" "}
+              <span
+                aria-hidden="true"
+                className="intro-logo corner-squircle inline-flex size-5 -translate-y-0.5 items-center justify-center rounded-md bg-white align-middle"
+              >
+                <PilgrimLogo className="size-3" />
+              </span>{" "}
               <span className="font-medium text-zinc-900 underline decoration-zinc-400 decoration-dotted underline-offset-5 transition-colors group-hover:decoration-zinc-500">
                 Pilgrim
               </span>
             </Link>
-            . Our mission is to create the best biblical learning experience possible for Christians.
+            , where I lead a small, talented team building the best biblical learning experience
+            possible for Christians.
           </p>
           <p>
             I believe software shouldn’t just be useful, it should{" "}
@@ -51,7 +57,12 @@ export default async function Home() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <XLogo className="inline size-3.5 translate-y-[-0.05rem]" />{" "}
+              <span
+                aria-hidden="true"
+                className="intro-logo corner-squircle inline-flex size-5 -translate-y-0.5 items-center justify-center rounded-md bg-black align-middle"
+              >
+                <XLogo className="size-3 invert" />
+              </span>{" "}
               <span className="font-medium text-zinc-900 underline decoration-zinc-400 decoration-dotted underline-offset-5 transition-colors group-hover:decoration-zinc-500">
                 @fiveronezi
               </span>
