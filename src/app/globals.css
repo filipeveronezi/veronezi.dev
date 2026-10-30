@@ -43,3 +43,74 @@ body {
     opacity: 0;
   }
 }
+
+.work-carousel {
+  width: 100%;
+  min-width: 0;
+  margin-block: clamp(1rem, 3vw, 2rem);
+}
+
+.work-carousel-viewport {
+  --card-height: min(420px, 78vw);
+  --work-inset: max(16px, calc((100% - 42rem) / 2 + 16px));
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 2vw, 28px);
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 32px 0;
+  padding-inline-start: var(--work-inset);
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  cursor: grab;
+}
+
+.work-carousel-viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.work-carousel-viewport[data-dragging] {
+  cursor: grabbing;
+  user-select: none;
+}
+
+.work-carousel-card {
+  flex: 0 0 auto;
+  width: max-content;
+  min-width: 0;
+  transform-origin: center;
+}
+
+.work-carousel-media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--card-height);
+  width: max-content;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #f4f4f5;
+  box-shadow: 0 0 0 1px #18181b0d;
+}
+
+.work-carousel-media img,
+.work-carousel-media video {
+  width: auto;
+  max-width: none;
+  height: var(--card-height);
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.work-carousel-viewport:focus-visible,
+.work-carousel-media:focus-visible {
+  outline: 2px solid #71717a;
+  outline-offset: -3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .work-carousel-card {
+    transform: none !important;
+  }
+}

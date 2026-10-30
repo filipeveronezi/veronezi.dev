@@ -1,205 +1,110 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "motion/react";
-import React, { useMemo, useState, useRef, useEffect } from "react";
-import { TransitionLink } from "./transition-link";
-import { LogOutIcon } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import type { PointerEvent } from "react";
 
 const ITEMS = [
   {
+    title: "Pilgrim Week · Motion",
     mediaUrl: "/visual-playground/pilgrim-week.mp4",
     externalUrl: "https://pilgrim.com.br/pilgrim-week-01",
     width: 1256,
     height: 1256,
   },
   {
-    mediaUrl: "/visual-playground/pilgrim-week.png",
-    externalUrl: "https://pilgrim.com.br/pilgrim-week-01",
-    width: 1512,
-    height: 1350,
-  },
-  {
-    mediaUrl: "/visual-playground/logo-fv.png",
-    externalUrl: null,
-    width: 1000,
+    title: "Pilgrim · Website",
+    mediaUrl: "/visual-playground/pilgrim-website.jpg",
+    externalUrl: "https://pilgrim.com.br",
+    width: 1440,
     height: 1000,
   },
   {
+    title: "Pilgrim Compass · Website",
+    mediaUrl: "/visual-playground/pilgrim-compass-website.jpg",
+    externalUrl: "https://pilgrim.com.br/compass",
+    width: 1440,
+    height: 1000,
+  },
+  {
+    title: "FV · Identity",
+    mediaUrl: "/visual-playground/fv-hires.png",
+    externalUrl: null,
+    width: 8000,
+    height: 8000,
+  },
+  {
+    title: "Responsive table",
     mediaUrl: "/visual-playground/responsive-table.png",
     externalUrl: null, // TODO: X post
     width: 1932,
     height: 1930,
   },
   {
+    title: "Unfair · Identity",
     mediaUrl: "/visual-playground/unfair-logo.png",
     externalUrl: null,
     width: 1000,
     height: 1000,
   },
   {
+    title: "Dashboard sidebar",
     mediaUrl: "/visual-playground/dashboard-sidebar.png",
     externalUrl: null, // TODO: X post
     width: 1000,
     height: 1000,
   },
   {
+    title: "Polis · Identity",
     mediaUrl: "/visual-playground/polis-logo.png",
     externalUrl: null,
     width: 1798,
     height: 1798,
   },
   {
+    title: "Pilgrim Compass",
     mediaUrl: "/visual-playground/pilgrim-compass.png",
     externalUrl: null,
     width: 2166,
     height: 2166,
   },
   {
+    title: "Bible reader",
     mediaUrl: "/visual-playground/bible-reader.png",
     externalUrl: "https://app.pilgrim.com.br/tabs/b%C3%ADblia",
     width: 1095,
     height: 1094,
   },
   {
+    title: "Bible audio toolbar",
     mediaUrl: "/visual-playground/bible-toolbar-audio.mp4",
     externalUrl: "https://app.pilgrim.com.br/tabs/b%C3%ADblia",
     width: 1000,
     height: 1000,
   },
   {
+    title: "Calendar elements",
     mediaUrl: "/visual-playground/calendar-elements.png",
     externalUrl: "https://pilgrim.com.br/pilgrim-week-01#day-5",
     width: 1546,
     height: 1546,
   },
   {
+    title: "Pilgrim · Previous website",
     mediaUrl: "/visual-playground/pilgrim-lp.png",
-    externalUrl: "https://pilgrim.com.br",
+    externalUrl: null,
     width: 1000,
     height: 1000,
   },
   {
+    title: "Eventsea",
     mediaUrl: "/visual-playground/eventsea.png",
     externalUrl: null,
     width: 960,
     height: 960,
   },
   {
-    mediaUrl: "/visual-playground/canada_1.png",
-    externalUrl: null,
-    width: 1153,
-    height: 2048,
-  },
-  {
-    mediaUrl: "/visual-playground/canada_2.png",
-    externalUrl: null,
-    width: 1153,
-    height: 2048,
-  },
-  {
-    mediaUrl: "/visual-playground/canada_3.png",
-    externalUrl: null,
-    width: 1153,
-    height: 2048,
-  },
-  {
-    mediaUrl: "/visual-playground/canada_4.png",
-    externalUrl: null,
-    width: 1153,
-    height: 2048,
-  },
-  {
-    mediaUrl: "/visual-playground/canada_5.png",
-    externalUrl: null,
-    width: 1153,
-    height: 2048,
-  },
-  {
-    mediaUrl: "/visual-playground/canada_6.png",
-    externalUrl: null,
-    width: 1536,
-    height: 2048,
-  },
-  {
-    mediaUrl: "/visual-playground/canada_7.png",
-    externalUrl: null,
-    width: 1536,
-    height: 2048,
-  },
-  {
-    mediaUrl: "/visual-playground/canada_8.png",
-    externalUrl: null,
-    width: 1536,
-    height: 2048,
-  },
-  {
-    mediaUrl: "/visual-playground/canada_9.png",
-    externalUrl: null,
-    width: 1153,
-    height: 2048,
-  },
-  {
-    mediaUrl: "/visual-playground/canada_10.png",
-    externalUrl: null,
-    width: 1153,
-    height: 2048,
-  },
-  {
-    mediaUrl: "/visual-playground/canada_11.png",
-    externalUrl: null,
-    width: 1153,
-    height: 2048,
-  },
-  {
-    mediaUrl: "/visual-playground/canada_12.png",
-    externalUrl: null,
-    width: 1153,
-    height: 2048,
-  },
-  {
-    mediaUrl: "/visual-playground/canada_13.png",
-    externalUrl: null,
-    width: 1153,
-    height: 2048,
-  },
-  {
-    mediaUrl: "/visual-playground/canada_14.png",
-    externalUrl: null,
-    width: 1153,
-    height: 2048,
-  },
-  {
-    mediaUrl: "/visual-playground/canada_15.png",
-    externalUrl: null,
-    width: 1153,
-    height: 2048,
-  },
-  {
-    mediaUrl: "/visual-playground/disney_1.png",
-    externalUrl: null,
-    width: 1536,
-    height: 2048,
-  },
-  {
-    mediaUrl: "/visual-playground/disney_2.png",
-    externalUrl: null,
-    width: 1153,
-    height: 2048,
-  },
-  {
-    mediaUrl: "/visual-playground/foots.png",
-    externalUrl: null,
-    width: 1395,
-    height: 2048,
-  },
-  {
-    mediaUrl: "/visual-playground/universal_1.png",
-    externalUrl: null,
-    width: 1153,
-    height: 2048,
-  },
-  {
+    title: "Invested",
     mediaUrl: "/visual-playground/invested.png",
     externalUrl: "https://x.com/fiveronezi/status/2060354711706820961",
     width: 1600,
@@ -207,434 +112,261 @@ const ITEMS = [
   },
 ];
 
-type PlaygroundItem = (typeof ITEMS)[number];
-
-const DEFAULT_IMAGE_SIZE = 500; // Desktop column width
-const MOBILE_IMAGE_SIZE = 310; // Mobile column width
-const DEFAULT_GRID_GAP = 110;
-const MOBILE_GRID_GAP = 40;
-const GRID_OVERSCAN = 1;
-const ROTATION_RANGE = 8; // Range of rotation in degrees (e.g., 10 = ±5 degrees)
-const ENTER_BLUR = "6px";
-
-// Helper: seeded random for repeatable positions
-function seededRandom(seed: number) {
-  let x = Math.sin(seed) * 10000;
-  return x - Math.floor(x);
-}
-
-// Helper: get random rotation for a grid cell
-function getItemRotation(cellX: number, cellY: number) {
-  const seed = cellX * 10000 + cellY * 100;
-  // Random rotation between -ROTATION_RANGE/2 and +ROTATION_RANGE/2 degrees
-  return seededRandom(seed) * ROTATION_RANGE - ROTATION_RANGE / 2;
-}
-
-// Helper: check if media is a video
-function isVideo(mediaUrl: string): boolean {
-  return mediaUrl.toLowerCase().endsWith(".mp4");
-}
-
-function positiveModulo(value: number, modulo: number) {
-  return ((value % modulo) + modulo) % modulo;
-}
-
-function getMasonryCycleSize(totalItems: number) {
-  return totalItems;
-}
-
-function getItemIndex(cellX: number, cellY: number, totalItems: number) {
-  return positiveModulo(cellX * 7 + cellY * 11, totalItems);
-}
-
-function getRenderedItemHeight(item: PlaygroundItem, width: number) {
-  return Math.round((width * item.height) / item.width);
-}
-
-function getMasonryCycleHeight(cellX: number, width: number, gap: number) {
-  let cycleHeight = 0;
-
-  for (let row = 0; row < getMasonryCycleSize(ITEMS.length); row++) {
-    const item = ITEMS[getItemIndex(cellX, row, ITEMS.length)];
-    cycleHeight += getRenderedItemHeight(item, width) + gap;
-  }
-
-  return cycleHeight;
-}
-
-function getMasonryY(cellX: number, cellY: number, width: number, gap: number) {
-  const cycleSize = getMasonryCycleSize(ITEMS.length);
-  const normalizedY = ((cellY % cycleSize) + cycleSize) % cycleSize;
-  const cycleIndex = Math.floor(cellY / cycleSize);
-  let cycleHeight = 0;
-  let offsetY = 0;
-
-  for (let row = 0; row < cycleSize; row++) {
-    const item = ITEMS[getItemIndex(cellX, row, ITEMS.length)];
-    const rowHeight = getRenderedItemHeight(item, width) + gap;
-
-    cycleHeight += rowHeight;
-
-    if (row < normalizedY) {
-      offsetY += rowHeight;
-    }
-  }
-
-  return cycleIndex * cycleHeight + offsetY;
-}
-
 export function VisualPlayground() {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [pan, setPan] = useState({ x: 0, y: 0 });
-  const panRef = useRef(pan);
-  const panFrameRef = useRef<number | null>(null);
-  const [drag, setDrag] = useState<{
-    startX: number;
-    startY: number;
-    panX: number;
-    panY: number;
-  } | null>(null);
-  const [hasMoved, setHasMoved] = useState(false);
-  const [imageSize, setImageSize] = useState(DEFAULT_IMAGE_SIZE);
-  const [gridGap, setGridGap] = useState(DEFAULT_GRID_GAP);
+  const viewportRef = useRef<HTMLDivElement>(null);
+  const dragRef = useRef<{ x: number; scroll: number; moved: boolean; down: boolean; lastX: number; time: number; velocity: number } | null>(null);
+  const [active, setActive] = useState(0);
+  const momentumRef = useRef(0);
 
-  useEffect(() => {
-    return () => {
-      if (panFrameRef.current !== null) {
-        cancelAnimationFrame(panFrameRef.current);
-      }
-    };
-  }, []);
-
-  function schedulePan(nextPan: { x: number; y: number }) {
-    panRef.current = nextPan;
-
-    if (panFrameRef.current !== null) {
-      return;
-    }
-
-    panFrameRef.current = requestAnimationFrame(() => {
-      panFrameRef.current = null;
-      setPan(panRef.current);
-    });
+  function stopMomentum() {
+    cancelAnimationFrame(momentumRef.current);
+    momentumRef.current = 0;
   }
 
-  // Prevent trackpad horizontal scroll gestures from triggering browser navigation
   useEffect(() => {
-    function handleGlobalWheel(e: WheelEvent) {
-      // Check if the event target is within our canvas container
-      if (containerRef.current && containerRef.current.contains(e.target as Node)) {
-        // If there's significant horizontal scroll, prevent default to stop browser navigation
-        if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
-          e.preventDefault();
+    const viewport = viewportRef.current;
+    if (!viewport) return;
+
+    const cards = Array.from(viewport.querySelectorAll<HTMLElement>("[data-work]"));
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let frame = 0;
+
+    function update() {
+      if (!viewport) return;
+      const center = viewport.scrollLeft + viewport.clientWidth / 2;
+      const inset = cards[0]?.offsetLeft ?? 0;
+      let closest = 0;
+      let closestDistance = Infinity;
+
+      const gap = parseFloat(getComputedStyle(viewport).columnGap) || 0;
+      const layout = cards.map((card, index) => {
+        const width = card.offsetWidth;
+        const cardCenter = card.offsetLeft + width / 2;
+        const startDistance = Math.abs(card.offsetLeft - viewport.scrollLeft - inset);
+        if (startDistance < closestDistance) {
+          closest = index;
+          closestDistance = startDistance;
         }
+        return { width, center: cardCenter };
+      });
+
+      // Like the reference, perspective belongs to each card, not the scroller.
+      // Solve rotation from the final packed position, never its old layout box.
+      const perspective = 1800;
+      function project(cardCenter: number, width: number) {
+        const position = (cardCenter - center) / (viewport!.clientWidth / 2);
+        const edge = Math.min(1, Math.max(0, (Math.abs(position) - 0.12) / 0.88));
+        const angle = Math.sign(position) * edge ** 1.5 * 45;
+        const depth = edge ** 2 * 160;
+        const radians = angle * Math.PI / 180;
+        const edgeX = (x: number) => perspective * x * Math.cos(radians) / (perspective + depth + x * Math.sin(radians));
+        return { angle, depth, left: edgeX(-width / 2), right: edgeX(width / 2) };
       }
-    }
-
-    // Use passive: false to allow preventDefault
-    document.addEventListener("wheel", handleGlobalWheel, { passive: false });
-
-    return () => {
-      document.removeEventListener("wheel", handleGlobalWheel);
-    };
-  }, []);
-
-  // Responsive image size and grid gap
-  useEffect(() => {
-    function handleResize() {
-      if (window.innerWidth < 500) {
-        setImageSize(MOBILE_IMAGE_SIZE);
-        setGridGap(MOBILE_GRID_GAP);
-      } else {
-        setImageSize(DEFAULT_IMAGE_SIZE);
-        setGridGap(DEFAULT_GRID_GAP);
-      }
-    }
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  // Mouse/touch handlers
-  function onPointerDown(e: React.PointerEvent) {
-    setHasMoved(false);
-    setDrag({
-      startX: e.clientX,
-      startY: e.clientY,
-      panX: panRef.current.x,
-      panY: panRef.current.y,
-    });
-  }
-
-  function onPointerMove(e: React.PointerEvent) {
-    if (!drag) return;
-
-    // Remove drag threshold for touch events (mobile)
-    // If it's a touch or pen, always set hasMoved to true
-    if (e.pointerType === "touch" || e.pointerType === "pen") {
-      setHasMoved(true);
-    } else {
-      const deltaX = Math.abs(e.clientX - drag.startX);
-      const deltaY = Math.abs(e.clientY - drag.startY);
-      // If we've moved more than 5px, consider it a drag
-      if (deltaX > 5 || deltaY > 5) {
-        setHasMoved(true);
-      }
-    }
-
-    schedulePan({
-      x: drag.panX + (e.clientX - drag.startX),
-      y: drag.panY + (e.clientY - drag.startY),
-    });
-  }
-
-  function onPointerUp() {
-    setDrag(null);
-  }
-
-  // Add wheel handler for scroll navigation
-  function onWheel(e: React.WheelEvent) {
-    // Prevent default browser scroll
-    e.preventDefault();
-    schedulePan({
-      x: panRef.current.x - e.deltaX,
-      y: panRef.current.y - e.deltaY,
-    });
-  }
-
-  // Calculate which items to render based on viewport and pan
-  const getVisibleItems = () => {
-    if (typeof window === "undefined") {
-      return [];
-    }
-
-    const columnWidth = imageSize;
-    const columnPitch = columnWidth + gridGap;
-    const viewportWidth = containerRef.current?.getBoundingClientRect().width ?? window.innerWidth;
-    const viewportHeight =
-      containerRef.current?.getBoundingClientRect().height ?? window.innerHeight;
-    const viewportTop = -pan.y;
-    const viewportBottom = viewportTop + viewportHeight;
-
-    if (!containerRef.current) {
-      // Fallback for initial render - use window dimensions
-      const cols = Math.ceil(viewportWidth / columnPitch) + GRID_OVERSCAN * 2;
-      const startCol = Math.floor(-pan.x / columnPitch) - GRID_OVERSCAN;
-
-      const items = [];
-
-      for (let cx = startCol; cx < startCol + cols; cx++) {
-        const cycleSize = getMasonryCycleSize(ITEMS.length);
-        const cycleHeight = getMasonryCycleHeight(cx, columnWidth, gridGap);
-        const startCycle = Math.floor(viewportTop / cycleHeight) - GRID_OVERSCAN;
-        const endCycle = Math.floor(viewportBottom / cycleHeight) + GRID_OVERSCAN;
-
-        for (let cycle = startCycle; cycle <= endCycle; cycle++) {
-          for (let row = 0; row < cycleSize; row++) {
-            const cy = cycle * cycleSize + row;
-            const itemIdx = getItemIndex(cx, cy, ITEMS.length);
-            const item = ITEMS[itemIdx];
-            const x = cx * columnPitch;
-            const y = getMasonryY(cx, cy, columnWidth, gridGap);
-            const height = getRenderedItemHeight(item, columnWidth);
-            const isVisible = y + height >= viewportTop && y <= viewportBottom;
-            const animationDelay = seededRandom(cx * 10000 + cy * 100 + 999) * 0.18;
-
-            if (y + height < viewportTop - gridGap || y > viewportBottom + gridGap) {
-              continue;
+      let centers = layout.map((item) => item.center);
+      let projections = layout.map((item, index) => project(centers[index], item.width));
+      for (let iteration = 0; iteration < 24; iteration++) {
+        const packed = [layout[0].center];
+        for (let index = 1; index < layout.length; index++) {
+          packed[index] = packed[index - 1] + projections[index - 1].right + gap - projections[index].left;
+        }
+        const corrections = packed.map((value, index) => value - layout[index].center);
+        let anchor = corrections[corrections.length - 1];
+        if (center <= layout[0].center) anchor = corrections[0];
+        else {
+          for (let index = 1; index < layout.length; index++) {
+            if (center <= layout[index].center) {
+              const progress = (center - layout[index - 1].center) / (layout[index].center - layout[index - 1].center);
+              anchor = corrections[index - 1] + (corrections[index] - corrections[index - 1]) * progress;
+              break;
             }
-
-            items.push({
-              ...item,
-              x,
-              y,
-              width: columnWidth,
-              renderedHeight: height,
-              isVisible,
-              animationDelay,
-              key: `${cx}-${cy}`,
-            });
           }
         }
+        centers = packed.map((value) => value - anchor);
+        projections = layout.map((item, index) => project(centers[index], item.width));
       }
-
-      return items;
+      cards.forEach((card, index) => {
+        const { angle, depth } = projections[index];
+        card.style.transform = reducedMotion.matches
+          ? "none"
+          : `translateX(${centers[index] - layout[index].center}px) perspective(${perspective}px) translateZ(${-depth}px) rotateY(${angle}deg)`;
+      });
+      setActive(closest);
+      frame = 0;
     }
 
-    // Calculate visible grid cells
-    const cols = Math.ceil(viewportWidth / columnPitch) + GRID_OVERSCAN * 2;
-    const startCol = Math.floor(-pan.x / columnPitch) - GRID_OVERSCAN;
+    function schedule() {
+      if (!frame) frame = requestAnimationFrame(update);
+    }
 
-    const items = [];
+    // Only horizontal wheel input belongs to the carousel. Vertical scroll stays native.
+    function onWheel(event: WheelEvent) {
+      stopMomentum();
+      if (!viewport || Math.abs(event.deltaX) <= Math.abs(event.deltaY)) return;
+      const atStart = viewport.scrollLeft <= 0 && event.deltaX < 0;
+      const atEnd = viewport.scrollLeft >= viewport.scrollWidth - viewport.clientWidth - 1 && event.deltaX > 0;
+      if (atStart || atEnd) return;
+      event.preventDefault();
+      viewport.scrollLeft += event.deltaX * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? viewport.clientWidth : 1);
+    }
 
-    for (let cx = startCol; cx < startCol + cols; cx++) {
-      const cycleSize = getMasonryCycleSize(ITEMS.length);
-      const cycleHeight = getMasonryCycleHeight(cx, columnWidth, gridGap);
-      const startCycle = Math.floor(viewportTop / cycleHeight) - GRID_OVERSCAN;
-      const endCycle = Math.floor(viewportBottom / cycleHeight) + GRID_OVERSCAN;
+    const resize = new ResizeObserver(schedule);
+    resize.observe(viewport);
+    viewport.addEventListener("scroll", schedule, { passive: true });
+    viewport.addEventListener("wheel", onWheel, { passive: false });
 
-      for (let cycle = startCycle; cycle <= endCycle; cycle++) {
-        for (let row = 0; row < cycleSize; row++) {
-          const cy = cycle * cycleSize + row;
-          const itemIdx = getItemIndex(cx, cy, ITEMS.length);
-          const item = ITEMS[itemIdx];
-          const x = cx * columnPitch;
-          const y = getMasonryY(cx, cy, columnWidth, gridGap);
-          const height = getRenderedItemHeight(item, columnWidth);
-          const isVisible = y + height >= viewportTop && y <= viewportBottom;
-          const animationDelay = seededRandom(cx * 10000 + cy * 100 + 999) * 0.18;
-
-          if (y + height < viewportTop - gridGap || y > viewportBottom + gridGap) {
-            continue;
-          }
-
-          items.push({
-            ...item,
-            x,
-            y,
-            width: columnWidth,
-            renderedHeight: height,
-            isVisible,
-            animationDelay,
-            key: `${cx}-${cy}`,
-          });
+    const visibility = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const video = entry.target as HTMLVideoElement;
+        if (entry.isIntersecting && !reducedMotion.matches) {
+          void video.play().catch(() => {});
+        } else {
+          video.pause();
         }
+      });
+    }, { root: viewport, threshold: 0.25 });
+    viewport.querySelectorAll("video").forEach((video) => visibility.observe(video));
+    function onMotionChange() {
+      stopMomentum();
+      viewport?.querySelectorAll("video").forEach((video) => {
+        video.pause();
+        visibility.unobserve(video);
+        visibility.observe(video);
+      });
+      schedule();
+    }
+    reducedMotion.addEventListener("change", onMotionChange);
+    update();
+
+    return () => {
+      cancelAnimationFrame(frame);
+      stopMomentum();
+      resize.disconnect();
+      visibility.disconnect();
+      viewport.removeEventListener("scroll", schedule);
+      viewport.removeEventListener("wheel", onWheel);
+      reducedMotion.removeEventListener("change", onMotionChange);
+    };
+  }, []);
+
+  function goTo(index: number, keyboard = false) {
+    stopMomentum();
+    const viewport = viewportRef.current;
+    const card = viewport?.querySelectorAll<HTMLElement>("[data-work]")[index];
+    if (!viewport || !card) return;
+    const firstCard = viewport.querySelector<HTMLElement>("[data-work]");
+    viewport.scrollTo({ left: card.offsetLeft - (firstCard?.offsetLeft ?? 0), behavior: keyboard || window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
+  }
+
+  function onPointerDown(event: PointerEvent<HTMLDivElement>) {
+    if (event.pointerType !== "mouse" || event.button !== 0) return;
+    stopMomentum();
+    dragRef.current = { x: event.clientX, scroll: event.currentTarget.scrollLeft, moved: false, down: true, lastX: event.clientX, time: event.timeStamp, velocity: 0 };
+  }
+
+  function onPointerMove(event: PointerEvent<HTMLDivElement>) {
+    const drag = dragRef.current;
+    if (!drag?.down) return;
+    if (Math.abs(event.clientX - drag.x) > 5) {
+      drag.moved = true;
+      event.currentTarget.setPointerCapture(event.pointerId);
+      event.currentTarget.dataset.dragging = "true";
+    }
+    if (drag.moved) {
+      const elapsed = Math.max(1, event.timeStamp - drag.time);
+      const velocity = (drag.lastX - event.clientX) / elapsed;
+      drag.velocity = drag.velocity * 0.25 + velocity * 0.75;
+      drag.lastX = event.clientX;
+      drag.time = event.timeStamp;
+      event.currentTarget.scrollLeft = drag.scroll + drag.x - event.clientX;
+    }
+  }
+
+  function stopDrag(event: PointerEvent<HTMLDivElement>) {
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId);
+    }
+    delete event.currentTarget.dataset.dragging;
+    // Keep moved until the click following pointerup has been suppressed.
+    const drag = dragRef.current;
+    if (!drag) return;
+    drag.down = false;
+    if (!drag.moved || event.type !== "pointerup" || event.timeStamp - drag.time > 80 || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const viewport = event.currentTarget;
+    let velocity = Math.max(-3, Math.min(3, drag.velocity));
+    let previousTime = performance.now();
+    function coast(time: number) {
+      const elapsed = Math.min(32, time - previousTime);
+      previousTime = time;
+      const decay = Math.exp(-elapsed / 180);
+      const previousScroll = viewport.scrollLeft;
+      viewport.scrollLeft += velocity * 180 * (1 - decay);
+      velocity *= decay;
+      if (Math.abs(velocity) > 0.02 && viewport.scrollLeft !== previousScroll) {
+        momentumRef.current = requestAnimationFrame(coast);
+      } else {
+        momentumRef.current = 0;
       }
     }
-
-    return items;
-  };
-
-  //
-  const visibleItems = useMemo(
-    () => getVisibleItems(),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [pan.x, pan.y, imageSize, gridGap, mounted],
-  );
-
-  if (!mounted) {
-    return null;
+    momentumRef.current = requestAnimationFrame(coast);
   }
 
   return (
-    <div
-      ref={containerRef}
-      className="relative h-screen w-screen overflow-hidden bg-zinc-100 select-none"
-      style={{
-        cursor: drag ? "grabbing" : "grab",
-        touchAction: "none",
-        WebkitOverflowScrolling: "touch",
-        overscrollBehavior: "none",
-      }}
-      onPointerDown={onPointerDown}
-      onPointerMove={onPointerMove}
-      onPointerUp={onPointerUp}
-      onPointerLeave={onPointerUp}
-      onWheel={onWheel}
-    >
-      <TransitionLink
-        className="corner-squircle fixed inset-x-0 bottom-4 z-50 mx-auto flex w-max items-center justify-center gap-2 rounded-full border border-white bg-linear-to-tr from-zinc-900 via-zinc-900 to-zinc-500 px-5 py-2 text-white shadow-2xl transition-transform hover:scale-105 active:scale-100"
-        href="/"
-      >
-        <LogOutIcon className="size-4" />
-        <span>Leave Playground</span>
-      </TransitionLink>
+    <section id="work" aria-label="UI and design work" aria-roledescription="carousel" className="work-carousel">
       <div
-        className="absolute will-change-transform"
-        style={{
-          transform: `translate3d(${pan.x}px, ${pan.y}px, 0)`,
+        ref={viewportRef}
+        className="work-carousel-viewport"
+        style={{ paddingInlineEnd: `max(0px, calc(100% - var(--work-inset) - var(--card-height) * ${ITEMS[ITEMS.length - 1].width / ITEMS[ITEMS.length - 1].height}))` }}
+        tabIndex={0}
+        aria-label="Design work. Scroll horizontally or use the arrow keys."
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={stopDrag}
+        onPointerLeave={() => {
+          if (dragRef.current && !dragRef.current.moved) dragRef.current = null;
+        }}
+        onPointerCancel={stopDrag}
+        onLostPointerCapture={(event) => { delete event.currentTarget.dataset.dragging; }}
+        onDragStart={(event) => event.preventDefault()}
+        onClickCapture={(event) => {
+          if (dragRef.current?.moved) event.preventDefault();
+          dragRef.current = null;
+        }}
+        onKeyDown={(event) => {
+          if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+            event.preventDefault();
+            dragRef.current = null;
+            goTo(Math.max(0, Math.min(ITEMS.length - 1, active + (event.key === "ArrowRight" ? 1 : -1))), true);
+          } else if (event.key === "Home" || event.key === "End") {
+            event.preventDefault();
+            goTo(event.key === "Home" ? 0 : ITEMS.length - 1, true);
+          }
         }}
       >
-        {visibleItems.map((item) => {
-          const rotation = getItemRotation(
-            Math.floor(item.x / (imageSize + gridGap)),
-            Math.floor(item.y / (item.renderedHeight + gridGap)),
-          );
-
+        {ITEMS.map((item, index) => {
+          const Media = item.externalUrl ? "a" : "div";
           return (
-            <motion.a
-              key={item.key}
-              href={item.externalUrl ?? undefined}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="absolute block rounded-2xl no-underline select-none"
-              style={{
-                left: item.x,
-                top: item.y,
-                width: item.width,
-                height: item.renderedHeight,
-              }}
-              initial={{
-                filter: `blur(${ENTER_BLUR})`,
-                rotate: rotation,
-                scale: 0.94,
-                opacity: 0,
-              }}
-              animate={{
-                filter: item.isVisible ? "blur(0px)" : `blur(${ENTER_BLUR})`,
-                rotate: rotation,
-                scale: item.isVisible ? 1 : 0.94,
-                opacity: item.isVisible ? 1 : 0,
-                transition: {
-                  duration: 0.45,
-                  ease: "easeOut",
-                  delay: item.isVisible ? item.animationDelay : 0,
-                },
-              }}
-              whileHover={{
-                rotate: 0,
-                scale: 1.08,
-                boxShadow: "0 0 40px 0 rgba(0, 0, 0, 0.05)",
-                transition: { duration: 0.15, ease: "easeOut", delay: 0 },
-              }}
-              transition={{
-                duration: 0.15,
-                ease: "easeOut",
-              }}
-              onPointerDown={(e) => {
-                // Prevent default link behavior but allow event to bubble to container
-                e.preventDefault();
-              }}
-              onClick={(e) => {
-                // Only prevent clicks if there was actual movement
-                if (hasMoved) {
-                  e.preventDefault();
-                  e.stopPropagation();
-                }
-              }}
+          <article key={item.mediaUrl} data-work className="work-carousel-card" aria-label={`${index + 1} of ${ITEMS.length}: ${item.title}`}>
+            <Media
+              {...(item.externalUrl ? {
+                href: item.externalUrl,
+                target: "_blank",
+                rel: "noopener noreferrer",
+                "aria-label": `View ${item.title}`,
+              } : {})}
+              draggable={false}
+              className="work-carousel-media"
             >
-              {isVideo(item.mediaUrl) ? (
-                <video
-                  src={item.mediaUrl}
-                  width={item.width}
-                  height={item.renderedHeight}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload="metadata"
-                  className="pointer-events-none box-border size-full rounded-2xl border-4 border-white object-cover outline -outline-offset-4 outline-zinc-400/20"
-                />
+              {item.mediaUrl.endsWith(".mp4") ? (
+                <video src={item.mediaUrl} width={item.width} height={item.height} loop muted playsInline preload="metadata" aria-label={item.title} />
               ) : (
-                <Image
-                  quality={100}
-                  src={item.mediaUrl}
-                  width={item.width}
-                  height={item.renderedHeight}
-                  sizes={`${item.width}px`}
-                  decoding="async"
-                  alt=""
-                  className="pointer-events-none box-border size-full rounded-2xl border-4 border-white object-cover outline -outline-offset-4 outline-zinc-400/20"
-                />
+                <Image src={item.mediaUrl} width={item.width} height={item.height} quality={item.mediaUrl === "/visual-playground/fv-hires.png" ? 100 : undefined} sizes={`(max-width: 538px) ${78 * item.width / item.height}vw, ${420 * item.width / item.height}px`} alt={item.title} draggable={false} />
               )}
-            </motion.a>
+            </Media>
+          </article>
           );
         })}
       </div>
-    </div>
+    </section>
   );
 }
