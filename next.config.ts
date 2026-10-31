@@ -2,6 +2,16 @@ import createMDX from "@next/mdx";
 import { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  async redirects() {
+    return [
+      { source: "/mimics/:slug/details", destination: "/writings/:slug", permanent: true },
+      ...["articles", "components", "mimics"].map((type) => ({
+        source: `/${type}/:slug`,
+        destination: "/writings/:slug",
+        permanent: true,
+      })),
+    ];
+  },
   allowedDevOrigins: ["192.168.1.37"],
   // Configure `pageExtensions` to include markdown and MDX files
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],

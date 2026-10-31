@@ -1,4 +1,4 @@
-import { ArrowUpRightIcon } from "lucide-react";
+import { HoverItem } from "@/components/item-hover";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -11,18 +11,27 @@ type Props = {
 
 export function OSSProjectItem({ name, description, logoUrl, externalUrl }: Props) {
   return (
+    <HoverItem layoutId="project-hover">
     <Link
       href={externalUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className="corner-squircle group relative flex w-full max-w-xs flex-col gap-1 rounded-4xl border border-zinc-200 bg-zinc-50 p-4 transition-colors hover:bg-zinc-50/40"
+      className="group block after:absolute after:-inset-x-3 after:-inset-y-2 after:rounded-2xl after:content-[''] space-y-1 leading-normal"
     >
-      <ArrowUpRightIcon className="absolute top-6 right-6 size-5 text-zinc-400 opacity-0 transition-all group-hover:top-5 group-hover:right-5 group-hover:opacity-100" />
-      <div className="flex w-full items-center grayscale">
-        <Image className="size-14" src={logoUrl} alt={`${name} logo`} width={100} height={100} />
-      </div>
-      <span className="text-sm font-medium text-zinc-900">{name}</span>
-      <span className="text-sm text-zinc-600">{description}</span>
+      <span className="flex items-center gap-2 text-zinc-900">
+        <Image
+          className="h-4 w-5 object-contain"
+          src={logoUrl}
+          alt=""
+          width={20}
+          height={16}
+        />
+        <span>{name}</span>
+      </span>
+      <span className="block text-zinc-500">
+        {description}
+      </span>
     </Link>
+    </HoverItem>
   );
 }

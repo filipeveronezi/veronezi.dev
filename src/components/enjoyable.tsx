@@ -88,7 +88,7 @@ export function Enjoyable() {
           <motion.span
             key={index}
             aria-hidden="true"
-            className="inline-block origin-bottom underline decoration-zinc-400 decoration-dotted underline-offset-5 transition-colors group-hover:decoration-zinc-500"
+            className="inline-block origin-bottom underline decoration-zinc-400 decoration-dotted underline-offset-5 transition-colors group-hover:text-zinc-700 group-hover:decoration-zinc-400"
             initial={{ opacity: 0, transform: reducedMotion ? "none" : "translateY(-18px) rotate(-4deg) scale(0.95)" }}
             animate={{ opacity: 1, transform: "translateY(0px) rotate(0deg) scale(1)" }}
             exit={{ opacity: 0, transform: reducedMotion ? "none" : "translateY(-24px) rotate(5deg) scale(1.12)", transition: { duration: 0.14, ease: [0.23, 1, 0.32, 1] } }}

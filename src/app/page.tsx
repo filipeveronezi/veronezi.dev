@@ -1,17 +1,16 @@
-import { InteractiveWriting } from "@/components/interactive-writing";
-import { InteractiveWritingFallback } from "@/components/interactive-writing-fallback";
-import { getAllContent } from "@/lib/content";
+import { HoverItems } from "@/components/item-hover";
+import { Writings } from "@/components/writings";
+import { getWritings } from "@/lib/content";
 import { PilgrimLogo } from "@/components/logos/pilgrim-logo";
 import { XLogo } from "@/components/logos/x-logo";
 import { CuboidIcon } from "lucide-react";
 import Link from "next/link";
-import { Suspense } from "react";
 import { VisualPlayground } from "@/components/visual-playground";
 import { OSSProjectItem } from "@/components/oss-project-item";
 import { Enjoyable } from "@/components/enjoyable";
 
 export default async function Home() {
-  const content = await getAllContent();
+  const content = await getWritings();
   return (
     <main className="w-full pt-20">
       <div className="mx-auto w-full max-w-2xl">
@@ -38,7 +37,7 @@ export default async function Home() {
               >
                 <PilgrimLogo className="size-3" />
               </span>{" "}
-              <span className="font-medium text-zinc-900 underline decoration-zinc-400 decoration-dotted underline-offset-5 transition-colors group-hover:decoration-zinc-500">
+              <span className="font-medium text-zinc-900 underline decoration-zinc-400 decoration-dotted underline-offset-5 transition-colors group-hover:text-zinc-700 group-hover:decoration-zinc-400">
                 Pilgrim
               </span>
             </Link>
@@ -63,7 +62,7 @@ export default async function Home() {
               >
                 <XLogo className="size-3 invert" />
               </span>{" "}
-              <span className="font-medium text-zinc-900 underline decoration-zinc-400 decoration-dotted underline-offset-5 transition-colors group-hover:decoration-zinc-500">
+              <span className="font-medium text-zinc-900 underline decoration-zinc-400 decoration-dotted underline-offset-5 transition-colors group-hover:text-zinc-700 group-hover:decoration-zinc-400">
                 @fiveronezi
               </span>
             </Link>{" "}
@@ -73,13 +72,12 @@ export default async function Home() {
       </div>
       <VisualPlayground />
       <div className="mx-auto w-full max-w-2xl">
-        <Suspense fallback={<InteractiveWritingFallback content={content} />}>
-          <InteractiveWriting content={content} />
-        </Suspense>
-        <section className="space-y-2 px-4 pb-20">
+        <HoverItems>
+        <Writings writings={content} />
+        <section className="space-y-6 px-4 pb-20">
           <h2 className="flex items-center gap-1 font-medium text-zinc-900">
             <CuboidIcon className="size-4 text-zinc-500" />
-            <span>OSS Projects</span>
+            <span>Projects</span>
           </h2>
           <OSSProjectItem
             name="Vespertine"
@@ -88,6 +86,7 @@ export default async function Home() {
             externalUrl="https://github.com/filipeveronezi/vespertine"
           />
         </section>
+        </HoverItems>
       </div>
     </main>
   );

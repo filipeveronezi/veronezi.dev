@@ -1,3 +1,7 @@
+import { BackToDemo } from "./back-to-demo";
+
+import { DisposableCardsDemo } from "./disposable-cards-demo";
+
 import {
   FoundationDemo,
   LoopDemo,
@@ -11,12 +15,17 @@ import { ExternalLink } from "@/components/external-link";
 
 export const metadata = {
   title: "Disposable cards",
+  description: "Recreating a card stack with scroll gestures, springs, and small animation details.",
   publishedAt: "2026-05-20T12:00",
-  originalBy: "Caleb Wu",
-  originalUrl: "https://www.calebwu.ca/",
 };
 
 # Disposable cards
+
+<div id="demo">
+  <DisposableCardsDemo />
+</div>
+
+Scroll or swipe over the cards to explore the stack.
 
 I wanted to recreate the card pile from <ExternalLink href="https://calebwu.ca">Caleb Wu's personal website</ExternalLink>. Even though the style of each card is pretty unique and visual appealing, what **sparked my curiosity** was how the **scroll transition effect** was made.
 
@@ -103,4 +112,4 @@ const rotate = useTransform(slot, [-1, 0, 1, 2, visibleDepth], [10, 0, 0, 0, 0])
 
 I'm sounding like this was a fast phase, but the reality is that polishing is a phase that never ends, you just have to decide when to give up.
 
-One tiny detail I was very happy to notice in my iterations is how the last card enters and leaves the pile when transitioning from the visual depth limit. [Go back to the demo](/mimics/disposable-cards) and see if you notice it.
+One tiny detail I was very happy to notice in my iterations is how the last card enters and leaves the pile when transitioning from the visual depth limit. <BackToDemo /> and see if you notice it.

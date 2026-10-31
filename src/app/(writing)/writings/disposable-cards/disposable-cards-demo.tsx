@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useEffectEvent, useRef } from "react";
 import { motion, type MotionValue, useMotionValue, useSpring, useTransform } from "motion/react";
 import { cn } from "@/lib/cn";
 
@@ -69,12 +69,17 @@ function DisposableCard({
   );
 }
 
-export default function DisposableCardsPage() {
+export function DisposableCardsDemo() {
   const rawProgress = useMotionValue(0);
   const progress = useSpring(rawProgress, {
     stiffness: 180,
     damping: 30,
     mass: 0.25,
+  });
+  const stageRef = useRef<HTMLElement>(null);
+  const onWheel = useEffectEvent((event: WheelEvent) => {
+    event.preventDefault();
+    handleWheelDelta(event.deltaY);
   });
   const touchY = useRef<number | null>(null);
   const touchDelta = useRef(0);
@@ -84,12 +89,14 @@ export default function DisposableCardsPage() {
   const wheelTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
-    document.documentElement.classList.add("overflow-hidden");
-    window.scrollTo(0, 0);
+    const stage = stageRef.current;
+    if (!stage) return;
+
+    const handleWheel = (event: WheelEvent) => onWheel(event);
+    stage.addEventListener("wheel", handleWheel, { passive: false });
 
     return () => {
-      document.documentElement.classList.remove("overflow-hidden");
-
+      stage.removeEventListener("wheel", handleWheel);
       if (wheelTimer.current) {
         clearTimeout(wheelTimer.current);
       }
@@ -162,11 +169,8 @@ export default function DisposableCardsPage() {
 
   return (
     <section
-      className="fixed inset-0 z-0 flex touch-none items-center justify-center overflow-hidden"
-      onWheel={(event) => {
-        event.preventDefault();
-        handleWheelDelta(event.deltaY);
-      }}
+      ref={stageRef}
+      className="relative my-6 flex h-[460px] touch-none items-center justify-center overflow-hidden rounded-lg border border-zinc-200 bg-zinc-50/60"
       onTouchStart={(event) => {
         touchY.current = event.touches[0]?.clientY ?? null;
         touchDelta.current = 0;
@@ -189,7 +193,7 @@ export default function DisposableCardsPage() {
         touchDelta.current = 0;
       }}
     >
-      <div className="relative flex w-full max-w-xl items-center justify-center">
+      <div className="relative flex w-full max-w-sm items-center justify-center">
         {cards.map((card, index) => (
           <DisposableCard key={card.id} card={card} index={index} progress={progress} />
         ))}

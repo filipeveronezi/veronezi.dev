@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { motion, useMotionValue, useMotionValueEvent, useSpring } from "motion/react";
 import { Demo } from "@/components/demo";
 import { cn } from "@/lib/cn";
@@ -96,14 +96,26 @@ export function FoundationDemo() {
 }
 
 export function ProgressDemo() {
+  const stageRef = useRef<HTMLDivElement>(null);
   const rawProgress = useMotionValue(0);
   const progress = useSpring(rawProgress);
 
   const [progressState, setProgressState] = useState(0);
 
-  function triggerGesture(direction: 1 | -1) {
-    rawProgress.set(rawProgress.get() + direction);
-  }
+  useEffect(() => {
+    const stage = stageRef.current;
+    if (!stage) return;
+
+    function handleWheel(event: WheelEvent) {
+      event.preventDefault();
+      event.stopPropagation();
+      if (event.deltaY === 0) return;
+      rawProgress.set(rawProgress.get() + (event.deltaY > 0 ? 1 : -1));
+    }
+
+    stage.addEventListener("wheel", handleWheel, { passive: false });
+    return () => stage.removeEventListener("wheel", handleWheel);
+  }, [rawProgress]);
 
   useMotionValueEvent(progress, "change", (latest) => {
     setProgressState(Math.round(latest));
@@ -112,12 +124,8 @@ export function ProgressDemo() {
   return (
     <Demo>
       <div
-        className="relative flex size-full flex-col items-center justify-center overflow-scroll py-32"
-        onWheel={(e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          triggerGesture(e.deltaY > 0 ? 1 : -1);
-        }}
+        ref={stageRef}
+        className="relative flex size-full flex-col items-center justify-center overflow-hidden py-32"
       >
         <span className="absolute bottom-0 flex flex-col items-center justify-center gap-1 font-medium text-zinc-400">
           <MouseIcon className="size-6" />
