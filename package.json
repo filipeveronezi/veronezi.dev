@@ -17,6 +17,7 @@
     "@next/mdx": "^16.2.0",
     "@toolwind/corner-shape": "0.0.8-3",
     "@types/mdx": "^2.0.13",
+    "@web-kits/audio": "^0.2.0",
     "clsx": "^2.1.1",
     "lucide-react": "^0.577.0",
     "motion": "^12.38.0",

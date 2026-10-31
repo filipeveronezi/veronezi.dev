@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Footer } from "@/components/footer";
+import { NavigationSounds } from "@/components/navigation-sounds";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -27,6 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${geistMono.variable} min-h-full antialiased`}>
       <body className="flex min-h-full flex-col">
+        <NavigationSounds />
         {children}
         <Footer />
       </body>
